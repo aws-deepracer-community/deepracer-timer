@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>rpi-rek</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        socket.on('liveStream', function(url) {
+            $('#image').attr('src', url);
+        });
+        socket.on('QR', function(url) {
+            $.getJSON(url, function(data) {
+                if (data.id) {
+                    $('#qr').text(data.id);
+                } else {
+                    $('#qr').text('');
+                }
+            });
+        });
+        function startStream() {
+            socket.emit('start-stream');
+        }
+    </script>
+</head>
+<body>
+
+<h3><%= host %></h3>
+<h2><a href="http://<%= server %>:<%= port %>"><%= server %>:<%= port %></a></h2>
+
+<p><img id="image" src="image.png" width="200" height="150"></p>
+<p id="qr"></p>
+
+<script>
+    startStream();
+</script>
+
+</body>
+</html>

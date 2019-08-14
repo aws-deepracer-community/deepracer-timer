@@ -26,6 +26,17 @@ class Stopwatch {
         this.results.appendChild(li);
     }
 
+    reset() {
+        this.times = [ 0, 0, 0 ];
+        this.pause();
+        this.print();
+    }
+
+    restart() {
+        this.reset();
+        this.start();
+    }
+
     passed() {
         if (this.times[1] > 5) {
             this.record();
@@ -36,17 +47,6 @@ class Stopwatch {
     press() {
         if (this.times[1] < 5) return;
         this.passed();
-    }
-
-    reset() {
-        this.times = [ 0, 0, 0 ];
-        this.pause();
-        this.print();
-    }
-
-    restart() {
-        this.reset();
-        this.start();
     }
 
     clear() {

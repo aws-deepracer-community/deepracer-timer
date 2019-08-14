@@ -28,7 +28,7 @@ class Stopwatch {
     }
 
     reset() {
-        this.times = [ 0, 0, 0 ];
+        this.times = [0, 0, 0];
         this.pause();
         this.print();
     }
@@ -47,6 +47,7 @@ class Stopwatch {
 
     press() {
         stamp = new Date().getTime();
+        console.log(`press ${stamp} ${this.pressed}`);
         if (!this.pressed || (stamp - this.pressed) > 3000) {
             this.passed();
             this.pressed = new Date().getTime();
@@ -111,49 +112,44 @@ let stopwatch = new Stopwatch(
     document.querySelector('.results')
 );
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.keyCode == 13) {
         // Enter
         stopwatch.passed();
-    }
-    else if (event.keyCode == 81) {
+    } else if (event.keyCode == 81) {
         // q
         stopwatch.start();
-    }
-    else if (event.keyCode == 87) {
+    } else if (event.keyCode == 87) {
         // w
         stopwatch.pause();
-    }
-    else if (event.keyCode == 69) {
+    } else if (event.keyCode == 69) {
         // e
         stopwatch.passed();
-    }
-    else if (event.keyCode == 82) {
+    } else if (event.keyCode == 82) {
         // r
         stopwatch.reset();
-    }
-    else if (event.keyCode == 84) {
+    } else if (event.keyCode == 84) {
         // t
         stopwatch.clear();
     }
 });
 
 var socket = io();
-socket.on('start', function() {
+socket.on('start', function () {
     stopwatch.start();
 });
-socket.on('pause', function() {
+socket.on('pause', function () {
     stopwatch.pause();
 });
-socket.on('passed', function() {
+socket.on('passed', function () {
     stopwatch.passed();
 });
-socket.on('press', function() {
+socket.on('press', function () {
     stopwatch.press();
 });
-socket.on('reset', function() {
+socket.on('reset', function () {
     stopwatch.reset();
 });
-socket.on('clear', function() {
+socket.on('clear', function () {
     stopwatch.clear();
 });

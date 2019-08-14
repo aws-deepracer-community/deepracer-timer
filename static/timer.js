@@ -39,7 +39,7 @@ class Stopwatch {
     }
 
     passed() {
-        if (this.times[1] >= 5) {
+        if (this.times[1] >= 7) {
             this.record();
         }
         this.restart();

@@ -3,6 +3,7 @@ class Stopwatch {
         this.running = false;
         this.display = display;
         this.results = results;
+        this.pressed = false;
         this.laps = [];
         this.reset();
     }
@@ -38,18 +39,19 @@ class Stopwatch {
     }
 
     passed() {
-        if (this.times[1] > 5) {
+        if (this.times[1] >= 5) {
             this.record();
         }
         this.restart();
     }
 
     press() {
-        if (!this.running) {
-            this.start();
-        }
-        if (this.times[1] > 5) {
+        stamp = new Date().getTime();
+        if (!this.pressed || (stamp - this.pressed) > 3000) {
             this.passed();
+            this.pressed = new Date().getTime();
+        } else {
+            this.start();
         }
     }
 
@@ -71,17 +73,17 @@ class Stopwatch {
         // ms
         this.times[2] += diff;
         // 1 sec == 1000 ms
-        if (this.times[2] > 999) {
+        if (this.times[2] >= 1000) {
             this.times[1] += 1;
-            this.times[2] = 0;
+            this.times[2] -= 1000;
         }
         // 1 min == 60 sec
-        if (this.times[1] > 59) {
+        if (this.times[1] >= 60) {
             this.times[0] += 1;
-            this.times[1] = 0;
+            this.times[1] -= 60;
         }
-        if (this.times[0] > 59) {
-            this.times[0] = 0
+        if (this.times[0] >= 60) {
+            this.times[0] -= 60
         }
     }
 

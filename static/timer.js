@@ -46,7 +46,7 @@ class Stopwatch {
     }
 
     press() {
-        stamp = new Date().getTime();
+        var stamp = new Date().getTime();
         console.log(`press ${stamp} ${this.pressed}`);
         if (!this.pressed || (stamp - this.pressed) > 3000) {
             this.passed();

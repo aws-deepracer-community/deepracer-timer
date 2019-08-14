@@ -3,7 +3,7 @@
 ## npm install
 
 ```bash
-npm install cron ejs express ip request socket.io
+npm install ejs express request rpi-gpio socket.io
 ```
 
 ## start

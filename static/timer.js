@@ -20,17 +20,22 @@ class Stopwatch {
         this.time = null;
     }
 
-    pressure() {
-        if (this.times[1] < 5) return;
-        this.lap();
+    record() {
+        let li = document.createElement('li');
+        li.innerText = this.format(this.times);
+        this.results.appendChild(li);
     }
 
     lap() {
-        let times = this.times;
-        let li = document.createElement('li');
-        li.innerText = this.format(times);
-        this.results.appendChild(li);
+        if (this.times[1] > 5) {
+            this.record();
+        }
         this.restart();
+    }
+
+    pressure() {
+        if (this.times[1] < 5) return;
+        this.lap();
     }
 
     reset() {

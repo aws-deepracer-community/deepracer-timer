@@ -90,7 +90,7 @@ class Stopwatch {
     }
 
     format(times) {
-        return `${lpad(times[0], 2)}:${lpad(times[1], 2)}:${lpad(Math.floor(times[2]), 3)}`;
+        return `${lpad(times[0], 2)}:${lpad(times[1], 2)}.${lpad(Math.floor(times[2]), 3)}`;
     }
 }
 

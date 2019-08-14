@@ -126,3 +126,23 @@ document.addEventListener('keydown', function(event) {
         stopwatch.clear();
     }
 });
+
+var socket = io();
+socket.on('start', function() {
+    stopwatch.start();
+});
+socket.on('pause', function() {
+    stopwatch.pause();
+});
+socket.on('lap', function() {
+    stopwatch.lap();
+});
+socket.on('pressure', function() {
+    stopwatch.pressure();
+});
+socket.on('reset', function() {
+    stopwatch.reset();
+});
+socket.on('clear', function() {
+    stopwatch.clear();
+});

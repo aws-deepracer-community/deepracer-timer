@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>deepracer-timer</title>
     <link rel="stylesheet" href="./timer.css">
-    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
     <nav class="controls">
@@ -19,25 +18,5 @@
 </body>
 </html>
 
+<script src="/socket.io/socket.io.js"></script>
 <script src="./timer.js"></script>
-<script>
-    var socket = io();
-    socket.on('start', function(data) {
-        stopwatch.start();
-    });
-    socket.on('pause', function(data) {
-        stopwatch.pause();
-    });
-    socket.on('lap', function(data) {
-        stopwatch.lap();
-    });
-    socket.on('pressure', function(data) {
-        stopwatch.pressure();
-    });
-    socket.on('reset', function(data) {
-        stopwatch.reset();
-    });
-    socket.on('clear', function(data) {
-        stopwatch.clear();
-    });
-</script>

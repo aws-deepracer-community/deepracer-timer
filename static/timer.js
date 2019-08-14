@@ -90,11 +90,11 @@ class Stopwatch {
     }
 
     format(times) {
-        return `${pad0(times[0], 2)}:${pad0(times[1], 2)}:${pad0(Math.floor(times[2]), 3)}`;
+        return `${lpad(times[0], 2)}:${lpad(times[1], 2)}:${lpad(Math.floor(times[2]), 3)}`;
     }
 }
 
-function pad0(value, count) {
+function lpad(value, count) {
     var result = '000' + value.toString();
     return result.substr(result.length - count);
 }

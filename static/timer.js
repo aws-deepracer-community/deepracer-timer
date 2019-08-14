@@ -20,17 +20,6 @@ class Stopwatch {
         this.time = null;
     }
 
-    reset() {
-        this.times = [ 0, 0, 0 ];
-        this.pause();
-        this.print();
-    }
-
-    restart() {
-        this.reset();
-        this.start();
-    }
-
     pressure() {
         if (this.times[1] < 5) return;
         this.lap();
@@ -44,8 +33,18 @@ class Stopwatch {
         this.restart();
     }
 
+    reset() {
+        this.times = [ 0, 0, 0 ];
+        this.pause();
+        this.print();
+    }
+
+    restart() {
+        this.reset();
+        this.start();
+    }
+
     clear() {
-        // this.stop()
         this.reset();
         clearChildren(this.results);
     }
@@ -60,17 +59,20 @@ class Stopwatch {
 
     calculate(timestamp) {
         var diff = timestamp - this.time;
-        // Hundredths of a second are 100 ms
-        this.times[2] += diff / 10;
-        // Seconds are 100 hundredths of a second
-        if (this.times[2] >= 100) {
+        // ms
+        this.times[2] += diff;
+        // 1 sec == 1000 ms
+        if (this.times[2] > 999) {
             this.times[1] += 1;
-            this.times[2] -= 100;
+            this.times[2] = 0;
         }
-        // Minutes are 60 seconds
-        if (this.times[1] >= 60) {
+        // 1 min == 60 sec
+        if (this.times[1] > 59) {
             this.times[0] += 1;
-            this.times[1] -= 60;
+            this.times[1] = 0;
+        }
+        if (this.times[0] > 59) {
+            this.times[0] = 0
         }
     }
 
@@ -79,18 +81,13 @@ class Stopwatch {
     }
 
     format(times) {
-        return `\
-${pad0(times[0], 2)}:\
-${pad0(times[1], 2)}:\
-${pad0(Math.floor(times[2]), 2)}`;
+        return `${pad0(times[0], 2)}:${pad0(times[1], 2)}:${pad0(Math.floor(times[2]), 3)}`;
     }
 }
 
 function pad0(value, count) {
-    var result = value.toString();
-    for (; result.length < count; --count)
-        result = '0' + result;
-    return result;
+    var result = '000' + value.toString();
+    return result.substr(result.length - count);
 }
 
 function clearChildren(node) {

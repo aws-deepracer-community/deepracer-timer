@@ -31,6 +31,9 @@
     socket.on('lap', function(data) {
         stopwatch.lap();
     });
+    socket.on('pressure', function(data) {
+        stopwatch.pressure();
+    });
     socket.on('reset', function(data) {
         stopwatch.reset();
     });

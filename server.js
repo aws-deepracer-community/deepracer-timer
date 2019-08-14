@@ -21,8 +21,9 @@ app.get('/', function (req, res) {
     res.render('index.ejs', {host: host, port: port});
 });
 
-app.get('/pressure', function (req, res) {
-    io.sockets.emit('pressure', (Math.random() * 100000));
+app.get('/call/:name', function (req, res) {
+    const name = req.params.name;
+    io.sockets.emit(`${name}`, (Math.random() * 100000));
     return res.status(200).json({result : true});
 });
 

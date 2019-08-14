@@ -7,11 +7,6 @@ class Stopwatch {
         this.reset();
     }
 
-    reset() {
-        this.times = [ 0, 0, 0 ];
-        this.print(this.times);
-    }
-
     start() {
         if (!this.time) this.time = performance.now();
         if (!this.running) {
@@ -20,9 +15,15 @@ class Stopwatch {
         }
     }
 
-    stop() {
+    pause() {
         this.running = false;
         this.time = null;
+    }
+
+    reset() {
+        this.times = [ 0, 0, 0 ];
+        this.pause();
+        this.print();
     }
 
     restart() {
@@ -44,7 +45,7 @@ class Stopwatch {
     }
 
     clear() {
-        this.stop()
+        // this.stop()
         this.reset();
         clearChildren(this.results);
     }
@@ -113,7 +114,7 @@ document.addEventListener('keydown', function(event) {
     }
     else if (event.keyCode == 87) {
         // w
-        stopwatch.stop();
+        stopwatch.pause();
     }
     else if (event.keyCode == 69) {
         // e
@@ -121,7 +122,7 @@ document.addEventListener('keydown', function(event) {
     }
     else if (event.keyCode == 82) {
         // r
-        stopwatch.restart();
+        stopwatch.reset();
     }
     else if (event.keyCode == 84) {
         // t

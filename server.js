@@ -1,16 +1,17 @@
 const os = require('os'),
     express = require('express');
 
+// const gpio = require('rpi-gpio');
+
 const port = process.env.PORT || '3000';
+
+const channel = process.env.CHANNEL || '7';
 
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
 const sockets = {};
-
-// const gpio = require('rpi-gpio'),
-//     gpiop = gpio.promise;
 
 // express
 app.set('view engine', 'ejs');
@@ -38,7 +39,7 @@ io.on('connection', function(socket) {
 
         // no more sockets
         if (Object.keys(sockets).length == 0) {
-            // console.log('no more sockets.');
+            console.log('no more sockets.');
         }
     });
 
@@ -52,11 +53,8 @@ http.listen(port, function () {
     console.log(`Listening on port ${port}!`);
 });
 
-// // gpiop
-// gpiop.setup(7, gpio.DIR_OUT)
-//     .then(() => {
-//         return gpiop.write(7, true)
-//     })
-//     .catch((err) => {
-//         console.log('Error: ', err.toString())
-//     });
+// // gpio
+// gpio.on('change', function(channel, value) {
+//     console.log('Channel ' + channel + ' value is now ' + value);
+// });
+// gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH);

@@ -101,3 +101,30 @@ let stopwatch = new Stopwatch(
     document.querySelector('.stopwatch'),
     document.querySelector('.results')
 );
+
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode == 13) {
+        // Enter
+        stopwatch.lap();
+    }
+    else if (event.keyCode == 81) {
+        // q
+        stopwatch.start();
+    }
+    else if (event.keyCode == 87) {
+        // w
+        stopwatch.stop();
+    }
+    else if (event.keyCode == 69) {
+        // e
+        stopwatch.lap();
+    }
+    else if (event.keyCode == 82) {
+        // r
+        stopwatch.restart();
+    }
+    else if (event.keyCode == 84) {
+        // t
+        stopwatch.clear();
+    }
+});

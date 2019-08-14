@@ -55,7 +55,7 @@ http.listen(port, function () {
 
 // // gpio
 // gpio.on('change', function(channel, value) {
-//     io.sockets.emit('pressure', value);
+//     io.sockets.emit('press', value);
 //     console.log('Channel ' + channel + ' value is now ' + value);
 // });
 // gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH);

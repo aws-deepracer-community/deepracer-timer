@@ -26,16 +26,16 @@ class Stopwatch {
         this.results.appendChild(li);
     }
 
-    lap() {
+    passed() {
         if (this.times[1] > 5) {
             this.record();
         }
         this.restart();
     }
 
-    pressure() {
+    press() {
         if (this.times[1] < 5) return;
-        this.lap();
+        this.passed();
     }
 
     reset() {
@@ -108,7 +108,7 @@ let stopwatch = new Stopwatch(
 document.addEventListener('keydown', function(event) {
     if (event.keyCode == 13) {
         // Enter
-        stopwatch.lap();
+        stopwatch.passed();
     }
     else if (event.keyCode == 81) {
         // q
@@ -120,7 +120,7 @@ document.addEventListener('keydown', function(event) {
     }
     else if (event.keyCode == 69) {
         // e
-        stopwatch.lap();
+        stopwatch.passed();
     }
     else if (event.keyCode == 82) {
         // r
@@ -139,11 +139,11 @@ socket.on('start', function() {
 socket.on('pause', function() {
     stopwatch.pause();
 });
-socket.on('lap', function() {
-    stopwatch.lap();
+socket.on('passed', function() {
+    stopwatch.passed();
 });
-socket.on('pressure', function() {
-    stopwatch.pressure();
+socket.on('press', function() {
+    stopwatch.press();
 });
 socket.on('reset', function() {
     stopwatch.reset();

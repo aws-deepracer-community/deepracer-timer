@@ -45,8 +45,12 @@ class Stopwatch {
     }
 
     press() {
-        if (this.times[1] < 5) return;
-        this.passed();
+        if (!this.running) {
+            this.start();
+        }
+        if (this.times[1] > 5) {
+            this.passed();
+        }
     }
 
     clear() {

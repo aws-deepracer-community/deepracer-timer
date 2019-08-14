@@ -1,6 +1,4 @@
 const os = require('os'),
-    ip = require('ip'),
-    fs = require('fs'),
     express = require('express');
 
 const port = process.env.PORT || '3000';
@@ -11,13 +9,16 @@ const io = require('socket.io')(http);
 
 const sockets = {};
 
+// const gpio = require('rpi-gpio'),
+//     gpiop = gpio.promise;
+
 // express
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
 
 app.get('/', function (req, res) {
     let host = os.hostname();
-    res.render('index.ejs', {host: host, port: port, server: ip.address()});
+    res.render('index.ejs', {host: host, port: port});
 });
 
 app.get('/pressure', function (req, res) {
@@ -36,9 +37,7 @@ io.on('connection', function(socket) {
 
         // no more sockets
         if (Object.keys(sockets).length == 0) {
-            app.set('watchingFile', false);
-            fs.unwatchFile('./static/qr.jpg');
-            fs.unwatchFile('./static/qr.json');
+            // console.log('no more sockets.');
         }
     });
 
@@ -51,3 +50,12 @@ io.on('connection', function(socket) {
 http.listen(port, function () {
     console.log(`Listening on port ${port}!`);
 });
+
+// // gpiop
+// gpiop.setup(7, gpio.DIR_OUT)
+//     .then(() => {
+//         return gpiop.write(7, true)
+//     })
+//     .catch((err) => {
+//         console.log('Error: ', err.toString())
+//     });

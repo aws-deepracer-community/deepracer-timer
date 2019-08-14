@@ -19,21 +19,27 @@ app.use(express.static('static'));
 
 app.get('/', function (req, res) {
     let host = os.hostname();
-    res.render('index.ejs', {host: host, port: port});
+    res.render('index.ejs', {
+        host: host,
+        port: port
+    });
 });
 
 app.get('/call/:name', function (req, res) {
     const name = req.params.name;
     io.sockets.emit(`${name}`, '0');
-    return res.status(200).json({result : true});
+    return res.status(200).json({
+        result: true,
+        call: name
+    });
 });
 
 // sockets
-io.on('connection', function(socket) {
+io.on('connection', function (socket) {
     console.log('connection : ', socket.id);
     sockets[socket.id] = socket;
 
-    socket.on('disconnect', function() {
+    socket.on('disconnect', function () {
         console.log('disconnect : ', socket.id);
         delete sockets[socket.id];
 

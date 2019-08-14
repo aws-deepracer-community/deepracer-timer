@@ -2,11 +2,7 @@
 
 SHELL_DIR=$(dirname $0)
 
-CMD=${1:-init}
-
-CONFIG=~/.deepracer-timer
-touch ${CONFIG}
-. ${CONFIG}
+CMD=${1:-start}
 
 command -v tput > /dev/null || TPUT=false
 
@@ -55,7 +51,7 @@ _stop() {
 _start() {
     pushd ${SHELL_DIR}
 
-    rm -rf nohup.out
+    echo "# _start" > nohup.out
 
     _command "nohup node server.js &"
     nohup node server.js &
@@ -68,33 +64,12 @@ _start() {
     popd
 }
 
-_config_read() {
-    if [ -z ${SCAN_SHELL} ]; then
-        _read "SCAN_SHELL [${SCAN_SHELL}]: " "${SCAN_SHELL}"
-        if [ ! -z ${ANSWER} ]; then
-            SCAN_SHELL="${ANSWER}"
-        fi
-    fi
-
-    export SCAN_SHELL="${SCAN_SHELL}"
-}
-
-_config_save() {
-    echo "# deepracer-timer config" > ${CONFIG}
-    echo "export SCAN_SHELL=${SCAN_SHELL}" >> ${CONFIG}
-
-    cat ${CONFIG}
-}
-
 _init() {
     pushd ${SHELL_DIR}
     git pull
     npm run build
     popd
 }
-
-# _config_read
-# _config_save
 
 case ${CMD} in
     init)

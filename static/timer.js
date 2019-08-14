@@ -25,13 +25,22 @@ class Stopwatch {
         this.time = null;
     }
 
+    restart() {
+        this.reset();
+        this.start();
+    }
+
+    pressure() {
+        if (this.times[1] < 5) return;
+        this.lap();
+    }
+
     lap() {
         let times = this.times;
         let li = document.createElement('li');
         li.innerText = this.format(times);
         this.results.appendChild(li);
-        this.reset();
-        this.start();
+        this.restart();
     }
 
     clear() {

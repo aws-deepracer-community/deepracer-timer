@@ -20,8 +20,8 @@ app.get('/', function (req, res) {
     res.render('index.ejs', {host: host, port: port, server: ip.address()});
 });
 
-app.get('/lap', function (req, res) {
-    io.sockets.emit('lap', (Math.random() * 100000));
+app.get('/pressure', function (req, res) {
+    io.sockets.emit('pressure', (Math.random() * 100000));
     return res.status(200).json({result : true});
 });
 
@@ -42,9 +42,9 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('start-stream', function() {
-        console.log('start-stream : ', socket.id);
-    });
+    // socket.on('start-stream', function() {
+    //     console.log('start-stream : ', socket.id);
+    // });
 });
 
 // http

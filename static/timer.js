@@ -112,28 +112,6 @@ let stopwatch = new Stopwatch(
     document.querySelector('.results')
 );
 
-document.addEventListener('keydown', function (event) {
-    if (event.keyCode == 13) {
-        // Enter
-        stopwatch.passed();
-    } else if (event.keyCode == 81) {
-        // q
-        stopwatch.start();
-    } else if (event.keyCode == 87) {
-        // w
-        stopwatch.pause();
-    } else if (event.keyCode == 69) {
-        // e
-        stopwatch.passed();
-    } else if (event.keyCode == 82) {
-        // r
-        stopwatch.reset();
-    } else if (event.keyCode == 84) {
-        // t
-        stopwatch.clear();
-    }
-});
-
 var socket = io();
 socket.on('start', function () {
     stopwatch.start();
@@ -152,4 +130,24 @@ socket.on('reset', function () {
 });
 socket.on('clear', function () {
     stopwatch.clear();
+});
+
+function call(name) {
+    socket.emit('call', name);
+}
+
+document.addEventListener('keydown', function (event) {
+    if (event.keyCode == 13) {
+        call('passed'); // Enter
+    } else if (event.keyCode == 81) {
+        call('start'); // q
+    } else if (event.keyCode == 87) {
+        call('pause'); // w
+    } else if (event.keyCode == 69) {
+        call('passed'); // e
+    } else if (event.keyCode == 82) {
+        call('reset'); // r
+    } else if (event.keyCode == 84) {
+        call('clear'); // t
+    }
 });

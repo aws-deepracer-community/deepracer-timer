@@ -49,9 +49,10 @@ io.on('connection', function (socket) {
         }
     });
 
-    // socket.on('start-stream', function() {
-    //     console.log('start-stream : ', socket.id);
-    // });
+    socket.on('call', function (name) {
+        console.log('call : ', socket.id, name);
+        call(io, name);
+    });
 });
 
 // http
@@ -65,3 +66,7 @@ http.listen(port, function () {
 //     console.log('Channel ' + channel + ' value is now ' + value);
 // });
 // gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH);
+
+function call(io, name) {
+    io.sockets.emit(name, '0');
+}

@@ -3,15 +3,15 @@ const os = require('os'),
 
 // const gpio = require('rpi-gpio');
 
-const port = process.env.PORT || '3000';
-
-const channel = process.env.CHANNEL || '7';
-
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
 const sockets = {};
+
+const port = process.env.PORT || '3000';
+
+// const channel = process.env.CHANNEL || '7';
 
 // express
 app.set('view engine', 'ejs');
@@ -62,8 +62,8 @@ http.listen(port, function () {
 
 // // gpio
 // gpio.on('change', function(channel, value) {
-//     io.sockets.emit('press', value);
 //     console.log('Channel ' + channel + ' value is now ' + value);
+//     io.sockets.emit('press', value);
 // });
 // gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH);
 

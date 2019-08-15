@@ -1,15 +1,16 @@
 class Stopwatch {
     constructor(display, results) {
-        this.running = false;
         this.display = display;
         this.results = results;
-        this.pressed = false;
-        this.laps = [];
+        this.running = false;
+        this.pressed = null;
         this.reset();
     }
 
     start() {
-        if (!this.time) this.time = performance.now();
+        if (!this.time) {
+            this.time = performance.now();
+        }
         if (!this.running) {
             this.running = true;
             requestAnimationFrame(this.step.bind(this));
@@ -19,12 +20,6 @@ class Stopwatch {
     pause() {
         this.running = false;
         this.time = null;
-    }
-
-    record() {
-        let li = document.createElement('li');
-        li.innerText = this.format(this.times);
-        this.results.appendChild(li);
     }
 
     reset() {
@@ -47,7 +42,6 @@ class Stopwatch {
 
     press() {
         var stamp = new Date().getTime();
-        console.log(`press ${stamp} ${this.pressed}`);
         if (!this.pressed || (stamp - this.pressed) > 3000) {
             this.passed();
             this.pressed = new Date().getTime();
@@ -92,6 +86,12 @@ class Stopwatch {
         this.display.innerText = this.format(this.times);
     }
 
+    record() {
+        let li = document.createElement('li');
+        li.innerText = this.format(this.times);
+        this.results.appendChild(li);
+    }
+
     format(times) {
         return `${lpad(times[0], 2)}:${lpad(times[1], 2)}.${lpad(Math.floor(times[2]), 3)}`;
     }
@@ -103,8 +103,9 @@ function lpad(value, count) {
 }
 
 function clearChildren(node) {
-    while (node.lastChild)
+    while (node.lastChild) {
         node.removeChild(node.lastChild);
+    }
 }
 
 let stopwatch = new Stopwatch(

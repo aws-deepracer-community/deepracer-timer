@@ -52,7 +52,9 @@ class Stopwatch {
 
     clear() {
         this.reset();
-        clearChildren(this.results);
+        while (this.results.lastChild) {
+            this.results.removeChild(this.results.lastChild);
+        }
     }
 
     step(timestamp) {
@@ -100,12 +102,6 @@ class Stopwatch {
 function lpad(value, count) {
     var result = '000' + value.toString();
     return result.substr(result.length - count);
-}
-
-function clearChildren(node) {
-    while (node.lastChild) {
-        node.removeChild(node.lastChild);
-    }
 }
 
 let stopwatch = new Stopwatch(

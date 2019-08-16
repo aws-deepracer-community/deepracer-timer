@@ -62,9 +62,19 @@ http.listen(port, function () {
 
 // gpio
 gpio.on('change', function (channel, value) {
-    console.log(`Channel ${channel} value is now ${value} ${(Math.random() * 100000)}`);
-    if (channel === '7' && value) {
+    console.log(`Channel ${channel} value is now ${value} - ${(Math.random() * 100000)}`);
+    if (channel === 7 && value) {
         io.sockets.emit('call', 'press');
+    } else if (channel === 29 && value) {
+        io.sockets.emit('call', 'start');
+    } else if (channel === 31 && value) {
+        io.sockets.emit('call', 'pause');
+    } else if (channel === 33 && value) {
+        io.sockets.emit('call', 'passed');
+    } else if (channel === 35 && value) {
+        io.sockets.emit('call', 'reset');
+    } else if (channel === 37 && value) {
+        io.sockets.emit('call', 'clear');
     }
 });
 gpio.setup(press_channel, gpio.DIR_IN, gpio.EDGE_BOTH);

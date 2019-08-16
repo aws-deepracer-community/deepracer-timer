@@ -63,7 +63,7 @@ http.listen(port, function () {
 // gpio
 gpio.on('change', function (channel, value) {
     console.log(`Channel ${channel} value is now ${value} - ${(Math.random() * 100000)}`);
-    if (channel === 7 && value) {
+    if (channel === 7 && !value) {
         io.sockets.emit('call', 'press');
     } else if (channel === 29 && value) {
         io.sockets.emit('call', 'start');

@@ -1,7 +1,7 @@
 const os = require('os'),
     express = require('express');
 
-// const gpio = require('rpi-gpio');
+const gpio = require('rpi-gpio');
 
 const app = express();
 const http = require('http').Server(app);
@@ -11,7 +11,7 @@ const sockets = {};
 
 const port = process.env.PORT || '3000';
 
-// const press_channel = process.env.PRESS_CHANNEL || '7';
+const press_channel = process.env.PRESS_CHANNEL || '7';
 
 // express
 app.set('view engine', 'ejs');
@@ -60,9 +60,9 @@ http.listen(port, function () {
     console.log(`Listening on port ${port}!`);
 });
 
-// // gpio
-// gpio.on('change', function(channel, value) {
-//     console.log('Channel ' + channel + ' value is now ' + value);
-//     io.sockets.emit('press', value);
-// });
-// gpio.setup(press_channel, gpio.DIR_IN, gpio.EDGE_BOTH);
+// gpio
+gpio.on('change', function (channel, value) {
+    console.log('Channel ' + channel + ' value is now ' + value);
+    io.sockets.emit('press', value);
+});
+gpio.setup(press_channel, gpio.DIR_IN, gpio.EDGE_BOTH);

@@ -109,24 +109,21 @@ let stopwatch = new Stopwatch(
     document.querySelector('.results')
 );
 
-var socket = io();
-socket.on('start', function () {
-    stopwatch.start();
-});
-socket.on('pause', function () {
-    stopwatch.pause();
-});
-socket.on('passed', function () {
-    stopwatch.passed();
-});
-socket.on('press', function () {
-    stopwatch.press();
-});
-socket.on('reset', function () {
-    stopwatch.reset();
-});
-socket.on('clear', function () {
-    stopwatch.clear();
+let socket = io();
+socket.on('call', function (name) {
+    if (name === 'start') {
+        stopwatch.start();
+    } else if (name === 'pause') {
+        stopwatch.pause();
+    } else if (name === 'passed') {
+        stopwatch.passed();
+    } else if (name === 'press') {
+        stopwatch.press();
+    } else if (name === 'reset') {
+        stopwatch.reset();
+    } else if (name === 'clear') {
+        stopwatch.clear();
+    }
 });
 
 function call(name) {

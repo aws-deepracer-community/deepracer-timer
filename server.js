@@ -11,7 +11,7 @@ const sockets = {};
 
 const port = process.env.PORT || '3000';
 
-// const channel = process.env.CHANNEL || '7';
+// const press_channel = process.env.PRESS_CHANNEL || '7';
 
 // express
 app.set('view engine', 'ejs');
@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
 
 app.get('/call/:name', function (req, res) {
     const name = req.params.name;
-    io.sockets.emit(`${name}`, '0');
+    io.sockets.emit('call', `${name}`);
     return res.status(200).json({
         result: true,
         call: name
@@ -51,7 +51,7 @@ io.on('connection', function (socket) {
 
     socket.on('call', function (name) {
         console.log('call : ', socket.id, name);
-        call(io, name);
+        io.sockets.emit('call', `${name}`);
     });
 });
 
@@ -65,8 +65,4 @@ http.listen(port, function () {
 //     console.log('Channel ' + channel + ' value is now ' + value);
 //     io.sockets.emit('press', value);
 // });
-// gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH);
-
-function call(io, name) {
-    io.sockets.emit(name, '0');
-}
+// gpio.setup(press_channel, gpio.DIR_IN, gpio.EDGE_BOTH);

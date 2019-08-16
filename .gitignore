@@ -19,7 +19,7 @@ node_modules/
 package-lock.json
 nohup.out
 
-# pytest
+# python
 __pycache__
 .pytest_cache
 

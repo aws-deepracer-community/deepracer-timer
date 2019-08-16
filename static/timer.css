@@ -16,14 +16,6 @@ html {
     width: 100%;
 }
 
-.hide {
-    display: none;
-}
-
-.show {
-    display: inline;
-}
-
 .button {
     font-size: 4vw;
     margin: 0 0.5em;

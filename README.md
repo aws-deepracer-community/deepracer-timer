@@ -14,7 +14,7 @@ npm install ejs express request rpi-gpio socket.io
 
 ## screen
 
-<img src="images/screen.png" alt="screen" width="500" height="285">
+![screen](images/screen.png)
 
 ## keymap
 

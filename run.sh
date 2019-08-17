@@ -40,28 +40,41 @@ _error() {
     exit 1
 }
 
-_stop() {
+_get_pid() {
     PID=$(ps -ef | grep node | grep " server[.]js" | head -1 | awk '{print $2}' | xargs)
+}
+
+_stop() {
+    _get_pid
+
     if [ "${PID}" != "" ]; then
         _command "kill -9 ${PID}"
         kill -9 ${PID}
+
+        _result "deepracer-timer killed: ${PID}"
     fi
 }
 
 _start() {
+    _get_pid
+
+    if [ "${PID}" != "" ]; then
+        _error "deepracer-timer already started: ${PID}"
+    fi
+
     pushd ${SHELL_DIR}
 
     echo "# _start" > nohup.out
-
     _command "nohup node server.js &"
     nohup node server.js &
 
-    PID=$(ps -ef | grep node | grep " server[.]js" | head -1 | awk '{print $2}' | xargs)
-    if [ "{PID}" != "" ]; then
+    popd
+
+    _get_pid
+
+    if [ "${PID}" != "" ]; then
         _result "deepracer-timer started: ${PID}"
     fi
-
-    popd
 }
 
 _init() {
@@ -78,6 +91,9 @@ case ${CMD} in
         _start
         ;;
     start)
+        _start
+        ;;
+    restart)
         _stop
         _start
         ;;

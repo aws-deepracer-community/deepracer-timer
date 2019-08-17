@@ -23,6 +23,11 @@ nohup.out
 __pycache__
 .pytest_cache
 
+# build
+target/
+build/
+dist/
+
 # eclipse
 .settings/
 .metadata/

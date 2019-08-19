@@ -13,7 +13,7 @@ html {
     position: fixed;
     text-align: center;
     top: 1em;
-    width: 80%;
+    width: 85%;
 }
 
 .button {
@@ -59,7 +59,7 @@ html {
     position: fixed;
     text-align: center;
     top: 2em;
-    width: 80%;
+    width: 85%;
 }
 
 .limiter_normal {
@@ -79,7 +79,7 @@ html {
     height: 100%;
     line-height: 100vh;
     text-align: center;
-    width: 80%;
+    width: 85%;
 }
 
 .results {

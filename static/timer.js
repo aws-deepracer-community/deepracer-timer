@@ -1,10 +1,11 @@
 class Stopwatch {
-    constructor(display, results) {
+    constructor(limiter, display, results) {
+        this.limiter = limiter;
         this.display = display;
         this.results = results;
         this.running = false;
         this.pressed = null;
-        this.reset();
+        this.clear();
     }
 
     start() {
@@ -51,6 +52,7 @@ class Stopwatch {
     }
 
     clear() {
+        this.limit = [4, 0, 0];
         this.reset();
         while (this.results.lastChild) {
             this.results.removeChild(this.results.lastChild);
@@ -69,22 +71,33 @@ class Stopwatch {
         var diff = timestamp - this.time;
         // ms
         this.times[2] += diff;
+        this.limit[2] -= diff;
         // 1 sec == 1000 ms
         if (this.times[2] >= 1000) {
             this.times[1] += 1;
             this.times[2] -= 1000;
+        }
+        if (this.limit[2] < 0) {
+            this.limit[1] -= 1;
+            this.limit[2] += 1000;
         }
         // 1 min == 60 sec
         if (this.times[1] >= 60) {
             this.times[0] += 1;
             this.times[1] -= 60;
         }
+        if (this.limit[1] < 0) {
+            this.limit[0] -= 1;
+            this.limit[1] += 60;
+        }
+        // 1 hour == 60 min
         if (this.times[0] >= 60) {
             this.times[0] -= 60
         }
     }
 
     print() {
+        this.limiter.innerText = this.format(this.limit);
         this.display.innerText = this.format(this.times);
     }
 
@@ -105,7 +118,8 @@ function lpad(value, count) {
 }
 
 let stopwatch = new Stopwatch(
-    document.querySelector('.stopwatch'),
+    document.querySelector('.limiter'),
+    document.querySelector('.display'),
     document.querySelector('.results')
 );
 

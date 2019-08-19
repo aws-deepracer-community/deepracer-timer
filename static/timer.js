@@ -1,7 +1,8 @@
 class Stopwatch {
-    constructor(limiter, display, results) {
+    constructor(limiter, display, bestlap, results) {
         this.limiter = limiter;
         this.display = display;
+        this.bestlap = bestlap;
         this.results = results;
         this.clear();
     }
@@ -124,16 +125,37 @@ class Stopwatch {
     }
 
     record() {
-        this.records.add(this.times);
-
         let li = document.createElement('li');
         li.innerText = this.format(this.times);
         this.results.appendChild(li);
+
+        this.records.push(this.times);
+        this.records.sort(compare);
+        this.bestlap.innerText = this.format(this.records[0]);
     }
 
     format(times) {
         return `${lpad(times[0], 2)}:${lpad(times[1], 2)}.${lpad(Math.floor(times[2]), 3)}`;
     }
+}
+
+function compare(a, b) {
+    if (a[0] < b[0]) {
+        return -1;
+    } else if (a[0] > b[0]) {
+        return 1;
+    }
+    if (a[1] < b[1]) {
+        return -1;
+    } else if (a[1] > b[1]) {
+        return 1;
+    }
+    if (a[2] < b[2]) {
+        return -1;
+    } else if (a[2] > b[2]) {
+        return 1;
+    }
+    return 0;
 }
 
 function lpad(value, count) {
@@ -144,6 +166,7 @@ function lpad(value, count) {
 let stopwatch = new Stopwatch(
     document.querySelector('.limiter'),
     document.querySelector('.display'),
+    document.querySelector('.bestlap'),
     document.querySelector('.results')
 );
 

@@ -17,7 +17,7 @@ html {
 }
 
 .button {
-    font-size: 4vw;
+    font-size: 3vw;
     margin: 0 0.5em;
     text-decoration: none;
 }
@@ -54,10 +54,18 @@ html {
     color: #ddd;
 }
 
+.timelimit {
+    font-size: 5vw;
+    position: fixed;
+    text-align: center;
+    top: 1.5em;
+    width: 100%;
+}
+
 .stopwatch {
     font-size: 17vw;
     height: 100%;
-    line-height: 90vh;
+    line-height: 100vh;
     text-align: center;
 }
 

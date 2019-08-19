@@ -72,10 +72,10 @@ html {
 
 .results {
     font-size: 2vw;
+    left: 85%;
     list-style: none;
-    position: absolute;
-    bottom: 0;
-    left: 92%;
-    margin: 0.2em;
-    transform: translateX(-50%);
+    position: fixed;
+    text-align: center;
+    top: 2em;
+    width: 15%;
 }

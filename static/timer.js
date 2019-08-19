@@ -35,7 +35,7 @@ class Stopwatch {
     }
 
     passed() {
-        if (this.times[1] >= 6) {
+        if (this.times[0] >= 1 || this.times[1] >= 6) {
             this.record();
         }
         this.restart();

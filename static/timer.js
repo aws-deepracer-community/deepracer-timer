@@ -108,6 +108,20 @@ class Stopwatch {
     print() {
         this.limiter.innerText = this.format(this.limit);
         this.display.innerText = this.format(this.times);
+
+        if (this.limit[0] <= 0) {
+            this.limiter.classList.add("limiter_red");
+            this.limiter.classList.remove("limiter_yellow");
+            this.limiter.classList.remove("limiter_normal");
+        } else if (this.limit[0] <= 1) {
+            this.limiter.classList.add("limiter_yellow");
+            this.limiter.classList.remove("limiter_normal");
+            this.limiter.classList.remove("limiter_red");
+        } else {
+            this.limiter.classList.add("limiter_normal");
+            this.limiter.classList.remove("limiter_yellow");
+            this.limiter.classList.remove("limiter_red");
+        }
     }
 
     record() {

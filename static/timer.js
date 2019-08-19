@@ -3,8 +3,6 @@ class Stopwatch {
         this.limiter = limiter;
         this.display = display;
         this.results = results;
-        this.running = false;
-        this.pressed = null;
         this.clear();
     }
 
@@ -52,6 +50,7 @@ class Stopwatch {
     }
 
     clear() {
+        this.records = [];
         this.limit = [4, 0, 0];
         this.reset();
         while (this.results.lastChild) {
@@ -125,6 +124,8 @@ class Stopwatch {
     }
 
     record() {
+        this.records.add(this.times);
+
         let li = document.createElement('li');
         li.innerText = this.format(this.times);
         this.results.appendChild(li);

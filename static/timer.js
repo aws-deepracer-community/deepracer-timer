@@ -25,8 +25,8 @@ class Stopwatch {
 
     reset() {
         this.times = [0, 0, 0];
-        this.pause();
         this.print();
+        this.pause();
     }
 
     restart() {
@@ -60,7 +60,9 @@ class Stopwatch {
     }
 
     step(timestamp) {
-        if (!this.running) return;
+        if (!this.running) {
+            return;
+        }
         this.calculate(timestamp);
         this.time = timestamp;
         this.print();
@@ -69,28 +71,35 @@ class Stopwatch {
 
     calculate(timestamp) {
         var diff = timestamp - this.time;
-        // ms
-        this.times[2] += diff;
+
+        // limit
         this.limit[2] -= diff;
-        // 1 sec == 1000 ms
-        if (this.times[2] >= 1000) {
-            this.times[1] += 1;
-            this.times[2] -= 1000;
-        }
         if (this.limit[2] < 0) {
             this.limit[1] -= 1;
             this.limit[2] += 1000;
-        }
-        // 1 min == 60 sec
-        if (this.times[1] >= 60) {
-            this.times[0] += 1;
-            this.times[1] -= 60;
         }
         if (this.limit[1] < 0) {
             this.limit[0] -= 1;
             this.limit[1] += 60;
         }
-        // 1 hour == 60 min
+        if (this.limit[0] < 0) {
+            this.limit[0] = 0
+            this.limit[1] = 0
+            this.limit[2] = 0
+            this.pause();
+            return;
+        }
+
+        // times
+        this.times[2] += diff;
+        if (this.times[2] >= 1000) {
+            this.times[1] += 1;
+            this.times[2] -= 1000;
+        }
+        if (this.times[1] >= 60) {
+            this.times[0] += 1;
+            this.times[1] -= 60;
+        }
         if (this.times[0] >= 60) {
             this.times[0] -= 60
         }

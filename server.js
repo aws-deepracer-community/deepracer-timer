@@ -75,9 +75,9 @@ gpio.on('change', function (channel, value) {
         io.sockets.emit('call', 'clear');
     }
 });
-gpio.setup(7, gpio.DIR_IN);
-gpio.setup(29, gpio.DIR_IN);
-gpio.setup(31, gpio.DIR_IN);
-gpio.setup(33, gpio.DIR_IN);
-gpio.setup(35, gpio.DIR_IN);
-gpio.setup(37, gpio.DIR_IN);
+gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(29, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(31, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(33, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(35, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(37, gpio.DIR_IN, gpio.EDGE_BOTH);

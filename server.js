@@ -11,8 +11,6 @@ const sockets = {};
 
 const port = process.env.PORT || '3000';
 
-const press_channel = process.env.PRESS_CHANNEL || '7';
-
 // express
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
@@ -77,4 +75,9 @@ gpio.on('change', function (channel, value) {
         io.sockets.emit('call', 'clear');
     }
 });
-gpio.setup(press_channel, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(29, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(31, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(33, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(35, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(37, gpio.DIR_IN, gpio.EDGE_BOTH);

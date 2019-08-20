@@ -54,7 +54,7 @@ class Stopwatch {
         this.records = [];
         this.limit = [4, 0, 0];
         this.reset();
-        this.limiter.innerText = '';
+        this.bestlap.innerText = '';
         while (this.results.lastChild) {
             this.results.removeChild(this.results.lastChild);
         }

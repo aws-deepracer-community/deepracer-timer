@@ -4,6 +4,7 @@
 
 ```bash
 ./run.sh init
+./run.sh start
 ./run.sh restart
 ./run.sh stop
 ```

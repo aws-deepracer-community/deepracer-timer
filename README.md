@@ -1,15 +1,11 @@
 # deepracer-timer
 
-## npm install
+## usage
 
 ```bash
-npm install ejs express request rpi-gpio socket.io
-```
-
-## start
-
-```bash
-./run.sh
+./run.sh init
+./run.sh restart
+./run.sh stop
 ```
 
 ## screen

@@ -126,13 +126,13 @@ $(function () {
     }, 10000);
 
     setInterval(function () {
-        if (scroller >= -100) {
+        if (scroller > -600) {
             scroller--;
         }
         if (scroller == 0) {
             scroll('up');
         }
-        if (scroller == -100) {
+        if (scroller == -200) {
             scroll('down');
         }
     }, 1000);
@@ -165,7 +165,7 @@ function scroll(dir) {
     } else if (dir === 'down') {
         $('html, body').stop().animate({
             scrollTop: $('.lb-footer').offset().top
-        }, 20000);
+        }, 50000);
         scroller = 20;
     } else {
         if (dir > 3) {

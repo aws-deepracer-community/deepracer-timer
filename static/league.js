@@ -52,6 +52,7 @@ function reloaded(res) {
 
     if (isNew || racerName) {
         console.log(`new ${isNew} ${rank} ${racerName} ${lapTime}`);
+        scroll(rank);
         if (isNew) {
             popup('New Challenger!', rank, racerName, lapTime);
         } else {
@@ -66,10 +67,10 @@ function print(res) {
     clear(res.title);
     addRow('lb-header', 'Position', 'Name', 'Time')
 
-    let pos = 0;
+    let rank = 0;
     res.items.forEach(function (item) {
-        pos++;
-        addRow('lb-row', pos, item.racerName, item.lapTime);
+        rank++;
+        addRow('lb-row', rank, item.racerName, item.lapTime);
     });
 }
 
@@ -96,10 +97,11 @@ function clear(title) {
     }
 }
 
-function addRow(className, position, racerName, lapTime) {
+function addRow(className, rank, racerName, lapTime) {
     let row = document.createElement('div');
     row.classList.add(className);
-    addText(row, position);
+    row.classList.add(`lb-rank${rank}`);
+    addText(row, rank);
     addText(row, racerName);
     addText(row, lapTime);
     lb_items.appendChild(row);
@@ -122,6 +124,18 @@ $(function () {
     setInterval(function () {
         reload();
     }, 10000);
+
+    setInterval(function () {
+        if (scroll_sec > -100) {
+            scroll_sec--;
+        }
+        if (scroll_sec == 0) {
+            scroll('up');
+        }
+        if (scroll_sec == -100) {
+            scroll('down');
+        }
+    }, 1000);
 });
 
 function popup(title, rank, racer, time) {
@@ -138,4 +152,28 @@ function popup(title, rank, racer, time) {
         $('.pop-layer').fadeOut();
         pop_racer.classList.remove(`pop-racer${rank}`);
     }, 9000);
+}
+
+let scroll_sec = 0;
+
+function scroll(dir) {
+    if (dir === 'up') {
+        scroll_dir = 0;
+        $('html, body').stop().animate({
+            scrollTop: 0
+        }, 1000);
+    } else if (dir === 'down') {
+        $('html, body').stop().animate({
+            scrollTop: $('.lb-footer').offset().top
+        }, 20000);
+        scroll_sec = 20;
+    } else {
+        if (dir > 3) {
+            dir = dir - 3;
+        }
+        $('html, body').stop().animate({
+            scrollTop: $(`.lb-rank${dir}`).offset().top
+        }, 1000);
+        scroll_sec = 20;
+    }
 }

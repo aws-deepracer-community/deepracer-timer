@@ -53,6 +53,7 @@ div {
 
 .lb-items .lb-header>div,
 .lb-items .lb-row>div {
+    font-size: 20px;
     padding: 15px 30px;
     text-align: center;
 }
@@ -76,12 +77,6 @@ div {
     display: block;
     text-align: left;
     width: 15%;
-}
-
-.lb-items.lb-initial .lb-row:nth-child(n+2):nth-child(-n+4) {
-    font-size: 1.6rem;
-    font-size: 16px;
-    margin-bottom: 10px;
 }
 
 .lb-items.lb-initial .lb-row:nth-child(n+2):nth-child(-n+4)>div:nth-child(-n+2) {

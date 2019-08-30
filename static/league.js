@@ -7,37 +7,62 @@ let lb_items = document.querySelector('.lb-items');
 
 let items = [];
 
-function clear() {
-    while (lb_items.lastChild) {
-        lb_items.removeChild(lb_items.lastChild);
-    }
-}
-
 function reload() {
     let url = '/leaderboard/' + league;
-    console.log(`reload ${url}`);
+    // console.log(`reload ${url}`);
     $.ajax({
         url: url,
         type: 'get',
         success: function (res, status) {
             if (res) {
+                reloaded(res);
                 print(res);
             }
         }
     });
 }
 
+function reloaded(res) {
+    let isNewRacer = false;
+    if (items.length > 0 && items.length !== res.items.length) {
+        isNewRacer = true;
+    }
+
+    let newRecordPos;
+    let newRecordName;
+    let newRecordTime;
+
+    res.items.sort(compare);
+
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].lapTime !== res.items[i].lapTime) {
+            newRecordPos = i + 1;
+            newRecordName = res.items[i].racerName;
+            newRecordTime = res.items[i].lapTime;
+            break;
+        }
+    }
+
+    if (isNewRacer && !newRecordName) {
+        let j = res.items.length - 1;
+        newRecordPos = res.items.length;
+        newRecordName = res.items[j].racerName;
+        newRecordTime = res.items[j].lapTime;
+    }
+
+    if (isNewRacer || newRecordName) {
+        console.log(`new ${isNewRacer} ${newRecordPos} ${newRecordName} ${newRecordTime}`);
+    }
+
+    items = res.items;
+}
+
 function print(res) {
-    items = res;
-
-    clear();
-
+    clear(res.title);
     addRow('lb-header', 'Position', 'Name', 'Time')
 
-    items.sort(compare);
-
     let pos = 0;
-    items.forEach(function (item) {
+    res.items.forEach(function (item) {
         pos++;
         addRow('lb-row', pos, item.racerName, item.lapTime);
     });
@@ -57,6 +82,13 @@ function compare(a, b) {
 function sec(t) {
     var a = t.split(':');
     return ((+a[0]) * 60) + (+a[1]);
+}
+
+function clear(title) {
+    lb_title.innerText = title;
+    while (lb_items.lastChild) {
+        lb_items.removeChild(lb_items.lastChild);
+    }
 }
 
 function addRow(className, position, racerName, lapTime) {
@@ -82,4 +114,7 @@ socket.on('league', function (name) {
 
 $(function () {
     reload();
+    setInterval(function () {
+        reload();
+    }, 30000);
 });

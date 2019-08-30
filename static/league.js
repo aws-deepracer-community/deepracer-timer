@@ -39,13 +39,13 @@ function print(res) {
     let pos = 0;
     items.forEach(function (item) {
         pos++;
-        addRow('lb-row', pos, item.name, item.time);
+        addRow('lb-row', pos, item.racerName, item.lapTime);
     });
 }
 
 function compare(a, b) {
-    a2 = sec(a.time);
-    b2 = sec(b.time);
+    a2 = sec(a.lapTime);
+    b2 = sec(b.lapTime);
     if (a2 < b2) {
         return -1;
     } else if (a2 > b2) {
@@ -59,12 +59,12 @@ function sec(t) {
     return ((+a[0]) * 60) + (+a[1]);
 }
 
-function addRow(className, position, name, time) {
+function addRow(className, position, racerName, lapTime) {
     let row = document.createElement('div');
     row.classList.add(className);
     addText(row, position);
-    addText(row, name);
-    addText(row, time);
+    addText(row, racerName);
+    addText(row, lapTime);
     lb_items.appendChild(row);
 }
 

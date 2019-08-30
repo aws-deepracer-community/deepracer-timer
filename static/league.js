@@ -1,5 +1,5 @@
 /**
- * leaderboard.js
+ * league.js
  */
 
 let lb_title = document.querySelector('.lb-title');
@@ -14,20 +14,22 @@ function clear() {
 }
 
 function reload() {
-    let url = '/leaderboard.json?league=' + league;
+    let url = '/leaderboard/' + league;
+    console.log(`reload ${url}`);
     $.ajax({
         url: url,
         type: 'get',
         success: function (res, status) {
             if (res) {
-                items = res.items;
-                print();
+                print(res);
             }
         }
     });
 }
 
-function print() {
+function print(res) {
+    items = res;
+
     clear();
 
     addRow('lb-header', 'Position', 'Name', 'Time')
@@ -35,9 +37,9 @@ function print() {
     items.sort(compare);
 
     let pos = 0;
-    items.forEach(function (e) {
+    items.forEach(function (item) {
         pos++;
-        addRow('lb-row', pos, e.name, e.time);
+        addRow('lb-row', pos, item.name, item.time);
     });
 }
 
@@ -72,14 +74,12 @@ function addText(row, text) {
     row.appendChild(item);
 }
 
-$(function () {
+let socket = io();
+socket.on('league', function (name) {
+    console.log(`socket league ${name}`);
     reload();
-    setInterval(function () {
-        reload();
-    }, 1000);
 });
 
-let socket = io();
-socket.on('leaderboard', function (name) {
-
+$(function () {
+    reload();
 });

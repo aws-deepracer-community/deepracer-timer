@@ -177,6 +177,7 @@ let timer = new Timer(
 
 let socket = io();
 socket.on('timer', function (name) {
+    console.log(`socket timer ${name}`);
     if (name === 'start') {
         timer.start();
     } else if (name === 'pause') {

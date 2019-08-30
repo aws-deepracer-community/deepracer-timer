@@ -1,4 +1,5 @@
-const express = require('express'),
+const request = require('request'),
+    express = require('express'),
     gpio = require('rpi-gpio');
 
 const app = express();
@@ -8,6 +9,8 @@ const io = require('socket.io')(http);
 const sockets = {};
 
 const port = process.env.PORT || '3000';
+
+const apiurl = process.env.API_URL || 'https://dev-api-league.nalbam.com/league';
 
 // express
 app.set('view engine', 'ejs');
@@ -30,9 +33,15 @@ app.get('/league/:league', function (req, res) {
 
 app.get('/leaderboard/:league', function (req, res) {
     const league = req.params.league;
-    res.render('leaderboard.ejs', {
-        league: league
-    });
+    const options = {
+        uri: apiurl,
+        qs: {
+            league: league
+        }
+    };
+    request(options, function (err, response, body) {
+        return res.status(200).json(JSON.parse(body));
+    })
 });
 
 app.get('/timer/:name', function (req, res) {
@@ -62,6 +71,11 @@ io.on('connection', function (socket) {
     socket.on('timer', function (name) {
         console.log('timer : ', socket.id, name);
         io.sockets.emit('timer', `${name}`);
+    });
+
+    socket.on('league', function (name) {
+        console.log('league : ', socket.id, name);
+        io.sockets.emit('league', `${name}`);
     });
 });
 

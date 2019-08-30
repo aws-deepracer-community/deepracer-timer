@@ -2,7 +2,7 @@
  * timer.js
  */
 
-class Stopwatch {
+class Timer {
     constructor(limiter, display, bestlap, results) {
         this.limiter = limiter;
         this.display = display;
@@ -168,7 +168,7 @@ function lpad(value, count) {
     return result.substr(result.length - count);
 }
 
-let stopwatch = new Stopwatch(
+let timer = new Timer(
     document.querySelector('.limiter'),
     document.querySelector('.display'),
     document.querySelector('.bestlap'),
@@ -178,17 +178,17 @@ let stopwatch = new Stopwatch(
 let socket = io();
 socket.on('timer', function (name) {
     if (name === 'start') {
-        stopwatch.start();
+        timer.start();
     } else if (name === 'pause') {
-        stopwatch.pause();
+        timer.pause();
     } else if (name === 'passed') {
-        stopwatch.passed();
+        timer.passed();
     } else if (name === 'press') {
-        stopwatch.press();
+        timer.press();
     } else if (name === 'reset') {
-        stopwatch.reset();
+        timer.reset();
     } else if (name === 'clear') {
-        stopwatch.clear();
+        timer.clear();
     }
 });
 

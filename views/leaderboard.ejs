@@ -8,116 +8,37 @@
 </head>
 
 <body>
-    <figure class="lb-img">
+    <figure class="lb-logo">
         <div>
             <img src="/deepracer.png" width="300">
         </div>
     </figure>
 
-    <h1 class="lb-title lb-align-center">AWS DeepRacer League</h1>
+    <h1 class="lb-title">AWS DeepRacer League</h1>
 
-    <div class="m-dr-leaderboard-container">
-        <div class="m-leaderboard-items lb-txt-bold m-initial">
-            <div class="m-header">
+    <div class="lb-container">
+        <div class="lb-items lb-initial">
+            <div class="lb-header">
                 <div>Position</div>
                 <div>Name</div>
                 <div>Time</div>
             </div>
-            <div class="m-row">
-                <div><span class="icon-trophy"></span> 1</div>
-                <div>날밤</div>
-                <div>2965.85</div>
-            </div>
-            <div class="m-row">
-                <div><span class="icon-trophy"></span> 2</div>
-                <div>Breadcentric</div>
-                <div>2965.574</div>
-            </div>
-            <div class="m-row">
-                <div><span class="icon-trophy"></span> 3</div>
-                <div>nero-DNPds</div>
-                <div>2965.071</div>
-            </div>
-            <div class="m-row">
-                <div>4</div>
-                <div>Etaggel</div>
-                <div>2965</div>
-            </div>
-            <div class="m-row">
-                <div>5</div>
-                <div>Jouni-Cybercom</div>
-                <div>2964.209</div>
-            </div>
-            <div class="m-row">
-                <div>6</div>
-                <div>maeda-ai</div>
-                <div>2964.173</div>
-            </div>
-            <div class="m-row">
-                <div>7</div>
-                <div>sola-DNPds</div>
-                <div>2963.992</div>
-            </div>
-            <div class="m-row">
-                <div>7</div>
-                <div>sola-DNPds</div>
-                <div>2963.992</div>
-            </div>
-            <div class="m-row">
-                <div>7</div>
-                <div>sola-DNPds</div>
-                <div>2963.992</div>
-            </div>
-            <div class="m-row">
-                <div>7</div>
-                <div>sola-DNPds</div>
-                <div>2963.992</div>
-            </div>
-            <div class="m-row">
-                <div>7</div>
-                <div>sola-DNPds</div>
-                <div>2963.992</div>
-            </div>
-            <div class="m-row">
-                <div>7</div>
-                <div>sola-DNPds</div>
-                <div>2963.992</div>
-            </div>
-            <div class="m-row">
-                <div>7</div>
-                <div>sola-DNPds</div>
-                <div>2963.992</div>
-            </div>
-            <div class="m-row">
-                <div>7</div>
-                <div>sola-DNPds</div>
-                <div>2963.992</div>
-            </div>
-            <div class="m-row">
-                <div>7</div>
-                <div>sola-DNPds</div>
-                <div>2963.992</div>
-            </div>
-            <div class="m-row">
-                <div>7</div>
-                <div>sola-DNPds</div>
-                <div>2963.992</div>
-            </div>
-            <div class="m-row">
-                <div>7</div>
-                <div>sola-DNPds</div>
-                <div>2963.992</div>
-            </div>
-            <div class="m-row">
-                <div>7</div>
-                <div>sola-DNPds</div>
-                <div>2963.992</div>
-            </div>
         </div>
     </div>
+
+    <footer class="lb-footer">
+
+    </footer>
 </body>
 
 </html>
 
+<script src="/jquery-3.3.1.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="./leaderboard.js"></script>
+
+<script>
+    let league = '<%= league %>';
+    let lb_title = document.querySelector('.lb-title');
+    let lb_items = document.querySelector('.lb-items');
+</script>
+<script src="/leaderboard.js"></script>

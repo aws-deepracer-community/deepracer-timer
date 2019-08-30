@@ -11,10 +11,10 @@ html {
 
 figure {
     display: block;
-    margin-block-start: 1em;
     margin-block-end: 1em;
-    margin-inline-start: 40px;
+    margin-block-start: 1em;
     margin-inline-end: 40px;
+    margin-inline-start: 40px;
 }
 
 div {
@@ -23,32 +23,32 @@ div {
 
 .lb-logo {
     display: block;
-    margin: 15px 0;
     line-height: 0;
+    margin: 15px 0;
     overflow: hidden;
     text-align: center;
 }
 
 .lb-title {
-    margin-top: 15px;
     margin-bottom: 15px;
+    margin-top: 15px;
     text-align: center;
 }
 
 .lb-items {
-    max-width: 1200px;
     margin: 0 auto;
+    max-width: 1200px;
 }
 
 .lb-items .lb-header {
-    text-transform: uppercase;
     color: #aaa;
+    text-transform: uppercase;
 }
 
 .lb-items .lb-header,
 .lb-items .lb-row {
-    width: 100%;
     display: flex;
+    width: 100%;
 }
 
 .lb-items .lb-header>div,
@@ -59,28 +59,28 @@ div {
 
 .lb-items .lb-header>div:nth-child(1),
 .lb-items .lb-row>div:nth-child(1) {
-    width: 15%;
     min-width: 130px;
+    width: 15%;
 }
 
 .lb-items .lb-header>div:nth-child(2),
 .lb-items .lb-row>div:nth-child(2) {
-    width: 35%;
     margin-right: auto;
     text-align: left;
+    width: 35%;
 }
 
 .lb-items .lb-header>div:nth-child(n+3),
 .lb-items .lb-row>div:nth-child(n+3) {
     display: block;
-    width: 15%;
     text-align: left;
+    width: 15%;
 }
 
 .lb-items.lb-initial .lb-row:nth-child(n+2):nth-child(-n+4) {
-    margin-bottom: 10px;
-    font-size: 16px;
     font-size: 1.6rem;
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
 .lb-items.lb-initial .lb-row:nth-child(n+2):nth-child(-n+4)>div:nth-child(-n+2) {
@@ -100,9 +100,9 @@ div {
 }
 
 .lb-items .lb-row {
-    margin-bottom: 5px;
     background: linear-gradient(90deg, #405666 0, #3d246b);
     color: #fff;
+    margin-bottom: 5px;
 }
 
 .icon-trophy {
@@ -114,4 +114,48 @@ div {
 
 .lb-footer {
     height: 50px;
+}
+
+.pop-layer {
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.pop-layer .pop-bg {
+    background: #000;
+    filter: alpha(opacity=50);
+    height: 100%;
+    left: 0;
+    opacity: .6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.pop-layer .pop-container {
+    height: auto;
+    position: absolute;
+    text-align: center;
+    top: 20%;
+    width: 100%;
+}
+
+.pop-layer .pop-container .pop-title {
+    padding: 1%;
+    font-size: 3vw;
+}
+
+.pop-layer .pop-container .pop-racer {
+    padding: 1%;
+    font-size: 10vw;
+}
+
+.pop-layer .pop-container .pop-time {
+    padding: 1%;
+    font-size: 5vw;
 }

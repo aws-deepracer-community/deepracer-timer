@@ -52,6 +52,11 @@ function reloaded(res) {
 
     if (isNewRacer || newRecordName) {
         console.log(`new ${isNewRacer} ${newRecordPos} ${newRecordName} ${newRecordTime}`);
+        if (isNewRacer) {
+            popup('New Challenger!', newRecordName, newRecordTime);
+        } else {
+            popup('New Record!', newRecordName, newRecordTime);
+        }
     }
 
     items = res.items;
@@ -116,5 +121,17 @@ $(function () {
     reload();
     setInterval(function () {
         reload();
-    }, 30000);
+    }, 10000);
 });
+
+function popup(title, racer, time) {
+    document.querySelector('.pop-title').innerText = title;
+    document.querySelector('.pop-racer').innerText = racer;
+    document.querySelector('.pop-time').innerText = time;
+
+    $('.pop-layer').fadeIn();
+
+    setTimeout(function () {
+        $('.pop-layer').fadeOut();
+    }, 9000);
+}

@@ -26,7 +26,14 @@
         </div>
     </div>
 
-    <div id="container"></div>
+    <div class="pop-layer">
+        <div class="pop-bg"></div>
+        <div class="pop-container">
+            <div class="pop-title">New Record!</div>
+            <div class="pop-racer">DeepRacer</div>
+            <div class="pop-time">00:00.000</div>
+        </div>
+    </div>
 
     <footer class="lb-footer">
     </footer>
@@ -41,31 +48,3 @@
     let league = '<%= league %>';
 </script>
 <script src="/league.js"></script>
-
-<style>
-    #container {
-        display: block;
-        margin: 15px 0;
-        border: 1px solid white;
-        width: 100%;
-        height: 500px
-    }
-</style>
-<script src="/polyfill.min.js"></script>
-<script src="/fireworks.js"></script>
-<script>
-    var container = document.getElementById('container');
-    var options = {
-        maxRockets: 3, // max # of rockets to spawn
-        rocketSpawnInterval: 150, // millisends to check if new rockets should spawn
-        numParticles: 100, // number of particles to spawn when rocket explodes (+0-10)
-        explosionMinHeight: 0.2, // percentage. min height at which rockets can explode
-        explosionMaxHeight: 0.9, // percentage. max height before a particle is exploded
-        explosionChance: 0.08 // chance in each tick the rocket will explode
-    };
-
-    var fireworks = new Fireworks(container, options);
-    fireworks.start();
-    // fireworks.kill();
-    // fireworks.stop();
-</script>

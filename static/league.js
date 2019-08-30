@@ -23,39 +23,39 @@ function reload() {
 }
 
 function reloaded(res) {
-    let isNewRacer = false;
+    let isNew = false;
     if (items.length > 0 && items.length !== res.items.length) {
-        isNewRacer = true;
+        isNew = true;
     }
 
-    let newRecordPos;
-    let newRecordName;
-    let newRecordTime;
+    let rank;
+    let racerName;
+    let lapTime;
 
     res.items.sort(compare);
 
     for (let i = 0; i < items.length; i++) {
         if (items[i].lapTime !== res.items[i].lapTime) {
-            newRecordPos = i + 1;
-            newRecordName = res.items[i].racerName;
-            newRecordTime = res.items[i].lapTime;
+            rank = i + 1;
+            racerName = res.items[i].racerName;
+            lapTime = res.items[i].lapTime;
             break;
         }
     }
 
-    if (isNewRacer && !newRecordName) {
+    if (isNew && !racerName) {
         let j = res.items.length - 1;
-        newRecordPos = res.items.length;
-        newRecordName = res.items[j].racerName;
-        newRecordTime = res.items[j].lapTime;
+        rank = res.items.length;
+        racerName = res.items[j].racerName;
+        lapTime = res.items[j].lapTime;
     }
 
-    if (isNewRacer || newRecordName) {
-        console.log(`new ${isNewRacer} ${newRecordPos} ${newRecordName} ${newRecordTime}`);
-        if (isNewRacer) {
-            popup('New Challenger!', newRecordName, newRecordTime);
+    if (isNew || racerName) {
+        console.log(`new ${isNew} ${rank} ${racerName} ${lapTime}`);
+        if (isNew) {
+            popup('New Challenger!', rank, racerName, lapTime);
         } else {
-            popup('New Record!', newRecordName, newRecordTime);
+            popup('New Record!', rank, racerName, lapTime);
         }
     }
 
@@ -124,14 +124,18 @@ $(function () {
     }, 10000);
 });
 
-function popup(title, racer, time) {
+function popup(title, rank, racer, time) {
     document.querySelector('.pop-title').innerText = title;
-    document.querySelector('.pop-racer').innerText = racer;
     document.querySelector('.pop-time').innerText = time;
+
+    let pop_racer = document.querySelector('.pop-racer');
+    pop_racer.classList.add(`pop-racer${rank}`);
+    pop_racer.innerText = racer;
 
     $('.pop-layer').fadeIn();
 
     setTimeout(function () {
         $('.pop-layer').fadeOut();
+        pop_racer.classList.remove(`pop-racer${rank}`);
     }, 9000);
 }

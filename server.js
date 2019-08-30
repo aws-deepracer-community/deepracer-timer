@@ -1,7 +1,5 @@
-const os = require('os'),
-    express = require('express');
-
-const gpio = require('rpi-gpio');
+const express = require('express'),
+    gpio = require('rpi-gpio');
 
 const app = express();
 const http = require('http').Server(app);
@@ -16,24 +14,15 @@ app.set('view engine', 'ejs');
 app.use(express.static('static'));
 
 app.get('/', function (req, res) {
-    let host = os.hostname();
-    res.render('index.ejs', {
-        host: host,
-        port: port
-    });
+    res.render('index.ejs', {});
 });
 
 app.get('/timer', function (req, res) {
-    let host = os.hostname();
-    res.render('timer.ejs', {
-        host: host,
-        port: port
-    });
+    res.render('timer.ejs', {});
 });
 
 app.get('/league/:league', function (req, res) {
     const league = req.params.league;
-    let host = os.hostname();
     res.render('league.ejs', {
         league: league
     });
@@ -41,7 +30,6 @@ app.get('/league/:league', function (req, res) {
 
 app.get('/leaderboard/:league', function (req, res) {
     const league = req.params.league;
-    let host = os.hostname();
     res.render('leaderboard.ejs', {
         league: league
     });

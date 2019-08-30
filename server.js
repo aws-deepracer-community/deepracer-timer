@@ -23,6 +23,22 @@ app.get('/', function (req, res) {
     });
 });
 
+app.get('/timer', function (req, res) {
+    let host = os.hostname();
+    res.render('timer.ejs', {
+        host: host,
+        port: port
+    });
+});
+
+app.get('/league/:league', function (req, res) {
+    const league = req.params.league;
+    let host = os.hostname();
+    res.render('league.ejs', {
+        league: league
+    });
+});
+
 app.get('/leaderboard/:league', function (req, res) {
     const league = req.params.league;
     let host = os.hostname();

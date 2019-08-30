@@ -2,6 +2,9 @@
  * leaderboard.js
  */
 
+let lb_title = document.querySelector('.lb-title');
+let lb_items = document.querySelector('.lb-items');
+
 let items = [];
 
 function clear() {

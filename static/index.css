@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: #111;
+    color: #eee;
+    font-family: Menlo, Noto Mono;
+}
+
+figure {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
+
+div {
+    display: block;
+}
+
+.lb-logo {
+    display: block;
+    margin: 50px 0;
+    line-height: 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.lb-title {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}

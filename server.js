@@ -23,12 +23,20 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/call/:name', function (req, res) {
+app.get('/leaderboard/:league', function (req, res) {
+    const league = req.params.league;
+    let host = os.hostname();
+    res.render('leaderboard.ejs', {
+        league: league
+    });
+});
+
+app.get('/timer/:name', function (req, res) {
     const name = req.params.name;
-    io.sockets.emit('call', `${name}`);
+    io.sockets.emit('timer', `${name}`);
     return res.status(200).json({
         result: true,
-        call: name
+        timer: name
     });
 });
 
@@ -47,9 +55,9 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('call', function (name) {
-        console.log('call : ', socket.id, name);
-        io.sockets.emit('call', `${name}`);
+    socket.on('timer', function (name) {
+        console.log('timer : ', socket.id, name);
+        io.sockets.emit('timer', `${name}`);
     });
 });
 
@@ -62,17 +70,17 @@ http.listen(port, function () {
 gpio.on('change', function (channel, value) {
     console.log(`Channel ${channel} value is now ${value} \t- ${(Math.random() * 100000)}`);
     if (channel === 7) {
-        io.sockets.emit('call', 'press');
+        io.sockets.emit('timer', 'press');
     } else if (channel === 37) {
-        io.sockets.emit('call', 'start');
+        io.sockets.emit('timer', 'start');
     } else if (channel === 35) {
-        io.sockets.emit('call', 'pause');
+        io.sockets.emit('timer', 'pause');
     } else if (channel === 33) {
-        io.sockets.emit('call', 'passed');
+        io.sockets.emit('timer', 'passed');
     } else if (channel === 31) {
-        io.sockets.emit('call', 'reset');
+        io.sockets.emit('timer', 'reset');
     } else if (channel === 29) {
-        io.sockets.emit('call', 'clear');
+        io.sockets.emit('timer', 'clear');
     }
 });
 gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);

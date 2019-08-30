@@ -1,3 +1,7 @@
+/**
+ * timer.js
+ */
+
 class Stopwatch {
     constructor(limiter, display, bestlap, results) {
         this.limiter = limiter;
@@ -172,7 +176,7 @@ let stopwatch = new Stopwatch(
 );
 
 let socket = io();
-socket.on('call', function (name) {
+socket.on('timer', function (name) {
     if (name === 'start') {
         stopwatch.start();
     } else if (name === 'pause') {
@@ -189,7 +193,7 @@ socket.on('call', function (name) {
 });
 
 function call(name) {
-    socket.emit('call', name);
+    socket.emit('timer', name);
 }
 
 document.addEventListener('keydown', function (event) {

@@ -212,3 +212,29 @@ document.addEventListener('keydown', function (event) {
         call('clear'); // t
     }
 });
+
+function btn_listener(event) {
+    switch (event.target.id) {
+        case 'btn_start':
+            call('passed');
+            break;
+        case 'btn_pause':
+            call('pause');
+            break;
+        case 'btn_passed':
+            call('passed');
+            break;
+        case 'btn_reset':
+            call('reset');
+            break;
+        case 'btn_clear':
+            call('clear');
+            break;
+    }
+}
+
+document.getElementById('btn_start').addEventListener('click', btn_listener);
+document.getElementById('btn_pause').addEventListener('click', btn_listener);
+document.getElementById('btn_passed').addEventListener('click', btn_listener);
+document.getElementById('btn_reset').addEventListener('click', btn_listener);
+document.getElementById('btn_clear').addEventListener('click', btn_listener);

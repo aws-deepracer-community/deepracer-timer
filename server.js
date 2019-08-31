@@ -13,15 +13,12 @@ const port = process.env.PORT || '3000';
 const apiurl = process.env.API_URL || 'https://dev-api-league.nalbam.com/league';
 
 // express
-app.set('view engine', 'ejs');
+app.use(express.json())
 app.use(express.static('static'));
+app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
     res.render('index.ejs', {});
-});
-
-app.get('/timer', function (req, res) {
-    res.render('timer.ejs', {});
 });
 
 app.get('/league/:league', function (req, res) {
@@ -31,12 +28,19 @@ app.get('/league/:league', function (req, res) {
     });
 });
 
-app.get('/leaderboard/:league', function (req, res) {
+app.get('/submit/:league', function (req, res) {
+    const league = req.params.league;
+    res.render('submit.ejs', {
+        league: league,
+    });
+});
+
+app.get('/times/:league', function (req, res) {
     const league = req.params.league;
     const options = {
         uri: apiurl,
         qs: {
-            league: league
+            league: league,
         }
     };
     request(options, function (err, response, body) {
@@ -44,12 +48,35 @@ app.get('/leaderboard/:league', function (req, res) {
     })
 });
 
+app.post('/times', function (req, res) {
+    console.log('times body req : ', req.body);
+
+    let options = {
+        uri: apiurl,
+        method: 'POST',
+        body: req.body,
+        json: true,
+    };
+    request.post(options, function (err, response, body) {
+        console.log('times body res : ', body);
+
+        return res.status(200).json({
+            result: true,
+            body: body,
+        });
+    })
+});
+
+app.get('/timer', function (req, res) {
+    res.render('timer.ejs', {});
+});
+
 app.get('/timer/:name', function (req, res) {
     const name = req.params.name;
     io.sockets.emit('timer', `${name}`);
     return res.status(200).json({
         result: true,
-        timer: name
+        timer: name,
     });
 });
 

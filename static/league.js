@@ -8,8 +8,7 @@ let lb_items = document.querySelector('.lb-items');
 let items = [];
 
 function reload() {
-    let url = '/leaderboard/' + league;
-    // console.log(`reload ${url}`);
+    let url = '/times/' + league;
     $.ajax({
         url: url,
         type: 'get',
@@ -65,7 +64,7 @@ function reloaded(res) {
 
 function print(res) {
     clear(res.title);
-    addRow('lb-header', 'Position', 'Name', 'Time')
+    addRow('lb-header', 'Rank', 'Name', 'Time')
 
     let rank = 0;
     res.items.forEach(function (item) {

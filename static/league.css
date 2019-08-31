@@ -17,6 +17,10 @@ figure {
     margin-inline-start: 40px;
 }
 
+footer {
+    height: 100px;
+}
+
 div {
     display: block;
 }
@@ -106,10 +110,6 @@ div {
     display: inline-block;
     height: 17px;
     width: 30px;
-}
-
-.lb-footer {
-    height: 50px;
 }
 
 .pop-layer {

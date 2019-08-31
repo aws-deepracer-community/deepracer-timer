@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>submit</title>
+    <link rel="stylesheet" href="/submit.css">
+</head>
+
+<body>
+    <figure class="lb-logo">
+        <div>
+            <img src="/deepracer.png" width="300">
+        </div>
+    </figure>
+
+    <h1 class="lb-title"></h1>
+
+    <div class="lb-container">
+        <div class="lb-items lb-initial">
+            <div class="lb-row">
+                <div>Email</div>
+                <div><input type="text" id="lb-email" class="lb-email text_normal" autocomplete="off" maxlength="256">
+                </div>
+            </div>
+            <div class="lb-row">
+                <div>Name</div>
+                <div><input type="text" id="lb-name" class="lb-name text_normal" autocomplete="off" maxlength="32">
+                </div>
+            </div>
+            <div class="lb-row">
+                <div>Time</div>
+                <div><input type="text" id="lb-time" class="lb-time text_normal" autocomplete="off" maxlength="9">
+                </div>
+            </div>
+            <div class="lb-row">
+                <div></div>
+                <div><a href="#" id="lb-btn-submit" class="lb-btn-submit">Submit</a></div>
+            </div>
+        </div>
+    </div>
+
+    <footer></footer>
+</body>
+
+</html>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/jquery-3.3.1.min.js"></script>
+
+<script>
+    let league = '<%= league %>';
+</script>
+<script src="/submit.js"></script>

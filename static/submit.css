@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: #111;
+    color: #eee;
+    font-family: Menlo, Noto Mono;
+}
+
+figure {
+    display: block;
+    margin-block-end: 1em;
+    margin-block-start: 1em;
+    margin-inline-end: 40px;
+    margin-inline-start: 40px;
+}
+
+footer {
+    height: 100px;
+}
+
+div {
+    display: block;
+}
+
+a {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.lb-logo {
+    display: block;
+    line-height: 0;
+    margin: 15px 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.lb-title {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.lb-items {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.lb-items .lb-row {
+    display: flex;
+    width: 100%;
+}
+
+.lb-items .lb-row>div {
+    font-size: 20px;
+    padding: 15px 30px;
+    text-align: center;
+}
+
+.lb-items .lb-row>div:nth-child(1) {
+    margin-top: 10px;
+    min-width: 100px;
+    width: 10%;
+}
+
+.lb-items .lb-row>div:nth-child(2) {
+    margin-right: auto;
+    text-align: left;
+    width: 50%;
+}
+
+.lb-items .lb-row {
+    background: linear-gradient(90deg, #405666 0, #3d246b);
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.lb-items .lb-row input {
+    background-color: transparent;
+    border-radius: 2px;
+    border: 1px solid #aab7b8;
+    font-size: 20px;
+    height: 30px;
+    line-height: 20px;
+    padding: 4px 10px;
+    width: 100%;
+}
+
+.lb-items .lb-row input:focus {
+    border: 1px solid #00a1c9;
+    box-shadow: 0 0 0 1px #00a1c9;
+    outline: 0;
+}
+
+.text_normal {
+    color: #fff;
+}
+
+.text_red {
+    color: #e55;
+}
+
+.lb-btn-submit {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    background-color: #ec7211;
+    background-image: linear-gradient(180deg, #f67c1b 0, #e15500);
+    border-color: #e76d0c #e15500 #e15500;
+    border-radius: 3px;
+    border: 1px solid;
+    box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .2);
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.43;
+    outline: 0;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, .05) 0 1px 0;
+    user-select: none;
+    vertical-align: middle;
+    width: 200px;
+    height: 25px;
+    padding-top: 5px;
+}

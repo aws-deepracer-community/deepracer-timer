@@ -17,6 +17,10 @@ figure {
     margin-inline-end: 40px;
 }
 
+footer {
+    height: 100px;
+}
+
 div {
     display: block;
 }

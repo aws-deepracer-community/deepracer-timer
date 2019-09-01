@@ -129,6 +129,7 @@ gpio.on('change', function (channel, value) {
     }
 });
 gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(11, gpio.DIR_IN, gpio.EDGE_BOTH);
 // gpio.setup(29, gpio.DIR_IN, gpio.EDGE_BOTH);
 // gpio.setup(31, gpio.DIR_IN, gpio.EDGE_BOTH);
 // gpio.setup(33, gpio.DIR_IN, gpio.EDGE_BOTH);

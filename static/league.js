@@ -23,7 +23,7 @@ function reload() {
 
 function reloaded(res) {
     let isNew = false;
-    if (items.length > 0 && items.length !== res.items.length) {
+    if (items.length > 0 && items.length < res.items.length) {
         isNew = true;
     }
 
@@ -85,7 +85,7 @@ function compare(a, b) {
 }
 
 function sec(t) {
-    var a = t.split(':');
+    let a = t.split(':');
     return ((+a[0]) * 60) + (+a[1]);
 }
 

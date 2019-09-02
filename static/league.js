@@ -170,8 +170,8 @@ function scroll(dir) {
         scroller = 0;
     } else if (dir === 'down') {
         scrollTop = $('.lb-footer').offset().top;
-        duration = 30000;
-        scroller = 30;
+        duration = 60000;
+        scroller = 60;
     } else {
         if (dir > 3) {
             dir = dir - 3;

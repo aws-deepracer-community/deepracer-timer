@@ -137,8 +137,7 @@ $(function () {
         }
         if (scroller == 0) {
             scroll('up');
-        }
-        if (scroller == -200) {
+        } else if (scroller == -200) {
             scroll('down');
         }
     }, 1000);
@@ -163,23 +162,26 @@ function popup(title, rank, racer, time) {
 let scroller = 0;
 
 function scroll(dir) {
+    let top = 0;
+    let speed = 1000;
+
     if (dir === 'up') {
-        scroll_dir = 0;
-        $('html, body').stop().animate({
-            scrollTop: 0
-        }, 1000);
+        top = 0;
+        speed = 1000;
+        scroller = 0;
     } else if (dir === 'down') {
-        $('html, body').stop().animate({
-            scrollTop: $('.lb-footer').offset().top
-        }, 50000);
-        scroller = 20;
+        top = $('.lb-footer').offset().top;
+        speed = 50000;
+        scroller = 30;
     } else {
         if (dir > 3) {
             dir = dir - 3;
+            top = $(`.lb-rank${dir}`).offset().top;
         }
-        $('html, body').stop().animate({
-            scrollTop: $(`.lb-rank${dir}`).offset().top
-        }, 1000);
         scroller = 20;
     }
+
+    $('html, body').stop().animate({
+        scrollTop: top
+    }, speed);
 }

@@ -44,7 +44,16 @@ app.get('/times/:league', function (req, res) {
         }
     };
     request(options, function (err, response, body) {
-        return res.status(200).json(JSON.parse(body));
+        if (response.statusCode < 200 || response.statusCode > 299) {
+            return res.status(response.statusCode).json({
+                result: false,
+                body: body,
+            });
+        }
+        return res.status(200).json({
+            result: true,
+            body: JSON.parse(body),
+        });
     })
 });
 
@@ -60,9 +69,15 @@ app.post('/times', function (req, res) {
     request.post(options, function (err, response, body) {
         console.log('times body res : ', body);
 
+        if (response.statusCode < 200 || response.statusCode > 299) {
+            return res.status(response.statusCode).json({
+                result: false,
+                body: body,
+            });
+        }
         return res.status(200).json({
             result: true,
-            body: body,
+            body: JSON.parse(body),
         });
     })
 });

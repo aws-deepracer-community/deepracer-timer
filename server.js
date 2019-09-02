@@ -66,7 +66,7 @@ app.post('/times', function (req, res) {
         if (response.statusCode < 200 || response.statusCode > 399) {
             return res.status(response.statusCode).json({});
         }
-        return res.status(200).json(JSON.parse(body));
+        return res.status(200).json({});
     })
 });
 

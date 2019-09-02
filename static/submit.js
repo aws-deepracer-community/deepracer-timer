@@ -37,6 +37,7 @@ function validateTime(val) {
 }
 
 let lb_email_valid = false;
+let lb_name_valid = false;
 let lb_time_valid = false;
 
 function clear(logo, title) {
@@ -48,7 +49,7 @@ function clear(logo, title) {
 }
 
 function submit() {
-    if (!lb_email_valid || !lb_time_valid) {
+    if (!lb_email_valid || !lb_name_valid || !lb_time_valid) {
         return;
     }
 
@@ -70,6 +71,8 @@ function submit() {
         success: function (res, status) {
             console.log('res', res);
             if (res) {
+                popup('등록 되었습니다.');
+
                 lb_email.value = '';
                 lb_name.value = '';
                 lb_time.value = '';
@@ -77,6 +80,16 @@ function submit() {
         },
         dataType: 'json',
     });
+}
+
+function popup(message) {
+    document.querySelector('.pop-message').innerText = message;
+
+    $('.pop-layer').fadeIn();
+
+    setTimeout(function () {
+        $('.pop-layer').fadeOut();
+    }, 3000);
 }
 
 function setColor(e, b) {
@@ -96,6 +109,14 @@ document.getElementById('lb-email').addEventListener('keyup', function (event) {
         lb_email_valid = false;
     }
     setColor(lb_email, lb_email_valid);
+});
+
+document.getElementById('lb-name').addEventListener('keyup', function (event) {
+    if (lb_name.value !== '') {
+        lb_name_valid = true;
+    } else {
+        lb_name_valid = false;
+    }
 });
 
 document.getElementById('lb-time').addEventListener('keyup', function (event) {

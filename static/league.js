@@ -8,6 +8,8 @@ let lb_items = document.querySelector('.lb-items');
 
 let items = [];
 
+let scroller = 0;
+
 function reload() {
     let url = '/times/' + league;
     $.ajax({
@@ -132,12 +134,11 @@ $(function () {
     }, 10000);
 
     setInterval(function () {
-        if (scroller > -600) {
-            scroller--;
-        }
+        scroller--;
         if (scroller == 0) {
             scroll('up');
-        } else if (scroller == -100) {
+        }
+        if (scroller < -120) {
             scroll('down');
         }
     }, 1000);
@@ -159,32 +160,30 @@ function popup(title, rank, racer, time) {
     }, 9000);
 }
 
-let scroller = 0;
-
 function scroll(dir) {
-    let top = 0;
-    let speed = 1000;
+    let scrollTop = 0;
+    let duration = 1000;
 
     if (dir === 'up') {
-        top = 0;
-        speed = 1000;
+        scrollTop = 0;
+        duration = 1000;
         scroller = 0;
     } else if (dir === 'down') {
-        top = $('.lb-footer').offset().top;
-        speed = 50000;
+        scrollTop = $('.lb-footer').offset().top;
+        duration = 30000;
         scroller = 30;
     } else {
         if (dir > 3) {
             dir = dir - 3;
-            top = $(`.lb-rank${dir}`).offset().top;
+            scrollTop = $(`.lb-rank${dir}`).offset().top;
             scroller = 20;
         } else {
-            top = 0;
+            scrollTop = 0;
             scroller = 0;
         }
     }
 
     $('html, body').stop().animate({
-        scrollTop: top
-    }, speed);
+        scrollTop: scrollTop
+    }, duration);
 }

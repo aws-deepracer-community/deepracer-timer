@@ -137,7 +137,7 @@ $(function () {
         }
         if (scroller == 0) {
             scroll('up');
-        } else if (scroller == -200) {
+        } else if (scroller == -100) {
             scroll('down');
         }
     }, 1000);

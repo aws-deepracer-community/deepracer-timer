@@ -44,7 +44,7 @@ app.get('/times/:league', function (req, res) {
         }
     };
     request(options, function (err, response, body) {
-        if (response.statusCode < 200 || response.statusCode > 299) {
+        if (response.statusCode < 200 || response.statusCode > 399) {
             return res.status(response.statusCode).json({});
         }
         return res.status(200).json(JSON.parse(body));
@@ -63,7 +63,7 @@ app.post('/times', function (req, res) {
     request.post(options, function (err, response, body) {
         console.log('times body res : ', body);
 
-        if (response.statusCode < 200 || response.statusCode > 299) {
+        if (response.statusCode < 200 || response.statusCode > 399) {
             return res.status(response.statusCode).json({});
         }
         return res.status(200).json(JSON.parse(body));

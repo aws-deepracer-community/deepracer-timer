@@ -148,14 +148,14 @@ function popup(title, rank, racer, time) {
     document.querySelector('.pop-time').innerText = time;
 
     let pop_racer = document.querySelector('.pop-racer');
-    pop_racer.classList.add(`pop-racer${rank}`);
+    pop_racer.classList.add(`pop-rank${rank}`);
     pop_racer.innerText = racer;
 
     $('.pop-layer').fadeIn();
 
     setTimeout(function () {
         $('.pop-layer').fadeOut();
-        pop_racer.classList.remove(`pop-racer${rank}`);
+        pop_racer.classList.remove(`pop-rank${rank}`);
     }, 9000);
 }
 
@@ -177,8 +177,11 @@ function scroll(dir) {
         if (dir > 3) {
             dir = dir - 3;
             top = $(`.lb-rank${dir}`).offset().top;
+            scroller = 20;
+        } else {
+            top = 0;
+            scroller = 0;
         }
-        scroller = 20;
     }
 
     $('html, body').stop().animate({

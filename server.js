@@ -63,6 +63,7 @@ app.post('/times', function (req, res) {
     request.post(options, function (err, response, body) {
         console.log('times body res : ', body);
 
+        io.sockets.emit('league', 'reload');
         if (response.statusCode < 200 || response.statusCode > 399) {
             return res.status(response.statusCode).json({});
         }

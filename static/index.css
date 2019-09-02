@@ -33,6 +33,10 @@ div {
     text-align: center;
 }
 
+.lb-logo img {
+    height: 200px;
+}
+
 .lb-title {
     margin-top: 15px;
     margin-bottom: 15px;

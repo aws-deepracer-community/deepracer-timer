@@ -2,6 +2,7 @@
  * league.js
  */
 
+let lb_logo = document.querySelector('.lb-logo');
 let lb_title = document.querySelector('.lb-title');
 let lb_items = document.querySelector('.lb-items');
 
@@ -63,7 +64,8 @@ function reloaded(res) {
 }
 
 function print(res) {
-    clear(res.title);
+    clear(res.logo, res.title);
+
     addRow('lb-header', 'Rank', 'Name', 'Time')
 
     let rank = 0;
@@ -89,8 +91,13 @@ function sec(t) {
     return ((+a[0]) * 60) + (+a[1]);
 }
 
-function clear(title) {
+function clear(logo, title) {
+    if (logo && logo !== '') {
+        lb_logo.innerHTML = `<img src="${logo}">`;
+    }
+
     lb_title.innerText = title;
+
     while (lb_items.lastChild) {
         lb_items.removeChild(lb_items.lastChild);
     }

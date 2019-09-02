@@ -2,6 +2,7 @@
  * submit.js
  */
 
+let lb_logo = document.querySelector('.lb-logo');
 let lb_title = document.querySelector('.lb-title');
 
 let lb_email = document.querySelector('.lb-email');
@@ -15,7 +16,7 @@ function reload() {
         type: 'get',
         success: function (res, status) {
             if (res) {
-                lb_title.innerText = res.title;
+                clear(res.logo, res.title);
             }
         },
     });
@@ -37,6 +38,14 @@ function validateTime(val) {
 
 let lb_email_valid = false;
 let lb_time_valid = false;
+
+function clear(logo, title) {
+    if (logo && logo !== '') {
+        lb_logo.innerHTML = `<img src="${logo}">`;
+    }
+
+    lb_title.innerText = title;
+}
 
 function submit() {
     if (!lb_email_valid || !lb_time_valid) {

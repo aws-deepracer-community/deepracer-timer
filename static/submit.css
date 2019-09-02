@@ -38,6 +38,10 @@ a {
     text-align: center;
 }
 
+.lb-logo img {
+    height: 200px;
+}
+
 .lb-title {
     margin-bottom: 30px;
     margin-top: 30px;

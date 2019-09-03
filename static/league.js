@@ -2,7 +2,6 @@
  * league.js
  */
 
-let lb_logo = document.querySelector('.lb-logo-front');
 let lb_title = document.querySelector('.lb-title');
 let lb_items = document.querySelector('.lb-items');
 
@@ -97,7 +96,8 @@ function sec(t) {
 
 function clear(logo, title) {
     if (logo && logo !== '') {
-        lb_logo.innerHTML = `<img src="${logo}">`;
+        document.querySelector('.lb-logo-front').innerHTML = `<img src="${logo}">`;
+        document.querySelector('.lb-logo-back').innerHTML = `<img src="${logo}">`;
     }
 
     lb_title.innerText = title;
@@ -123,7 +123,7 @@ function addRow(className, rank, racerName, lapTime) {
 
 function addText(row, text) {
     let item = document.createElement('div');
-    item.innerHTML = `<span class="text">${text}</span>`;
+    item.innerHTML = `<span>${text}</span>`;
     row.appendChild(item);
 }
 
@@ -195,16 +195,25 @@ function popup(title, rank, racer, time) {
     pop_racer.classList.add(`pop-rank${rank}`);
     pop_time.innerText = time;
 
-    $('.pop-layer').fadeIn();
+    $('.pop-logo').fadeIn().animate({ height: '98%' }, 1000).fadeOut();
 
     setTimeout(function () {
-        $('.pop-layer').fadeOut();
+        $('.pop-layer').fadeIn();
 
-        $(`.lb-rank${rank}>div:nth-child(n+2) span`).fadeOut().fadeIn().fadeOut().fadeIn();
+        setTimeout(function () {
+            $('.pop-layer').fadeOut();
 
-        pop_title.innerText = '';
-        pop_racer.innerText = '';
-        pop_racer.classList.remove(`pop-rank${rank}`);
-        pop_time.innerText = '';
-    }, 9000);
+            $(`.lb-rank${rank}>div:nth-child(n+2) span`).fadeOut().fadeIn().fadeOut().fadeIn();
+
+            pop_title.innerText = '';
+            pop_racer.innerText = '';
+            pop_racer.classList.remove(`pop-rank${rank}`);
+            pop_time.innerText = '';
+
+            setTimeout(function () {
+                $('.pop-logo').animate({ height: '150px' }, 1000);
+            }, 1000);
+        }, 8000);
+    }, 1200);
+
 }

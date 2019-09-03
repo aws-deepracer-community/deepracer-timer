@@ -1,3 +1,16 @@
+.pop-logo {
+    display: none;
+    height: 100px;
+    margin-block-end: 1em;
+    margin-block-start: 1em;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
 .pop-layer {
     display: none;
     height: 100%;

@@ -5,12 +5,20 @@
     <meta charset="utf-8">
     <title>deepracer</title>
     <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/flip.css">
 </head>
 
 <body>
-    <figure class="lb-logo">
-        <img src="/icon-trophy.png">
-    </figure>
+    <div class="flip-container">
+        <div class="flip-body">
+            <div class="face front">
+                <img src="/icon-trophy.png">
+            </div>
+            <div class="face back">
+                <img src="/icon-trophy.png">
+            </div>
+        </div>
+    </div>
 
     <h1 class="lb-title">DeepRacer Challenge</h1>
 
@@ -18,3 +26,15 @@
 </body>
 
 </html>
+
+<script src="/jquery-3.3.1.min.js"></script>
+<script>
+    $(function () {
+        setInterval(function () {
+            document.querySelector('.flip-body').classList.add('flipped');
+            setTimeout(function () {
+                document.querySelector('.flip-body').classList.remove('flipped');
+            }, 1000);
+        }, 5000);
+    });
+</script>

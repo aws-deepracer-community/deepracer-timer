@@ -84,6 +84,10 @@ _init() {
     popd
 }
 
+_log() {
+    tail -n 500 -f ${SHELL_DIR}/nohup.out
+}
+
 case ${CMD} in
     init)
         _stop
@@ -99,5 +103,8 @@ case ${CMD} in
         ;;
     stop)
         _stop
+        ;;
+    log)
+        _log
         ;;
 esac

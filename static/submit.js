@@ -2,7 +2,6 @@
  * submit.js
  */
 
-let lb_logo = document.querySelector('.lb-logo-front');
 let lb_title = document.querySelector('.lb-title');
 
 let lb_email = document.querySelector('.lb-email');
@@ -48,7 +47,8 @@ let lb_time_valid = false;
 
 function clear(logo, title) {
     if (logo && logo !== '') {
-        lb_logo.innerHTML = `<img src="${logo}">`;
+        document.querySelector('.lb-logo-front').innerHTML = `<img src="${logo}">`;
+        document.querySelector('.lb-logo-back').innerHTML = `<img src="${logo}">`;
     }
 
     lb_title.innerText = title;

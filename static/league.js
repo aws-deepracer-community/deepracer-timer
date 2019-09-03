@@ -17,7 +17,6 @@ function reload() {
         success: function (res, status) {
             if (res) {
                 reloaded(res);
-                print(res);
             }
         }
     });
@@ -51,7 +50,11 @@ function reloaded(res) {
         lapTime = res.items[j].lapTime;
     }
 
-    if (isNew || racerName) {
+    if (racerName || items.length != res.items.length) {
+        print(res);
+    }
+
+    if (racerName) {
         console.log(`new ${isNew} ${rank} ${racerName} ${lapTime}`);
 
         scroll(rank);
@@ -195,11 +198,18 @@ function popup(title, rank, racer, time) {
     pop_racer.classList.add(`pop-rank${rank}`);
     pop_time.innerText = time;
 
+    // logo
     $('.pop-logo').fadeIn();
-    $('.pop-logo .pop-container').animate({ height: '98%' }, 1000);
-
+    $('.pop-logo .pop-container').animate({ height: '98%' }, 800);
     setTimeout(function () {
         $('.pop-logo').fadeOut();
+        setTimeout(function () {
+            $('.pop-logo .pop-container').animate({ height: '200px' }, 100);
+        }, 1000);
+    }, 1000);
+
+    // layer
+    setTimeout(function () {
         $('.pop-layer').fadeIn();
 
         setTimeout(function () {
@@ -211,10 +221,6 @@ function popup(title, rank, racer, time) {
             pop_racer.innerText = '';
             pop_racer.classList.remove(`pop-rank${rank}`);
             pop_time.innerText = '';
-
-            setTimeout(function () {
-                $('.pop-logo').animate({ height: '150px' }, 1000);
-            }, 1000);
         }, 7000);
     }, 1200);
 }

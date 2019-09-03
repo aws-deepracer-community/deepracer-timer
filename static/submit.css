@@ -21,6 +21,10 @@ footer {
     height: 100px;
 }
 
+div {
+    display: block;
+}
+
 a {
     text-decoration: none;
 }
@@ -34,7 +38,7 @@ a {
     text-align: center;
 }
 
-.lb-logo img {
+.lb-logo-img {
     height: 100%;
 }
 

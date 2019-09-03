@@ -5,12 +5,22 @@
     <meta charset="utf-8">
     <title>submit</title>
     <link rel="stylesheet" href="/submit.css">
+    <link rel="stylesheet" href="/flip.css">
     <link rel="stylesheet" href="/pop.css">
 </head>
 
 <body>
     <figure class="lb-logo">
-        <img src="/icon-trophy.png">
+        <div class="flip-container">
+            <div class="flip-body">
+                <div class="face front">
+                    <img src="/icon-trophy.png" class="lb-logo-img">
+                </div>
+                <div class="face back">
+                    <img src="/icon-trophy.png" class="lb-logo-img">
+                </div>
+            </div>
+        </div>
     </figure>
 
     <h1 class="lb-title"></h1>
@@ -53,6 +63,7 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/jquery-3.3.1.min.js"></script>
+<script src="/flip.js"></script>
 
 <script>
     let league = '<%= league %>';

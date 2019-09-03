@@ -13,10 +13,10 @@
         <div class="flip-container">
             <div class="flip-body">
                 <div class="face front">
-                    <img src="/icon-trophy.png" height="100%">
+                    <img src="/icon-trophy.png" class="lb-logo-img">
                 </div>
                 <div class="face back">
-                    <img src="/icon-trophy.png" height="100%">
+                    <img src="/icon-trophy.png" class="lb-logo-img">
                 </div>
             </div>
         </div>
@@ -30,13 +30,11 @@
 </html>
 
 <script src="/jquery-3.3.1.min.js"></script>
+<script src="/flip.js"></script>
 <script>
     $(function () {
         setInterval(function () {
-            document.querySelector('.flip-body').classList.add('flipped');
-            setTimeout(function () {
-                document.querySelector('.flip-body').classList.remove('flipped');
-            }, 1000);
+            flip();
         }, 5000);
     });
 </script>

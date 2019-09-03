@@ -44,7 +44,7 @@ let lb_time_valid = false;
 
 function clear(logo, title) {
     if (logo && logo !== '') {
-        lb_logo.innerHTML = `<img src="${logo}">`;
+        lb_logo.innerHTML = `<img src="${logo}" class="lb-logo-img">`;
     }
 
     lb_title.innerText = title;

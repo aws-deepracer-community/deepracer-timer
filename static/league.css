@@ -25,6 +25,10 @@ div {
     display: block;
 }
 
+a {
+    text-decoration: none;
+}
+
 .lb-logo {
     display: block;
     height: 100px;
@@ -34,7 +38,7 @@ div {
     text-align: center;
 }
 
-.lb-logo img {
+.lb-logo-img {
     height: 100%;
 }
 

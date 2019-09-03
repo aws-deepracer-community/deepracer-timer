@@ -38,7 +38,11 @@ a {
     text-align: center;
 }
 
-.lb-logo-img {
+.lb-logo-front, .lb-logo-back{
+    height: 100%;
+}
+
+.lb-logo-front img, .lb-logo-back img {
     height: 100%;
 }
 

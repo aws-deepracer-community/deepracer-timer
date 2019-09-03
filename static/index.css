@@ -31,20 +31,24 @@ a {
 
 .lb-logo {
     display: block;
-    height: 300px;
+    height: 400px;
     line-height: 0;
     margin: 50px 0;
     overflow: hidden;
     text-align: center;
 }
 
-.lb-logo-img {
+.lb-logo-front, .lb-logo-back{
+    height: 100%;
+}
+
+.lb-logo-front img, .lb-logo-back img {
     height: 100%;
 }
 
 .lb-title {
     height: 30px;
-    margin-bottom: 15px;
-    margin-top: 15px;
+    margin-bottom: 30px;
+    margin-top: 30px;
     text-align: center;
 }

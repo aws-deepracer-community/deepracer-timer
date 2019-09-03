@@ -1,14 +1,19 @@
 .pop-logo {
     display: none;
-    height: 100px;
-    margin-block-end: 1em;
-    margin-block-start: 1em;
-    overflow: hidden;
-    position: absolute;
-    text-align: center;
+    height: 100%;
+    left: 0;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 100;
+}
+
+.pop-logo .pop-container {
+    height: 200px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    margin-top: 1em;
 }
 
 .pop-layer {
@@ -41,18 +46,18 @@
 }
 
 .pop-layer .pop-container .pop-title {
-    font-size: 3vw;
+    font-size: 5vw;
     padding: 1%;
 }
 
 .pop-layer .pop-container .pop-racer {
-    font-size: 10vw;
+    font-size: 15vw;
     font-weight: bold;
     padding: 1%;
 }
 
 .pop-layer .pop-container .pop-time {
-    font-size: 5vw;
+    font-size: 7vw;
     padding: 1%;
 }
 

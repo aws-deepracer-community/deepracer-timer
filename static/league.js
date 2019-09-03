@@ -195,9 +195,11 @@ function popup(title, rank, racer, time) {
     pop_racer.classList.add(`pop-rank${rank}`);
     pop_time.innerText = time;
 
-    $('.pop-logo').fadeIn().animate({ height: '98%' }, 1000).fadeOut();
+    $('.pop-logo').fadeIn();
+    $('.pop-logo .pop-container').animate({ height: '98%' }, 1000);
 
     setTimeout(function () {
+        $('.pop-logo').fadeOut();
         $('.pop-layer').fadeIn();
 
         setTimeout(function () {
@@ -213,7 +215,6 @@ function popup(title, rank, racer, time) {
             setTimeout(function () {
                 $('.pop-logo').animate({ height: '150px' }, 1000);
             }, 1000);
-        }, 8000);
+        }, 7000);
     }, 1200);
-
 }

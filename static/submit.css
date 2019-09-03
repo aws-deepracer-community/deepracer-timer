@@ -31,7 +31,7 @@ a {
 
 .lb-logo {
     display: block;
-    height: 200px;
+    height: 250px;
     line-height: 0;
     margin: 15px 0;
     overflow: hidden;
@@ -47,7 +47,7 @@ a {
 }
 
 .lb-title {
-    height: 35px;
+    height: 40px;
     margin-bottom: 30px;
     margin-top: 30px;
     text-align: center;
@@ -55,7 +55,7 @@ a {
 
 .lb-items {
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 1024px;
 }
 
 .lb-items .lb-row {
@@ -64,7 +64,7 @@ a {
 }
 
 .lb-items .lb-row>div {
-    font-size: 20px;
+    font-size: 32px;
     padding: 15px 30px;
     text-align: center;
 }
@@ -72,13 +72,13 @@ a {
 .lb-items .lb-row>div:nth-child(1) {
     margin-top: 10px;
     min-width: 100px;
-    width: 10%;
+    width: 15%;
 }
 
 .lb-items .lb-row>div:nth-child(2) {
     margin-right: auto;
     text-align: left;
-    width: 50%;
+    width: 60%;
 }
 
 .lb-items .lb-row {
@@ -91,8 +91,8 @@ a {
     background-color: transparent;
     border-radius: 2px;
     border: 1px solid #aab7b8;
-    font-size: 20px;
-    height: 30px;
+    font-size: 32px;
+    height: 40px;
     line-height: 20px;
     padding: 4px 10px;
     width: 100%;
@@ -113,11 +113,6 @@ a {
 }
 
 .lb-btn-submit {
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -webkit-font-smoothing: antialiased;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-user-select: none;
     background-color: #ec7211;
     background-image: linear-gradient(180deg, #f67c1b 0, #e15500);
     border-color: #e76d0c #e15500 #e15500;
@@ -127,15 +122,10 @@ a {
     color: #fff;
     cursor: pointer;
     display: inline-block;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.43;
-    outline: 0;
+    font-size: 28px;
     text-align: center;
-    text-shadow: rgba(0, 0, 0, .05) 0 1px 0;
-    user-select: none;
     vertical-align: middle;
-    width: 200px;
-    height: 25px;
-    padding-top: 5px;
+    width: 250px;
+    height: 40px;
+    padding-top: 10px;
 }

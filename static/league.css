@@ -31,7 +31,7 @@ a {
 
 .lb-logo {
     display: block;
-    height: 100px;
+    height: 200px;
     line-height: 0;
     margin: 15px 0;
     overflow: hidden;
@@ -73,7 +73,7 @@ a {
 .lb-items .lb-row {
     background: linear-gradient(90deg, #405666 0, #3d246b);
     color: #fff;
-    font-size: 22px;
+    font-size: 28px;
     margin-bottom: 5px;
 }
 
@@ -120,7 +120,7 @@ a {
 }
 
 .icon-trophy {
-    height: 22px;
+    height: 28px;
     position: relative;
     top: 50%;
     transform: translateY(-50%);

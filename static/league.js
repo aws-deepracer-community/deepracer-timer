@@ -56,7 +56,6 @@ function reloaded(res) {
         console.log(`new ${isNew} ${rank} ${racerName} ${lapTime}`);
 
         scroll(rank);
-        accent(rank, racerName, lapTime);
 
         if (isNew) {
             popup('New Challenger!', rank, racerName, lapTime);
@@ -186,24 +185,26 @@ function scroll(dir) {
     }, duration);
 }
 
-function accent(rank, racer, time) {
-    setTimeout(function () {
-        $(`.lb-rank${rank}>div:nth-child(n+2) span`).fadeOut().fadeIn().fadeOut().fadeIn();
-    }, 9000);
-}
-
 function popup(title, rank, racer, time) {
-    document.querySelector('.pop-title').innerText = title;
-    document.querySelector('.pop-time').innerText = time;
-
+    let pop_title = document.querySelector('.pop-title');
     let pop_racer = document.querySelector('.pop-racer');
-    pop_racer.classList.add(`pop-rank${rank}`);
+    let pop_time = document.querySelector('.pop-time');
+
+    pop_title.innerText = title;
     pop_racer.innerText = racer;
+    pop_racer.classList.add(`pop-rank${rank}`);
+    pop_time.innerText = time;
 
     $('.pop-layer').fadeIn();
 
     setTimeout(function () {
         $('.pop-layer').fadeOut();
+
+        $(`.lb-rank${rank}>div:nth-child(n+2) span`).fadeOut().fadeIn().fadeOut().fadeIn();
+
+        pop_title.innerText = '';
+        pop_racer.innerText = '';
         pop_racer.classList.remove(`pop-rank${rank}`);
+        pop_time.innerText = '';
     }, 9000);
 }

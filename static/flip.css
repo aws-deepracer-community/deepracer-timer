@@ -1,8 +1,7 @@
 .flip-container {
     -webkit-perspective: 1000;
-    margin: 50px auto;
     position: relative;
-    height: 500px;
+    height: 100%;
 }
 
 .flip-container .flip-body.flipped {
@@ -19,17 +18,10 @@
 .flip-container .flip-body .face {
     -webkit-backface-visibility: hidden;
     height: 100%;
-    line-height: 200px;
     position: absolute;
     text-align: center;
     width: 100%;
     z-index: 2;
-}
-
-.flip-container .flip-body .front {
-    border-radius: 10px;
-    position: absolute;
-    z-index: 1;
 }
 
 .flip-container .flip-body .back {

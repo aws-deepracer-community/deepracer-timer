@@ -31,10 +31,7 @@ div {
     line-height: 0;
     overflow: hidden;
     text-align: center;
-}
-
-.lb-logo img {
-    height: 200px;
+    height: 300px;
 }
 
 .lb-title {

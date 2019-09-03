@@ -21,17 +21,13 @@ footer {
     height: 100px;
 }
 
-div {
-    display: block;
-}
-
 a {
-    background-color: transparent;
     text-decoration: none;
 }
 
 .lb-logo {
     display: block;
+    height: 150px;
     line-height: 0;
     margin: 15px 0;
     overflow: hidden;
@@ -39,10 +35,11 @@ a {
 }
 
 .lb-logo img {
-    height: 150px;
+    height: 100%;
 }
 
 .lb-title {
+    height: 35px;
     margin-bottom: 30px;
     margin-top: 30px;
     text-align: center;

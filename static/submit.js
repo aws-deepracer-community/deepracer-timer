@@ -77,7 +77,7 @@ function submit() {
         success: function (res, status) {
             console.log('res', res);
             if (res) {
-                popup('Saved.');
+                popup('Saved');
 
                 lb_email.value = '';
                 lb_name.value = '';

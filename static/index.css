@@ -11,10 +11,10 @@ html {
 
 figure {
     display: block;
-    margin-block-start: 1em;
     margin-block-end: 1em;
-    margin-inline-start: 40px;
+    margin-block-start: 1em;
     margin-inline-end: 40px;
+    margin-inline-start: 40px;
 }
 
 footer {
@@ -27,15 +27,16 @@ div {
 
 .lb-logo {
     display: block;
-    margin: 50px 0;
+    height: 300px;
     line-height: 0;
+    margin: 50px 0;
     overflow: hidden;
     text-align: center;
-    height: 300px;
 }
 
 .lb-title {
-    margin-top: 15px;
+    height: 30px;
     margin-bottom: 15px;
+    margin-top: 15px;
     text-align: center;
 }

@@ -28,24 +28,24 @@
 }
 
 .pop-layer .pop-container .pop-title {
-    padding: 1%;
     font-size: 3vw;
+    padding: 1%;
 }
 
 .pop-layer .pop-container .pop-racer {
-    padding: 1%;
     font-size: 10vw;
     font-weight: bold;
+    padding: 1%;
 }
 
 .pop-layer .pop-container .pop-time {
-    padding: 1%;
     font-size: 5vw;
+    padding: 1%;
 }
 
 .pop-layer .pop-container .pop-message {
-    padding: 10%;
     font-size: 5vw;
+    margin-top: 10%;
 }
 
 .pop-rank1 {

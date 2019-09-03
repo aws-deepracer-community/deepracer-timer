@@ -37,7 +37,7 @@ function reloaded(res) {
     res.items.sort(compare);
 
     for (let i = 0; i < items.length; i++) {
-        if (items[i].lapTime !== res.items[i].lapTime) {
+        if (items[i].racerName !== res.items[i].racerName || items[i].lapTime !== res.items[i].lapTime) {
             rank = i + 1;
             racerName = res.items[i].racerName;
             lapTime = res.items[i].lapTime;
@@ -56,7 +56,7 @@ function reloaded(res) {
         console.log(`new ${isNew} ${rank} ${racerName} ${lapTime}`);
 
         scroll(rank);
-        // accent(rank, racerName, lapTime);
+        accent(rank, racerName, lapTime);
 
         if (isNew) {
             popup('New Challenger!', rank, racerName, lapTime);
@@ -124,7 +124,7 @@ function addRow(className, rank, racerName, lapTime) {
 
 function addText(row, text) {
     let item = document.createElement('div');
-    item.innerHTML = text;
+    item.innerHTML = `<span class="text">${text}</span>`;
     row.appendChild(item);
 }
 
@@ -150,30 +150,6 @@ $(function () {
         }
     }, 1000);
 });
-
-function accent(rank, racer, time) {
-    $(`.pop-rank${rank}`).fadeOut();
-
-    setTimeout(function () {
-        $(`.pop-rank${rank}`).fadeIn();
-    }, 1000);
-}
-
-function popup(title, rank, racer, time) {
-    document.querySelector('.pop-title').innerText = title;
-    document.querySelector('.pop-time').innerText = time;
-
-    let pop_racer = document.querySelector('.pop-racer');
-    pop_racer.classList.add(`pop-rank${rank}`);
-    pop_racer.innerText = racer;
-
-    $('.pop-layer').fadeIn();
-
-    setTimeout(function () {
-        $('.pop-layer').fadeOut();
-        pop_racer.classList.remove(`pop-rank${rank}`);
-    }, 9000);
-}
 
 function scroll(dir) {
     let scrollTop = 0;
@@ -208,4 +184,26 @@ function scroll(dir) {
     $('html, body').stop().animate({
         scrollTop: scrollTop
     }, duration);
+}
+
+function accent(rank, racer, time) {
+    setTimeout(function () {
+        $(`.lb-rank${rank}>div:nth-child(n+2) span`).fadeOut().fadeIn().fadeOut().fadeIn();
+    }, 9000);
+}
+
+function popup(title, rank, racer, time) {
+    document.querySelector('.pop-title').innerText = title;
+    document.querySelector('.pop-time').innerText = time;
+
+    let pop_racer = document.querySelector('.pop-racer');
+    pop_racer.classList.add(`pop-rank${rank}`);
+    pop_racer.innerText = racer;
+
+    $('.pop-layer').fadeIn();
+
+    setTimeout(function () {
+        $('.pop-layer').fadeOut();
+        pop_racer.classList.remove(`pop-rank${rank}`);
+    }, 9000);
 }

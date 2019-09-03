@@ -9,6 +9,8 @@ let lb_email = document.querySelector('.lb-email');
 let lb_name = document.querySelector('.lb-name');
 let lb_time = document.querySelector('.lb-time');
 
+let items = [];
+
 function reload() {
     let url = '/times/' + league;
     $.ajax({
@@ -46,6 +48,10 @@ function clear(logo, title) {
     }
 
     lb_title.innerText = title;
+
+    lb_email.value = '';
+    lb_name.value = '';
+    lb_time.value = '';
 }
 
 function submit() {
@@ -71,11 +77,13 @@ function submit() {
         success: function (res, status) {
             console.log('res', res);
             if (res) {
-                popup('등록 되었습니다.');
+                popup('Saved.');
 
                 lb_email.value = '';
                 lb_name.value = '';
                 lb_time.value = '';
+
+                // reload();
             }
         },
         dataType: 'json',

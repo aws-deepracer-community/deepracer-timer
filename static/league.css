@@ -34,7 +34,7 @@ div {
 }
 
 .lb-logo img {
-    height: 200px;
+    height: 100px;
 }
 
 .lb-title {
@@ -48,28 +48,34 @@ div {
     max-width: 1200px;
 }
 
-.lb-items .lb-header {
-    color: #aaa;
-    text-transform: uppercase;
-}
-
 .lb-items .lb-header,
 .lb-items .lb-row {
     display: flex;
     width: 100%;
 }
 
+.lb-items .lb-header {
+    color: #aaa;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.lb-items .lb-row {
+    background: linear-gradient(90deg, #405666 0, #3d246b);
+    color: #fff;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
 .lb-items .lb-header>div,
 .lb-items .lb-row>div {
-    font-size: 20px;
     padding: 15px 30px;
     text-align: center;
 }
 
 .lb-items .lb-header>div:nth-child(1),
 .lb-items .lb-row>div:nth-child(1) {
-    min-width: 130px;
-    width: 15%;
+    width: 20%;
 }
 
 .lb-items .lb-header>div:nth-child(2),
@@ -77,14 +83,14 @@ div {
     /* font-weight: bold; */
     margin-right: auto;
     text-align: left;
-    width: 35%;
+    width: 50%;
 }
 
 .lb-items .lb-header>div:nth-child(n+3),
 .lb-items .lb-row>div:nth-child(n+3) {
     display: block;
     text-align: left;
-    width: 15%;
+    width: 20%;
 }
 
 .lb-items.lb-initial .lb-row:nth-child(n+2):nth-child(-n+4)>div:nth-child(-n+2) {
@@ -103,17 +109,11 @@ div {
     background: linear-gradient(90deg, #fac07b 0, #8f6347);
 }
 
-.lb-items .lb-row {
-    background: linear-gradient(90deg, #405666 0, #3d246b);
-    color: #fff;
-    margin-bottom: 5px;
-}
-
 .icon-trophy {
-    background: url(/trophy.png) no-repeat top left;
-    display: inline-block;
-    height: 17px;
-    width: 30px;
+    height: 22px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .pop-layer {

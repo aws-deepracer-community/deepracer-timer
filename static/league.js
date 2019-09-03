@@ -54,7 +54,10 @@ function reloaded(res) {
 
     if (isNew || racerName) {
         console.log(`new ${isNew} ${rank} ${racerName} ${lapTime}`);
+
         scroll(rank);
+        // accent(rank, racerName, lapTime);
+
         if (isNew) {
             popup('New Challenger!', rank, racerName, lapTime);
         } else {
@@ -109,7 +112,11 @@ function addRow(className, rank, racerName, lapTime) {
     let row = document.createElement('div');
     row.classList.add(className);
     row.classList.add(`lb-rank${rank}`);
-    addText(row, rank);
+    if (rank > 0 && rank < 4) {
+        addText(row, `<img src="/icon-trophy.png" class="icon-trophy"> ${rank}`);
+    } else {
+        addText(row, rank);
+    }
     addText(row, racerName);
     addText(row, lapTime);
     lb_items.appendChild(row);
@@ -117,7 +124,7 @@ function addRow(className, rank, racerName, lapTime) {
 
 function addText(row, text) {
     let item = document.createElement('div');
-    item.innerText = text;
+    item.innerHTML = text;
     row.appendChild(item);
 }
 
@@ -143,6 +150,14 @@ $(function () {
         }
     }, 1000);
 });
+
+function accent(rank, racer, time) {
+    $(`.pop-rank${rank}`).fadeOut();
+
+    setTimeout(function () {
+        $(`.pop-rank${rank}`).fadeIn();
+    }, 1000);
+}
 
 function popup(title, rank, racer, time) {
     document.querySelector('.pop-title').innerText = title;

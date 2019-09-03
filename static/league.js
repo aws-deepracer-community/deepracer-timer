@@ -200,11 +200,15 @@ function popup(title, rank, racer, time) {
 
     // logo
     $('.pop-logo').fadeIn();
-    $('.pop-logo .pop-container').animate({ height: '98%' }, 800);
+    $('.pop-logo .pop-container').animate({
+        height: '100%'
+    }, 1200);
     setTimeout(function () {
         $('.pop-logo').fadeOut();
         setTimeout(function () {
-            $('.pop-logo .pop-container').animate({ height: '200px' }, 100);
+            $('.pop-logo .pop-container').animate({
+                height: '200px'
+            }, 100);
         }, 1000);
     }, 1000);
 
@@ -222,5 +226,5 @@ function popup(title, rank, racer, time) {
             pop_racer.classList.remove(`pop-rank${rank}`);
             pop_time.innerText = '';
         }, 7000);
-    }, 1200);
+    }, 1000);
 }

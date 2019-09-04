@@ -50,7 +50,7 @@ function reloaded(res) {
         lapTime = res.items[j].lapTime;
     }
 
-    if (racerName || items.length != res.items.length) {
+    if (items.length == 0 || racerName || items.length != res.items.length) {
         print(res);
     }
 

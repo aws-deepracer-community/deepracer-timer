@@ -198,6 +198,9 @@ function popup(title, rank, racer, time) {
     pop_racer.classList.add(`pop-rank${rank}`);
     pop_time.innerText = time;
 
+    // scroll
+    scroll(rank);
+
     // logo
     $('.pop-logo').fadeIn();
     $('.pop-logo .pop-container').animate({

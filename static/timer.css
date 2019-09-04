@@ -55,7 +55,7 @@ html {
 }
 
 .limiter {
-    font-size: 5vw;
+    font-size: 6vw;
     position: fixed;
     text-align: center;
     top: 15%;
@@ -83,7 +83,7 @@ html {
 }
 
 .bestlap {
-    font-size: 3vw;
+    font-size: 5vw;
     position: fixed;
     text-align: center;
     top: 75%;

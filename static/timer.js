@@ -38,7 +38,7 @@ class Timer {
     }
 
     passed() {
-        if (this.times[0] >= 1 || this.times[1] >= 6) {
+        if (this.times[0] > 0 || this.times[1] > 3) {
             this.record();
         }
         this.restart();
@@ -107,6 +107,9 @@ class Timer {
         }
         if (this.times[0] >= 60) {
             this.times[0] -= 60
+        }
+        if (this.times[2] < 0) {
+            this.times[2] = 0;
         }
     }
 

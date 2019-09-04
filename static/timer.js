@@ -46,7 +46,7 @@ class Timer {
 
     press() {
         var stamp = new Date().getTime();
-        if (!this.pressed || (stamp - this.pressed) > 5000) {
+        if (!this.pressed || (stamp - this.pressed) > 3000) {
             this.passed();
             this.pressed = new Date().getTime();
         } else {

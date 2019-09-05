@@ -219,19 +219,24 @@ document.addEventListener('keydown', function (event) {
 function btn_listener(event) {
     switch (event.target.id) {
         case 'btn_start':
-            call('passed');
+            // call('start');
+            timer.start();
             break;
         case 'btn_pause':
-            call('pause');
+            // call('pause');
+            timer.pause();
             break;
         case 'btn_passed':
-            call('passed');
+            // call('passed');
+            timer.passed();
             break;
         case 'btn_reset':
-            call('reset');
+            // call('reset');
+            timer.reset();
             break;
         case 'btn_clear':
-            call('clear');
+            // call('clear');
+            timer.clear();
             break;
     }
 }

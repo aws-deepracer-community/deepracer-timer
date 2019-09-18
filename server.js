@@ -137,4 +137,4 @@ gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 // gpio.setup(31, gpio.DIR_IN, gpio.EDGE_BOTH);
 // gpio.setup(33, gpio.DIR_IN, gpio.EDGE_BOTH);
 // gpio.setup(35, gpio.DIR_IN, gpio.EDGE_BOTH);
-gpio.setup(37, gpio.DIR_IN, gpio.EDGE_BOTH);
+// gpio.setup(37, gpio.DIR_IN, gpio.EDGE_BOTH);

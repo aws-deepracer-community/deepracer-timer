@@ -15,10 +15,6 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Prepare
-        run: |
-          mkdir -p target
-
       - name: Bump Version
         uses: opspresso/action-builder@master
         with:
@@ -36,8 +32,6 @@ jobs:
           args: --release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ASSET_PATH: ./target/release
-          # TAG_NAME: "v0.0.1"
 
       - name: Docker Push
         uses: opspresso/action-docker@master
@@ -45,4 +39,3 @@ jobs:
           USERNAME: ${{ secrets.DOCKER_USERNAME }}
           PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           IMAGE_NAME: "nalbam/deepracer-timer"
-          # TAG_NAME: "v0.0.1"

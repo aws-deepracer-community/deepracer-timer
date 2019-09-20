@@ -1,0 +1,53 @@
+name: Build-Push
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Prepare
+        run: |
+          mkdir -p target
+
+      - name: Bump Version
+        uses: opspresso/action-builder@master
+        with:
+          args: --version
+
+      - name: Package
+        run: |
+          bash ./package.sh
+
+      - name: Release
+        uses: opspresso/action-builder@master
+        with:
+          args: --release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ASSET_PATH: ./target/release
+
+      - name: Docker Push
+        uses: opspresso/action-docker@master
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          IMAGE_NAME: "image/name"
+          TAG_NAME: "v0.0.1"
+
+      - name: Post to Slack
+        uses: opspresso/action-builder@master
+        with:
+          args: --slack
+        env:
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          JSON_PATH: ./target/slack_message.json

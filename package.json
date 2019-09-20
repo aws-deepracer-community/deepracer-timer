@@ -1,6 +1,6 @@
 {
   "name": "deepracer-timer",
-  "version": "0.0.1",
+  "version": "v0.2.x",
   "description": "Node.js deepracer-timer",
   "main": "server.js",
   "dependencies": {

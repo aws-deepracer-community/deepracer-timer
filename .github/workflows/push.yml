@@ -28,8 +28,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-        run: |
-          npm run build
+      - run: npm run build
 
       - name: Release
         uses: opspresso/action-builder@master

@@ -2,7 +2,7 @@
 
 SHELL_DIR=$(dirname $0)
 
-CMD=${1:-start}
+CMD=${1:-status}
 
 command -v tput > /dev/null || TPUT=false
 
@@ -51,7 +51,17 @@ _stop() {
         _command "kill -9 ${PID}"
         kill -9 ${PID}
 
-        _result "deepracer-timer killed: ${PID}"
+        _result "deepracer-timer is killed: ${PID}"
+    fi
+}
+
+_status() {
+    _get_pid
+
+    if [ "${PID}" != "" ]; then
+        _result "deepracer-timer was started: ${PID}"
+    else
+        _result "deepracer-timer is stopped"
     fi
 }
 
@@ -59,7 +69,7 @@ _start() {
     _get_pid
 
     if [ "${PID}" != "" ]; then
-        _error "deepracer-timer already started: ${PID}"
+        _error "deepracer-timer has already started: ${PID}"
     fi
 
     pushd ${SHELL_DIR}
@@ -73,7 +83,7 @@ _start() {
     _get_pid
 
     if [ "${PID}" != "" ]; then
-        _result "deepracer-timer started: ${PID}"
+        _result "deepracer-timer was started: ${PID}"
     fi
 }
 
@@ -93,6 +103,9 @@ case ${CMD} in
         _stop
         _init
         _start
+        ;;
+    status)
+        _status
         ;;
     start)
         _start

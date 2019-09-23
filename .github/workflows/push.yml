@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 1
 
       - name: Bump Version
-        uses: opspresso/action-builder@v0.1.2
+        uses: opspresso/action-builder@master
         with:
           args: --version
 
@@ -27,14 +27,14 @@ jobs:
       - run: npm run build
 
       - name: Release to GitHub
-        uses: opspresso/action-builder@v0.1.2
+        uses: opspresso/action-builder@master
         with:
           args: --release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build & Push to Docker Hub
-        uses: opspresso/action-docker@v0.1.2
+        uses: opspresso/action-docker@master
         env:
           USERNAME: ${{ secrets.DOCKER_USERNAME }}
           PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

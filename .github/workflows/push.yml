@@ -26,16 +26,25 @@ jobs:
           node-version: "12.x"
       - run: npm run build
 
-      - name: Release
+      - name: Release to GitHub
         uses: opspresso/action-builder@v0.1.1
         with:
           args: --release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Docker Push
+      - name: Build & Push to Docker Hub
         uses: opspresso/action-docker@v0.1.1
         env:
           USERNAME: ${{ secrets.DOCKER_USERNAME }}
           PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          LATEST: "true"
+
+      - name: Build & Push to AWS ECR
+        uses: opspresso/action-docker@master
+        with:
+          args: --ecr
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           LATEST: "true"

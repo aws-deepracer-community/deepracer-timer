@@ -34,7 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build & Push to AWS ECR
-        uses: opspresso/action-docker@master
+        uses: opspresso/action-builder@master
         with:
           args: --ecr
         env:
@@ -44,7 +44,7 @@ jobs:
           LATEST: "true"
 
       - name: Build & Push to Docker Hub
-        uses: opspresso/action-docker@master
+        uses: opspresso/action-builder@master
         with:
           args: --docker
         env:

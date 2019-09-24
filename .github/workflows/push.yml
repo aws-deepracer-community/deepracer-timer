@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 1
 
       - name: Bump Version
-        uses: opspresso/action-builder@v0.1.7
+        uses: opspresso/action-builder@v0.1.8
         with:
           args: --version
 
@@ -27,27 +27,27 @@ jobs:
       - run: npm run build
 
       - name: Release to GitHub
-        uses: opspresso/action-builder@v0.1.7
+        uses: opspresso/action-builder@v0.1.8
         with:
           args: --release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build & Push to Docker Hub
+        uses: opspresso/action-builder@v0.1.8
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          LATEST: "true"
+
       - name: Build & Push to AWS ECR
-        uses: opspresso/action-builder@v0.1.7
+        uses: opspresso/action-builder@v0.1.8
         with:
           args: --ecr
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: "ap-northeast-2"
-          LATEST: "true"
-
-      - name: Build & Push to Docker Hub
-        uses: opspresso/action-builder@v0.1.7
-        with:
-          args: --docker
-        env:
-          USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           LATEST: "true"

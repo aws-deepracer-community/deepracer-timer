@@ -18,6 +18,9 @@
     "build": "npm install -s",
     "start": "node server.js"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "repository": {
     "type": "git",
     "url": "http://github.com/nalbam/deepracer-timer.git"

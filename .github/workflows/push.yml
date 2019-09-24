@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  checkout:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,10 +15,18 @@ jobs:
         with:
           fetch-depth: 1
 
+  version:
+    needs: checkout
+    runs-on: ubuntu-latest
+
       - name: Bump Version
         uses: opspresso/action-builder@v0.1.6
         with:
           args: --version
+
+  build:
+    needs: version
+    runs-on: ubuntu-latest
 
       - name: Setup Node
         uses: actions/setup-node@v1
@@ -26,12 +34,20 @@ jobs:
           node-version: "12.x"
       - run: npm run build
 
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
       - name: Release to GitHub
         uses: opspresso/action-builder@v0.1.6
         with:
           args: --release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  ecr:
+    needs: build
+    runs-on: ubuntu-latest
 
       - name: Build & Push to AWS ECR
         uses: opspresso/action-builder@v0.1.6
@@ -42,6 +58,10 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: "ap-northeast-2"
           LATEST: "true"
+
+  docker:
+    needs: build
+    runs-on: ubuntu-latest
 
       - name: Build & Push to Docker Hub
         uses: opspresso/action-builder@v0.1.6

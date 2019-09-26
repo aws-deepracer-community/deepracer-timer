@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 1
 
       - name: Bump Version
-        uses: opspresso/action-builder@v0.1.8
+        uses: opspresso/action-builder@v0.1.11
         with:
           args: --version
 
@@ -31,14 +31,14 @@ jobs:
           npm run build
 
       - name: Release to GitHub
-        uses: opspresso/action-builder@v0.1.8
+        uses: opspresso/action-builder@v0.1.11
         with:
           args: --release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build & Push to Docker Hub
-        uses: opspresso/action-builder@v0.1.8
+        uses: opspresso/action-builder@v0.1.11
         with:
           args: --docker
         env:
@@ -47,7 +47,7 @@ jobs:
           LATEST: "true"
 
       - name: Build & Push to GitHub Package
-        uses: opspresso/action-builder@v0.1.8
+        uses: opspresso/action-builder@v0.1.11
         with:
           args: --docker
         env:
@@ -57,7 +57,7 @@ jobs:
           LATEST: "true"
 
       - name: Build & Push to AWS ECR
-        uses: opspresso/action-builder@v0.1.8
+        uses: opspresso/action-builder@v0.1.11
         with:
           args: --ecr
         env:

@@ -42,8 +42,18 @@ jobs:
         with:
           args: --docker
         env:
-          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          # USERNAME: ${{ secrets.DOCKER_USERNAME }}
           PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          LATEST: "true"
+
+      - name: Build & Push to GitHub Package
+        uses: opspresso/action-builder@v0.1.8
+        with:
+          args: --docker
+        env:
+          # USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          REGISRTY: "docker.pkg.github.com"
           LATEST: "true"
 
       - name: Build & Push to AWS ECR

@@ -27,7 +27,7 @@ jobs:
 
       - name: Run Build
         run: |
-          npm run lint
+          # npm run lint
           npm run build
 
       - name: Release to GitHub

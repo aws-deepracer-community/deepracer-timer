@@ -181,18 +181,25 @@ let timer = new Timer(
 let socket = io();
 socket.on('timer', function (name) {
     console.log(`socket timer ${name}`);
-    if (name === 'start') {
-        timer.start();
-    } else if (name === 'pause') {
-        timer.pause();
-    } else if (name === 'passed') {
-        timer.passed();
-    } else if (name === 'press') {
-        timer.press();
-    } else if (name === 'reset') {
-        timer.reset();
-    } else if (name === 'clear') {
-        timer.clear();
+    switch (name) {
+        case 'start':
+            timer.start();
+            break;
+        case 'pause':
+            timer.pause();
+            break;
+        case 'passed':
+            timer.passed();
+            break;
+        case 'press':
+            timer.press();
+            break;
+        case 'reset':
+            timer.reset();
+            break;
+        case 'clear':
+            timer.clear();
+            break;
     }
 });
 
@@ -201,18 +208,27 @@ function call(name) {
 }
 
 document.addEventListener('keydown', function (event) {
-    if (event.keyCode == 13) {
-        call('passed'); // Enter
-    } else if (event.keyCode == 81) {
-        call('start'); // q
-    } else if (event.keyCode == 87) {
-        call('pause'); // w
-    } else if (event.keyCode == 69) {
-        call('passed'); // e
-    } else if (event.keyCode == 82) {
-        call('reset'); // r
-    } else if (event.keyCode == 84) {
-        call('clear'); // t
+    switch (event.keyCode) {
+        case 49: // 1
+        case 81: // q
+            call('start');
+            break;
+        case 49: // 2
+        case 87: // w
+            call('start');
+            break;
+        case 49: // 3
+        case 69: // e
+            call('start');
+            break;
+        case 49: // 4
+        case 82: // r
+            call('start');
+            break;
+        case 49: // 5
+        case 84: // t
+            call('start');
+            break;
     }
 });
 

@@ -118,20 +118,29 @@ http.listen(port, function () {
 // gpio
 gpio.on('change', function (channel, value) {
     console.log(`Channel ${channel} value is now ${value} \t- ${(Math.random() * 100000)}`);
-    if (channel === 7) {
-        io.sockets.emit('timer', 'press');
-    } else if (channel === 37) {
-        io.sockets.emit('timer', 'start');
-    } else if (channel === 35) {
-        io.sockets.emit('timer', 'pause');
-    } else if (channel === 33) {
-        io.sockets.emit('timer', 'passed');
-    } else if (channel === 31) {
-        io.sockets.emit('timer', 'reset');
-    } else if (channel === 29) {
-        io.sockets.emit('timer', 'clear');
+    switch (channel) {
+        case 5:
+        case 7:
+            io.sockets.emit('timer', 'press');
+            break;
+            // case 37:
+            //     io.sockets.emit('timer', 'start');
+            //     break;
+            // case 35:
+            //     io.sockets.emit('timer', 'pause');
+            //     break;
+            // case 33:
+            //     io.sockets.emit('timer', 'passed');
+            //     break;
+            // case 31:
+            //     io.sockets.emit('timer', 'reset');
+            //     break;
+            // case 29:
+            //     io.sockets.emit('timer', 'clear');
+            //     break;
     }
 });
+gpio.setup(5, gpio.DIR_IN, gpio.EDGE_BOTH);
 gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
 // gpio.setup(29, gpio.DIR_IN, gpio.EDGE_BOTH);
 // gpio.setup(31, gpio.DIR_IN, gpio.EDGE_BOTH);

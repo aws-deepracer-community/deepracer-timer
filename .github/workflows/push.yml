@@ -15,10 +15,10 @@ jobs:
         with:
           fetch-depth: 1
 
-      # - name: Bump Version
-      #   uses: opspresso/action-builder@master
-      #   with:
-      #     args: --version
+      - name: Bump Version
+        uses: opspresso/action-builder@master
+        with:
+          args: --version
 
       # - name: Setup Node
       #   uses: actions/setup-node@v1

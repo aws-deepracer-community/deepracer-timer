@@ -44,7 +44,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITOPS_REPO: nalbam/argocd-env-demo
-          EVENT_TYPE: GitOps-main
+          EVENT_TYPE: build
           TARGET_ID: deepracer-timer
 
       - name: Build & Push to Docker Hub

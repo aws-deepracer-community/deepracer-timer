@@ -123,27 +123,7 @@ gpio.on('change', function (channel, value) {
         case 7:
             io.sockets.emit('timer', 'press');
             break;
-            // case 37:
-            //     io.sockets.emit('timer', 'start');
-            //     break;
-            // case 35:
-            //     io.sockets.emit('timer', 'pause');
-            //     break;
-            // case 33:
-            //     io.sockets.emit('timer', 'passed');
-            //     break;
-            // case 31:
-            //     io.sockets.emit('timer', 'reset');
-            //     break;
-            // case 29:
-            //     io.sockets.emit('timer', 'clear');
-            //     break;
     }
 });
 gpio.setup(5, gpio.DIR_IN, gpio.EDGE_BOTH);
 gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
-// gpio.setup(29, gpio.DIR_IN, gpio.EDGE_BOTH);
-// gpio.setup(31, gpio.DIR_IN, gpio.EDGE_BOTH);
-// gpio.setup(33, gpio.DIR_IN, gpio.EDGE_BOTH);
-// gpio.setup(35, gpio.DIR_IN, gpio.EDGE_BOTH);
-// gpio.setup(37, gpio.DIR_IN, gpio.EDGE_BOTH);

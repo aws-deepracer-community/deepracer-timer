@@ -43,9 +43,9 @@ jobs:
           args: --deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITOPS_REPO: nalbam/argocd-env-demo
-          EVENT_TYPE: push
-          TARGET_ID: deepracer-timer
+          GITOPS_REPO: "nalbam/argocd-env-demo"
+          EVENT_TYPE: "build"
+          TARGET_ID: "deepracer-timer"
 
       # - name: Build & Push to Docker Hub
       #   uses: opspresso/action-builder@master

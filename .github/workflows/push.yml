@@ -40,7 +40,7 @@ jobs:
       - name: Trigger for GitOps
         uses: opspresso/action-builder@master
         with:
-          args: --deploy
+          args: --dispatch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITOPS_REPO: "nalbam/argocd-env-demo"

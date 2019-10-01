@@ -213,19 +213,19 @@ document.addEventListener('keydown', function (event) {
         case 81: // q
             call('start');
             break;
-        case 49: // 2
+        case 50: // 2
         case 87: // w
             call('pause');
             break;
-        case 49: // 3
+        case 51: // 3
         case 69: // e
             call('passed');
             break;
-        case 49: // 4
+        case 52: // 4
         case 82: // r
             call('reset');
             break;
-        case 49: // 5
+        case 53: // 5
         case 84: // t
             call('clear');
             break;

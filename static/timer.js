@@ -211,22 +211,27 @@ document.addEventListener('keydown', function (event) {
     switch (event.keyCode) {
         case 49: // 1
         case 81: // q
+        case 96: // 0 (Num Lock)
             call('start');
             break;
         case 50: // 2
         case 87: // w
+        case 110: // . (Num Lock)
             call('pause');
             break;
         case 51: // 3
         case 69: // e
+        case 97: // 1 (Num Lock)
             call('passed');
             break;
         case 52: // 4
         case 82: // r
+        case 98: // 2 (Num Lock)
             call('reset');
             break;
         case 53: // 5
         case 84: // t
+        case 99: // 3 (Num Lock)
             call('clear');
             break;
     }

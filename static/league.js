@@ -2,6 +2,7 @@
  * league.js
  */
 
+let lb_anim = false;
 let lb_title = document.querySelector('.lb-title');
 let lb_items = document.querySelector('.lb-items');
 
@@ -70,6 +71,8 @@ function reloaded(res) {
 }
 
 function print(res) {
+    lb_anim = res.anim;
+
     clear(res.logo, res.title);
 
     addRow('lb-header', 'Rank', 'Name', 'Time')
@@ -202,18 +205,20 @@ function popup(title, rank, racer, time) {
     scroll(rank);
 
     // logo
-    $('.pop-logo').fadeIn();
-    $('.pop-logo .pop-container').animate({
-        height: '100%'
-    }, 1200);
-    setTimeout(function () {
-        $('.pop-logo').fadeOut();
+    if (lb_anim) {
+        $('.pop-logo').fadeIn();
+        $('.pop-logo .pop-container').animate({
+            height: '100%'
+        }, 1200);
         setTimeout(function () {
-            $('.pop-logo .pop-container').animate({
-                height: '200px'
-            }, 100);
+            $('.pop-logo').fadeOut();
+            setTimeout(function () {
+                $('.pop-logo .pop-container').animate({
+                    height: '200px'
+                }, 100);
+            }, 1000);
         }, 1000);
-    }, 1000);
+    }
 
     // layer
     setTimeout(function () {

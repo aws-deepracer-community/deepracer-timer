@@ -119,11 +119,11 @@ http.listen(port, function () {
 gpio.on('change', function (channel, value) {
     console.log(`Channel ${channel} value is now ${value} \t- ${(Math.random() * 100000)}`);
     switch (channel) {
-        case 5:
-        case 7:
+        case 11:
+        case 13:
             io.sockets.emit('timer', 'press');
             break;
     }
 });
-gpio.setup(5, gpio.DIR_IN, gpio.EDGE_BOTH);
-gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(11, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(13, gpio.DIR_IN, gpio.EDGE_BOTH);

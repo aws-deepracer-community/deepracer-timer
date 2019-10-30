@@ -142,6 +142,11 @@ class Timer {
         this.bestlap.innerText = this.format(this.records[0]);
     }
 
+    remove() {
+        this.records.splice(0, 1);
+        this.bestlap.innerText = this.format(this.records[0]);
+    }
+
     format(times) {
         return `${lpad(times[0], 2)}:${lpad(times[1], 2)}.${lpad(Math.floor(times[2]), 3)}`;
     }
@@ -200,6 +205,9 @@ socket.on('timer', function (name) {
         case 'clear':
             timer.clear();
             break;
+        case 'remove':
+            timer.remove();
+            break;
     }
 });
 
@@ -211,28 +219,27 @@ document.addEventListener('keydown', function (event) {
     switch (event.keyCode) {
         case 49: // 1
         case 81: // q
-        case 96: // 0 (Num Lock)
             call('start');
             break;
         case 50: // 2
         case 87: // w
-        case 110: // . (Num Lock)
             call('pause');
             break;
         case 51: // 3
         case 69: // e
-        case 97: // 1 (Num Lock)
             call('passed');
             break;
         case 52: // 4
         case 82: // r
-        case 98: // 2 (Num Lock)
             call('reset');
             break;
         case 53: // 5
         case 84: // t
-        case 99: // 3 (Num Lock)
             call('clear');
+            break;
+        case 54: // 6
+        case 89: // y
+            call('remove');
             break;
     }
 });
@@ -259,6 +266,10 @@ function btn_listener(event) {
             // call('clear');
             timer.clear();
             break;
+        case 'btn_remove':
+            // call('remove');
+            timer.remove();
+            break;
     }
 }
 
@@ -267,3 +278,4 @@ document.getElementById('btn_pause').addEventListener('click', btn_listener);
 document.getElementById('btn_passed').addEventListener('click', btn_listener);
 document.getElementById('btn_reset').addEventListener('click', btn_listener);
 document.getElementById('btn_clear').addEventListener('click', btn_listener);
+document.getElementById('btn_remove').addEventListener('click', btn_listener);

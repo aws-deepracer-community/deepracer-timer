@@ -27,6 +27,7 @@ class Timer {
     }
 
     reset() {
+        this.latest = null;
         this.times = [0, 0, 0];
         this.print();
         this.pause();
@@ -80,17 +81,17 @@ class Timer {
         // limit
         this.limit[2] -= diff;
         if (this.limit[2] < 0) {
-            this.limit[1] -= 1;
             this.limit[2] += 1000;
+            this.limit[1] -= 1;
         }
         if (this.limit[1] < 0) {
-            this.limit[0] -= 1;
             this.limit[1] += 60;
+            this.limit[0] -= 1;
         }
         if (this.limit[0] < 0) {
-            this.limit[0] = 0
-            this.limit[1] = 0
             this.limit[2] = 0
+            this.limit[1] = 0
+            this.limit[0] = 0
             this.pause();
             return;
         }
@@ -98,12 +99,12 @@ class Timer {
         // times
         this.times[2] += diff;
         if (this.times[2] >= 1000) {
-            this.times[1] += 1;
             this.times[2] -= 1000;
+            this.times[1] += 1;
         }
         if (this.times[1] >= 60) {
-            this.times[0] += 1;
             this.times[1] -= 60;
+            this.times[0] += 1;
         }
         if (this.times[0] >= 60) {
             this.times[0] -= 60
@@ -137,6 +138,8 @@ class Timer {
         li.innerText = this.format(this.times);
         this.results.appendChild(li);
 
+        this.latest = this.times;
+
         this.records.push(this.times);
         this.records.sort(compare);
         this.bestlap.innerText = this.format(this.records[0]);
@@ -145,6 +148,29 @@ class Timer {
     remove() {
         this.records.splice(0, 1);
         this.bestlap.innerText = this.format(this.records[0]);
+    }
+
+    squeeze() {
+        if (this.latest) {
+            this.times[2] += this.latest[2];
+            this.times[1] += this.latest[1];
+            this.times[0] += this.latest[0];
+            if (this.times[2] >= 1000) {
+                this.times[2] -= 1000;
+                this.times[1] += 1;
+            }
+            if (this.times[1] >= 60) {
+                this.times[1] -= 60;
+                this.times[0] += 1;
+            }
+            if (this.times[0] >= 60) {
+                this.times[0] -= 60
+            }
+            if (this.times[2] < 0) {
+                this.times[2] = 0;
+            }
+            this.latest = null;
+        }
     }
 
     format(times) {
@@ -208,6 +234,9 @@ socket.on('timer', function (name) {
         case 'remove':
             timer.remove();
             break;
+        case 'squeeze':
+            timer.squeeze();
+            break;
     }
 });
 
@@ -217,29 +246,26 @@ function call(name) {
 
 document.addEventListener('keydown', function (event) {
     switch (event.keyCode) {
-        case 49: // 1
         case 81: // q
             call('start');
             break;
-        case 50: // 2
         case 87: // w
             call('pause');
             break;
-        case 51: // 3
         case 69: // e
             call('passed');
             break;
-        case 52: // 4
         case 82: // r
             call('reset');
             break;
-        case 53: // 5
         case 84: // t
             call('clear');
             break;
-        case 54: // 6
         case 89: // y
             call('remove');
+            break;
+        case 71: // g
+            call('squeeze');
             break;
     }
 });
@@ -266,10 +292,6 @@ function btn_listener(event) {
             // call('clear');
             timer.clear();
             break;
-        case 'btn_remove':
-            // call('remove');
-            timer.remove();
-            break;
     }
 }
 
@@ -278,4 +300,3 @@ document.getElementById('btn_pause').addEventListener('click', btn_listener);
 document.getElementById('btn_passed').addEventListener('click', btn_listener);
 document.getElementById('btn_reset').addEventListener('click', btn_listener);
 document.getElementById('btn_clear').addEventListener('click', btn_listener);
-document.getElementById('btn_remove').addEventListener('click', btn_listener);

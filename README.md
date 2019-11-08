@@ -19,10 +19,12 @@
 
 ## keymap
 
-| Action | Key |
-| ------ | --- |
-| Start  |  Q  |
-| Pause  |  W  |
-| Passed |  E  |
-| Reset  |  R  |
-| Clear  |  T  |
+| Action  | Key |
+| ------- | --- |
+| Start   |  Q  |
+| Pause   |  W  |
+| Passed  |  E  |
+| Reset   |  R  |
+| Clear   |  T  |
+| Remove  |  Y  |
+| Squeeze |  G  |

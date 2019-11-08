@@ -22,8 +22,8 @@ class Timer {
     }
 
     pause() {
-        this.running = false;
         this.time = null;
+        this.running = false;
     }
 
     reset() {
@@ -39,6 +39,9 @@ class Timer {
     }
 
     passed() {
+        if (!this.time) {
+            return;
+        }
         if (this.times[0] > 0 || this.times[1] > 3) {
             this.record();
         }
@@ -50,8 +53,6 @@ class Timer {
         if (!this.pressed || (stamp - this.pressed) > 3000) {
             this.passed();
             this.pressed = new Date().getTime();
-        } else {
-            this.start();
         }
     }
 
@@ -139,38 +140,39 @@ class Timer {
         this.results.appendChild(li);
 
         this.latest = this.times;
-
         this.records.push(this.times);
         this.records.sort(compare);
         this.bestlap.innerText = this.format(this.records[0]);
     }
 
     remove() {
+        this.latest = null;
         this.records.splice(0, 1);
         this.bestlap.innerText = this.format(this.records[0]);
     }
 
     squeeze() {
-        if (this.latest) {
-            this.times[2] += this.latest[2];
-            this.times[1] += this.latest[1];
-            this.times[0] += this.latest[0];
-            if (this.times[2] >= 1000) {
-                this.times[2] -= 1000;
-                this.times[1] += 1;
-            }
-            if (this.times[1] >= 60) {
-                this.times[1] -= 60;
-                this.times[0] += 1;
-            }
-            if (this.times[0] >= 60) {
-                this.times[0] -= 60
-            }
-            if (this.times[2] < 0) {
-                this.times[2] = 0;
-            }
-            this.latest = null;
+        if (!this.latest) {
+            return;
         }
+        this.times[2] += this.latest[2];
+        this.times[1] += this.latest[1];
+        this.times[0] += this.latest[0];
+        if (this.times[2] >= 1000) {
+            this.times[2] -= 1000;
+            this.times[1] += 1;
+        }
+        if (this.times[1] >= 60) {
+            this.times[1] -= 60;
+            this.times[0] += 1;
+        }
+        if (this.times[0] >= 60) {
+            this.times[0] -= 60
+        }
+        if (this.times[2] < 0) {
+            this.times[2] = 0;
+        }
+        this.latest = null;
     }
 
     format(times) {

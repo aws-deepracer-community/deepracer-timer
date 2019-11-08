@@ -106,6 +106,7 @@ function clear(logo, title) {
         document.querySelector('.lb-logo-back').innerHTML = `<img src="${logo}">`;
     }
 
+    document.title = title
     lb_title.innerText = title;
 
     while (lb_items.lastChild) {

@@ -139,6 +139,8 @@ class Timer {
         li.innerText = this.format(this.times);
         this.results.appendChild(li);
 
+        console.log(this.format(this.times));
+
         this.latest = this.times;
         this.records.push(this.times);
         this.records.sort(compare);
@@ -146,15 +148,28 @@ class Timer {
     }
 
     remove() {
+        if (this.records.length == 0) {
+            return;
+        }
+
+        console.log(this.format(this.records[0]));
+
         this.latest = null;
         this.records.splice(0, 1);
-        this.bestlap.innerText = this.format(this.records[0]);
+        if (this.records.length == 0) {
+            this.bestlap.innerText = "";
+        } else {
+            this.bestlap.innerText = this.format(this.records[0]);
+        }
     }
 
     squeeze() {
         if (!this.latest) {
             return;
         }
+
+        console.log(this.format(this.latest));
+
         this.times[2] += this.latest[2];
         this.times[1] += this.latest[1];
         this.times[0] += this.latest[0];

@@ -26,17 +26,6 @@ class Timer {
         this.running = false;
     }
 
-    reset() {
-        this.times = [0, 0, 0];
-        this.print();
-        this.pause();
-    }
-
-    restart() {
-        this.reset();
-        this.start();
-    }
-
     passed() {
         if (!this.time) {
             return;
@@ -44,6 +33,26 @@ class Timer {
         if (this.times[0] > 0 || this.times[1] > 3) {
             this.record();
             this.restart();
+        }
+    }
+
+    reset() {
+        this.times = [0, 0, 0];
+        this.print();
+        this.pause();
+    }
+
+    clear() {
+        if (this.time) {
+            return;
+        }
+        this.latest = null;
+        this.records = [];
+        this.limit = [4, 0, 0];
+        this.reset();
+        this.bestlap.innerText = '';
+        while (this.results.lastChild) {
+            this.results.removeChild(this.results.lastChild);
         }
     }
 
@@ -55,15 +64,9 @@ class Timer {
         }
     }
 
-    clear() {
-        this.latest = null;
-        this.records = [];
-        this.limit = [4, 0, 0];
+    restart() {
         this.reset();
-        this.bestlap.innerText = '';
-        while (this.results.lastChild) {
-            this.results.removeChild(this.results.lastChild);
-        }
+        this.start();
     }
 
     step(timestamp) {

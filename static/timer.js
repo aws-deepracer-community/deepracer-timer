@@ -27,7 +27,6 @@ class Timer {
     }
 
     reset() {
-        this.latest = null;
         this.times = [0, 0, 0];
         this.print();
         this.pause();
@@ -44,8 +43,8 @@ class Timer {
         }
         if (this.times[0] > 0 || this.times[1] > 3) {
             this.record();
+            this.restart();
         }
-        this.restart();
     }
 
     press() {
@@ -57,6 +56,7 @@ class Timer {
     }
 
     clear() {
+        this.latest = null;
         this.records = [];
         this.limit = [4, 0, 0];
         this.reset();

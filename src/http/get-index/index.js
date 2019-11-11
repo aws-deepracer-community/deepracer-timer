@@ -14,10 +14,10 @@ exports.handler = async function http(req) {
 <head>
     <meta charset="utf-8">
     <title>DeepRacer</title>
-    <link rel="icon" href="${static('/favicon.ico')}" type="image/x-icon" />
-    <link rel="shortcut icon" href="${static('/favicon.ico')}" type="image/x-icon" />
-    <link rel="stylesheet" href="/_static/index.css">
-    <link rel="stylesheet" href="/_static/flip.css">
+    <link rel="icon" href="./_static/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./_static/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./_static/index.css">
+    <link rel="stylesheet" href="./_static/flip.css">
 </head>
 
 <body>
@@ -40,8 +40,8 @@ exports.handler = async function http(req) {
 
 </html>
 
-<script src="/_static/jquery-3.3.1.min.js"></script>
-<script src="/_static/flip.js"></script>
+<script src="./_static/jquery-3.3.1.min.js"></script>
+<script src="./_static/flip.js"></script>
 <script>
     $(function () {
         setInterval(function () {

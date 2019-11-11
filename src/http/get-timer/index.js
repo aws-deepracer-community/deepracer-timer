@@ -2,7 +2,7 @@
 let arc = require('@architect/functions')
 let static = arc.http.helpers.static
 
-let getURL = require('./get-web-socket-url')
+let getURL = require('./get-url')
 
 exports.handler = async function http(req) {
   return {
@@ -16,9 +16,9 @@ exports.handler = async function http(req) {
 <head>
     <meta charset="utf-8">
     <title>DeepRacer Timer</title>
-    <link rel="icon" href="${static('/favicon.ico')}" type="image/x-icon" />
-    <link rel="shortcut icon" href="${static('/favicon.ico')}" type="image/x-icon" />
-    <link rel="stylesheet" href="${static('/timer.css')}">
+    <link rel="icon" href="./_static/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./_static/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./_static/timer.css">
 </head>
 
 <body>
@@ -37,7 +37,7 @@ exports.handler = async function http(req) {
 <script>
 window.WS_URL = '${getURL()}'
 </script>
-<script type=module src="${static('/timer.mjs')}"></script>
+<script type=module src="./_static/timer.mjs"></script>
 </body>
 </html>
 `

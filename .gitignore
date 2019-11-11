@@ -23,6 +23,10 @@ nohup.out
 __pycache__
 .pytest_cache
 
+# arc
+sam.json
+sam.yaml
+
 # build
 target/
 build/

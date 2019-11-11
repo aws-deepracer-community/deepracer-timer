@@ -46,8 +46,8 @@ class Timer {
         if (this.time) {
             return;
         }
-        this.latest = null;
         this.records = [];
+        this.sorted = [];
         this.limit = [4, 0, 0];
         this.reset();
         this.bestlap.innerText = '';
@@ -144,40 +144,27 @@ class Timer {
 
         console.log(`record ${this.format(this.times)}`);
 
-        this.latest = this.times;
         this.records.push(this.times);
-        this.records.sort(compare);
-        this.bestlap.innerText = this.format(this.records[0]);
-    }
+        this.sorted = this.records.slice();
+        this.sorted.sort(compare);
 
-    remove() {
-        if (this.records.length == 0) {
-            return;
-        }
-
-        console.log(`remove ${this.format(this.records[0])}`);
-
-        this.latest = null;
-        this.records.splice(0, 1);
-        if (this.records.length == 0) {
-            this.bestlap.innerText = "";
-        } else {
-            this.bestlap.innerText = this.format(this.records[0]);
-        }
+        this.bestlap.innerText = this.format(this.sorted[0]);
     }
 
     squeeze() {
-        if (!this.latest) {
+        if (this.records.length == 0) {
             return;
         }
 
-        console.log(`squeeze ${this.format(this.latest)}`);
+        let latest = this.records[this.records.length - 1];
+
+        console.log(`squeeze ${this.format(latest)}`);
 
         this.pause();
 
-        this.times[2] += this.latest[2];
-        this.times[1] += this.latest[1];
-        this.times[0] += this.latest[0];
+        this.times[2] += latest[2];
+        this.times[1] += latest[1];
+        this.times[0] += latest[0];
         if (this.times[2] >= 1000) {
             this.times[2] -= 1000;
             this.times[1] += 1;
@@ -193,10 +180,15 @@ class Timer {
             this.times[2] = 0;
         }
 
-        this.start();
+        this.records.splice(this.records.length - 1, 1);
+        this.sorted = this.records.slice();
+        this.sorted.sort(compare);
 
-        this.latest = null;
+        this.bestlap.innerText = this.format(this.sorted[0]);
+
         this.results.removeChild(this.results.lastChild);
+
+        this.start();
     }
 
     format(times) {
@@ -235,7 +227,10 @@ let timer = new Timer(
     document.querySelector('.results')
 );
 
+// ** socket.io //
+
 let socket = io();
+
 socket.on('timer', function (name) {
     console.log(`socket timer ${name}`);
     exec(name);
@@ -244,6 +239,8 @@ socket.on('timer', function (name) {
 function send(name) {
     socket.emit('timer', name);
 }
+
+// ** socket.io //
 
 function exec(name) {
     switch (name) {
@@ -265,9 +262,6 @@ function exec(name) {
         case 'clear':
             timer.clear();
             break;
-        case 'remove':
-            timer.remove();
-            break;
         case 'squeeze':
             timer.squeeze();
             break;
@@ -280,8 +274,7 @@ let key_map = {
     '69': 'passed', // e
     '82': 'reset', // r
     '84': 'clear', // t
-    '89': 'remove', // y
-    '71': 'squeeze', // g
+    '89': 'squeeze', // y
 };
 
 document.addEventListener('keydown', function (event) {

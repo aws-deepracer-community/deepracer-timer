@@ -26,5 +26,4 @@
 | Passed  |  E  |
 | Reset   |  R  |
 | Clear   |  T  |
-| Remove  |  Y  |
-| Squeeze |  G  |
+| Squeeze |  Y  |

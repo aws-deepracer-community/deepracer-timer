@@ -234,26 +234,23 @@ ws.onclose = close;
 ws.onmessage = message;
 ws.onerror = console.log;
 
-// connect to the web socket
 function open() {
-    console.log('WebSocket open');
+    console.log('ws open');
 }
 
-// report a closed web socket connection
 function close() {
-    console.log('WebSocket close');
+    console.log('ws close');
 }
 
-// write a message into main
 function message(e) {
     let msg = JSON.parse(e.data);
 
-    console.log(`WebSocket message : ${msg.text}`);
+    console.log(`ws message : ${msg.text}`);
 
     exec(msg.text);
 }
 
-function call(name) {
+function send(name) {
     var msg = {
         type: 'message',
         text: name
@@ -290,36 +287,27 @@ function exec(name) {
     }
 }
 
-function btn_listener(event) {
-    let name = event.target.id.substring(4);
-    exec(name);
-}
+let key_map = {
+    '81': 'start',
+    '87': 'pause',
+    '69': 'passed',
+    '82': 'reset',
+    '84': 'clear',
+    '89': 'remove',
+    '71': 'squeeze',
+};
 
 document.addEventListener('keydown', function (event) {
-    switch (event.keyCode) {
-        case 81: // q
-            call('start');
-            break;
-        case 87: // w
-            call('pause');
-            break;
-        case 69: // e
-            call('passed');
-            break;
-        case 82: // r
-            call('reset');
-            break;
-        case 84: // t
-            call('clear');
-            break;
-        case 89: // y
-            call('remove');
-            break;
-        case 71: // g
-            call('squeeze');
-            break;
-    }
+    console.log(`keydown ${event.keyCode} : ${key_map[event.keyCode]}`);
+
+    send(key_map[event.keyCode]);
 });
+
+function btn_listener(event) {
+    let name = event.target.id.substring(4);
+
+    exec(name);
+}
 
 document.getElementById('btn_start').addEventListener('click', btn_listener);
 document.getElementById('btn_pause').addEventListener('click', btn_listener);

@@ -232,6 +232,14 @@ let timer = new Timer(
 let socket = io();
 socket.on('timer', function (name) {
     console.log(`socket timer ${name}`);
+    exec(name);
+});
+
+function send(name) {
+    socket.emit('timer', name);
+}
+
+function exec(name) {
     switch (name) {
         case 'start':
             timer.start();
@@ -258,61 +266,28 @@ socket.on('timer', function (name) {
             timer.squeeze();
             break;
     }
-});
-
-function call(name) {
-    socket.emit('timer', name);
 }
 
+let key_map = {
+    '81': 'start',
+    '87': 'pause',
+    '69': 'passed',
+    '82': 'reset',
+    '84': 'clear',
+    '89': 'remove',
+    '71': 'squeeze',
+};
+
 document.addEventListener('keydown', function (event) {
-    switch (event.keyCode) {
-        case 81: // q
-            call('start');
-            break;
-        case 87: // w
-            call('pause');
-            break;
-        case 69: // e
-            call('passed');
-            break;
-        case 82: // r
-            call('reset');
-            break;
-        case 84: // t
-            call('clear');
-            break;
-        case 89: // y
-            call('remove');
-            break;
-        case 71: // g
-            call('squeeze');
-            break;
-    }
+    console.log(`keydown ${event.keyCode} : ${key_map[event.keyCode]}`);
+
+    send(key_map[event.keyCode]);
 });
 
 function btn_listener(event) {
-    switch (event.target.id) {
-        case 'btn_start':
-            // call('start');
-            timer.start();
-            break;
-        case 'btn_pause':
-            // call('pause');
-            timer.pause();
-            break;
-        case 'btn_passed':
-            // call('passed');
-            timer.passed();
-            break;
-        case 'btn_reset':
-            // call('reset');
-            timer.reset();
-            break;
-        case 'btn_clear':
-            // call('clear');
-            timer.clear();
-            break;
-    }
+    let name = event.target.id.substring(4);
+
+    exec(name);
 }
 
 document.getElementById('btn_start').addEventListener('click', btn_listener);

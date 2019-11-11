@@ -188,7 +188,9 @@ class Timer {
         if (this.times[2] < 0) {
             this.times[2] = 0;
         }
+
         this.latest = null;
+        this.results.removeChild(this.results.lastChild);
     }
 
     format(times) {

@@ -140,7 +140,7 @@ class Timer {
         li.innerText = this.format(this.times);
         this.results.appendChild(li);
 
-        console.log(this.format(this.times));
+        console.log(`record ${this.format(this.times)}`);
 
         this.latest = this.times;
         this.records.push(this.times);
@@ -153,7 +153,7 @@ class Timer {
             return;
         }
 
-        console.log(this.format(this.records[0]));
+        console.log(`remove ${this.format(this.records[0])}`);
 
         this.latest = null;
         this.records.splice(0, 1);
@@ -169,7 +169,9 @@ class Timer {
             return;
         }
 
-        console.log(this.format(this.latest));
+        console.log(`squeeze ${this.format(this.latest)}`);
+
+        this.pause();
 
         this.times[2] += this.latest[2];
         this.times[1] += this.latest[1];
@@ -188,6 +190,8 @@ class Timer {
         if (this.times[2] < 0) {
             this.times[2] = 0;
         }
+
+        this.start();
 
         this.latest = null;
         this.results.removeChild(this.results.lastChild);
@@ -290,13 +294,13 @@ function exec(name) {
 }
 
 let key_map = {
-    '81': 'start',
-    '87': 'pause',
-    '69': 'passed',
-    '82': 'reset',
-    '84': 'clear',
-    '89': 'remove',
-    '71': 'squeeze',
+    '81': 'start', // q
+    '87': 'pause', // w
+    '69': 'passed', // e
+    '82': 'reset', // r
+    '84': 'clear', // t
+    '89': 'remove', // y
+    '71': 'squeeze', // g
 };
 
 document.addEventListener('keydown', function (event) {

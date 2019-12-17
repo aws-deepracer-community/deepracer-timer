@@ -52,7 +52,7 @@ app.get('/times/:league', function (req, res) {
 });
 
 app.post('/times', function (req, res) {
-    console.log('times body req : ', req.body);
+    console.log('times req : ', req.body);
 
     let options = {
         uri: apiurl,
@@ -61,7 +61,7 @@ app.post('/times', function (req, res) {
         json: true,
     };
     request.post(options, function (err, response, body) {
-        console.log('times body res : ', body);
+        console.log('times res : ', body);
 
         io.sockets.emit('league', 'reload');
         if (response.statusCode < 200 || response.statusCode > 399) {
@@ -81,6 +81,14 @@ app.get('/timer/:name', function (req, res) {
     return res.status(200).json({
         result: true,
         timer: name,
+    });
+});
+
+app.get('/reward', function (req, res) {
+    console.log('reward req : ', req.body);
+
+    return res.status(200).json({
+        result: true,
     });
 });
 

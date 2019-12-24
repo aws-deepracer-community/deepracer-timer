@@ -221,6 +221,8 @@ function popup(title, rank, racer, time) {
         }, 1000);
     }
 
+    confetti.start(5000);
+
     // layer
     setTimeout(function () {
         $('.pop-layer').fadeIn();

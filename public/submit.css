@@ -38,11 +38,13 @@ a {
     text-align: center;
 }
 
-.lb-logo-front, .lb-logo-back {
+.lb-logo-front,
+.lb-logo-back {
     height: 100%;
 }
 
-.lb-logo-front img, .lb-logo-back img {
+.lb-logo-front img,
+.lb-logo-back img {
     height: 100%;
 }
 
@@ -53,41 +55,41 @@ a {
     text-align: center;
 }
 
-.lb-items {
+.lb-submit {
     margin: 0 auto;
     max-width: 1024px;
 }
 
-.lb-items .lb-row {
+.lb-submit .lb-row {
     display: flex;
     width: 100%;
 }
 
-.lb-items .lb-row>div {
+.lb-submit .lb-row>div {
     font-size: 32px;
     padding: 15px 30px;
     text-align: center;
 }
 
-.lb-items .lb-row>div:nth-child(1) {
+.lb-submit .lb-row>div:nth-child(1) {
     margin-top: 10px;
     min-width: 100px;
     width: 15%;
 }
 
-.lb-items .lb-row>div:nth-child(2) {
+.lb-submit .lb-row>div:nth-child(2) {
     margin-right: auto;
     text-align: left;
     width: 60%;
 }
 
-.lb-items .lb-row {
+.lb-submit .lb-row {
     background: linear-gradient(90deg, #405666 0, #3d246b);
     color: #fff;
     margin-bottom: 5px;
 }
 
-.lb-items .lb-row input {
+.lb-submit .lb-row input {
     background-color: transparent;
     border-radius: 2px;
     border: 1px solid #aab7b8;
@@ -98,7 +100,7 @@ a {
     width: 100%;
 }
 
-.lb-items .lb-row input:focus {
+.lb-submit .lb-row input:focus {
     border: 1px solid #00a1c9;
     box-shadow: 0 0 0 1px #00a1c9;
     outline: 0;

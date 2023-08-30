@@ -27,3 +27,4 @@
 | Reset   |  R  |
 | Clear   |  T  |
 | Squeeze |  Y  |
+| Drop    |  D  |

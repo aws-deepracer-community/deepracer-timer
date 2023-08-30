@@ -54,6 +54,10 @@ html {
     color: #ddd;
 }
 
+.btn_drop {
+    color: #93e;
+}
+
 .limiter {
     font-size: 6vw;
     position: fixed;

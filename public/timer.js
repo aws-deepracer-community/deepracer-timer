@@ -191,6 +191,20 @@ class Timer {
         this.start();
     }
 
+    drop() {
+        console.log(`running drop`);
+        if (this.records.length == 0) {
+            return;
+        }
+        console.log(`drop ${this.results.lastChild.innerText}`);
+        this.results.removeChild(this.results.lastChild);
+        // update bestlap
+        this.records.splice(this.records.length - 1, 1);
+        this.sorted = this.records.slice();
+        this.sorted.sort(compare);
+        this.bestlap.innerText = this.format(this.sorted[0]);
+    }
+
     format(times) {
         return `${lpad(times[0], 2)}:${lpad(times[1], 2)}.${lpad(Math.floor(times[2]), 3)}`;
     }
@@ -265,6 +279,9 @@ function exec(name) {
         case 'squeeze':
             timer.squeeze();
             break;
+        case 'drop':
+            timer.drop();
+            break;
     }
 }
 
@@ -275,6 +292,7 @@ let key_map = {
     '82': 'reset', // r
     '84': 'clear', // t
     '89': 'squeeze', // y
+    '68': 'drop', // d
 };
 
 document.addEventListener('keydown', function (event) {
@@ -294,3 +312,4 @@ document.getElementById('btn_pause').addEventListener('click', btn_listener);
 document.getElementById('btn_passed').addEventListener('click', btn_listener);
 document.getElementById('btn_reset').addEventListener('click', btn_listener);
 document.getElementById('btn_clear').addEventListener('click', btn_listener);
+document.getElementById('btn_drop').addEventListener('click', btn_listener);

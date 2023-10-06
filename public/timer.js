@@ -144,10 +144,12 @@ class Timer {
 
     console.log(`record ${this.format(this.times)}`);
 
+    // Save the lap time
     this.records.push(this.times);
+
+    // Update the best lap time
     this.sorted = this.records.slice();
     this.sorted.sort(compare);
-
     this.bestlap.innerText = this.format(this.sorted[0]);
   }
 
@@ -158,13 +160,13 @@ class Timer {
 
     console.log(`drop ${this.results.lastChild.innerText}`);
 
+    // Cancel the last lap time
     this.results.removeChild(this.results.lastChild);
-
-    // update bestlap
     this.records.splice(this.records.length - 1, 1);
+
+    // Update the best lap time
     this.sorted = this.records.slice();
     this.sorted.sort(compare);
-
     this.bestlap.innerText = this.format(this.sorted[0]);
   }
 
@@ -179,6 +181,7 @@ class Timer {
 
     this.pause();
 
+    // Merge last lap time into the timer
     this.times[2] += latest[2];
     this.times[1] += latest[1];
     this.times[0] += latest[0];
@@ -197,14 +200,14 @@ class Timer {
       this.times[2] = 0;
     }
 
-    // update bestlap
+    // Cancel the last lap time
+    this.results.removeChild(this.results.lastChild);
     this.records.splice(this.records.length - 1, 1);
+
+    // Update the best lap time
     this.sorted = this.records.slice();
     this.sorted.sort(compare);
-
     this.bestlap.innerText = this.format(this.sorted[0]);
-
-    this.results.removeChild(this.results.lastChild);
 
     this.start();
   }

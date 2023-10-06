@@ -24,7 +24,17 @@ app.get('/', function (req, res) {
 
 // timer
 app.get('/timer', function (req, res) {
-  res.render('timer.ejs', {});
+  res.render('timer.ejs', {
+    min: 4
+  });
+});
+
+// timer with limit
+app.get('/timer/limit/:min', function (req, res) {
+  const min = req.params.min;
+  res.render('timer.ejs', {
+    min: min
+  });
 });
 
 // mock timer key

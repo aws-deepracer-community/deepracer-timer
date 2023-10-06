@@ -3,11 +3,12 @@
  */
 
 class Timer {
-  constructor(limiter, display, bestlap, results) {
+  constructor(limiter, display, bestlap, results, limit_min) {
     this.limiter = limiter;
     this.display = display;
     this.bestlap = bestlap;
     this.results = results;
+    this.limit_min = limit_min;
     this.clear();
   }
 
@@ -48,7 +49,7 @@ class Timer {
     }
     this.records = [];
     this.sorted = [];
-    this.limit = [4, 0, 0];
+    this.limit = [this.limit_min, 0, 0];
     this.reset();
     this.bestlap.innerText = '';
     while (this.results.lastChild) {
@@ -246,7 +247,8 @@ let timer = new Timer(
   document.querySelector('.limiter'),
   document.querySelector('.display'),
   document.querySelector('.bestlap'),
-  document.querySelector('.results')
+  document.querySelector('.results'),
+  min
 );
 
 // ** socket.io //

@@ -37,8 +37,8 @@ app.get('/timer/:min', function (req, res) {
   });
 });
 
-// timer emit name
-app.get('/timer/emit/:name', function (req, res) {
+// emit name
+app.get('/emit/:name', function (req, res) {
   const name = req.params.name;
   io.sockets.emit('timer', `${name}`);
   return res.status(200).json({

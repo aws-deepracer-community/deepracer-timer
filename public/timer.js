@@ -137,6 +137,16 @@ class Timer {
     }
   }
 
+  findone() {
+    if (this.records.length == 0) {
+      return;
+    }
+
+    this.sorted = this.records.slice();
+    this.sorted.sort(compare);
+    this.bestlap.innerText = this.format(this.sorted[0]);
+  }
+
   record() {
     let li = document.createElement('li');
     li.innerText = this.format(this.times);
@@ -147,10 +157,7 @@ class Timer {
     // Save the lap time
     this.records.push(this.times);
 
-    // Update the best lap time
-    this.sorted = this.records.slice();
-    this.sorted.sort(compare);
-    this.bestlap.innerText = this.format(this.sorted[0]);
+    this.findone();
   }
 
   drop() {
@@ -164,10 +171,7 @@ class Timer {
     this.results.removeChild(this.results.lastChild);
     this.records.splice(this.records.length - 1, 1);
 
-    // Update the best lap time
-    this.sorted = this.records.slice();
-    this.sorted.sort(compare);
-    this.bestlap.innerText = this.format(this.sorted[0]);
+    this.findone();
   }
 
   reject() {
@@ -204,10 +208,7 @@ class Timer {
     this.results.removeChild(this.results.lastChild);
     this.records.splice(this.records.length - 1, 1);
 
-    // Update the best lap time
-    this.sorted = this.records.slice();
-    this.sorted.sort(compare);
-    this.bestlap.innerText = this.format(this.sorted[0]);
+    this.findone();
 
     this.start();
   }

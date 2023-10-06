@@ -4,11 +4,11 @@
   "description": "Node.js deepracer-timer",
   "main": "server.js",
   "dependencies": {
-    "ejs": "^2.7.1",
-    "express": "^4.17.1",
-    "request": "^2.88.0",
-    "rpi-gpio": "^2.1.5",
-    "socket.io": "^2.3.0"
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "request": "^2.88.2",
+    "rpi-gpio": "^2.1.7",
+    "socket.io": "^4.4.1"
   },
   "engine": {
     "node": "*",

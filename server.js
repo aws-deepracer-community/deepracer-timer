@@ -17,78 +17,23 @@ app.use(express.json())
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
+// index
 app.get('/', function (req, res) {
   res.render('index.ejs', {});
 });
 
-app.get('/league/:league', function (req, res) {
-  const league = req.params.league;
-  res.render('league.ejs', {
-    league: league
-  });
-});
-
-app.get('/submit/:league', function (req, res) {
-  const league = req.params.league;
-  res.render('submit.ejs', {
-    league: league,
-  });
-});
-
-app.get('/times/:league', function (req, res) {
-  const league = req.params.league;
-  const options = {
-    uri: apiurl,
-    qs: {
-      league: league,
-    }
-  };
-  request(options, function (err, response, body) {
-    if (response.statusCode < 200 || response.statusCode > 399) {
-      return res.status(response.statusCode).json({});
-    }
-    return res.status(200).json(JSON.parse(body));
-  })
-});
-
-app.post('/times', function (req, res) {
-  console.log('times req : ', req.body);
-
-  let options = {
-    uri: apiurl,
-    method: 'POST',
-    body: req.body,
-    json: true,
-  };
-  request.post(options, function (err, response, body) {
-    console.log('times res : ', body);
-
-    io.sockets.emit('league', 'reload');
-    if (response.statusCode < 200 || response.statusCode > 399) {
-      return res.status(response.statusCode).json({});
-    }
-    return res.status(200).json({});
-  })
-});
-
+// timer
 app.get('/timer', function (req, res) {
   res.render('timer.ejs', {});
 });
 
+// mock timer key
 app.get('/timer/:name', function (req, res) {
   const name = req.params.name;
   io.sockets.emit('timer', `${name}`);
   return res.status(200).json({
     result: true,
     timer: name,
-  });
-});
-
-app.get('/reward', function (req, res) {
-  console.log('reward req : ', req.body);
-
-  return res.status(200).json({
-    result: true,
   });
 });
 
@@ -110,11 +55,6 @@ io.on('connection', function (socket) {
   socket.on('timer', function (name) {
     console.log('timer : ', socket.id, name);
     io.sockets.emit('timer', `${name}`);
-  });
-
-  socket.on('league', function (name) {
-    console.log('league : ', socket.id, name);
-    io.sockets.emit('league', `${name}`);
   });
 });
 

@@ -1,7 +1,0 @@
-{
-    "name": "deepracer-timer-index",
-    "dependencies": {
-        "@architect/functions": "^3.4.8",
-        "aws-sdk": "^2.568.0"
-    }
-}

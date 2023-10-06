@@ -15,18 +15,22 @@
 ./run.sh stop
 ```
 
+## browser
+
+* http://localhost:3000
+
 ## screen
 
 ![screen](images/screen.png)
 
 ## keymap
 
-| Action  | Key |
-| ------- | --- |
-| Start   |  Q  |
-| Pause   |  W  |
-| Passed  |  E  |
-| Reset   |  R  |
-| Clear   |  T  |
-| Squeeze |  Y  |
-| Drop    |  D  |
+| Action  | Key | Description |
+| ------- | --- | ----------- |
+| Start   |  Q  | Start the timer. |
+| Pause   |  W  | Pause the timer. |
+| Passed  |  E  | Record the lap time. |
+| Reset   |  R  | Reset the timer to 0. |
+| Clear   |  T  | Clear the timer and all lap times. |
+| Reject  |  Y  | Cancel the last lap time and merge it into the timer. |
+| Drop    |  D  | Cancel the last lap time. |

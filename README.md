@@ -18,6 +18,7 @@
 ## browser
 
 * http://localhost:3000/timer
+* http://localhost:3000/timer/limit/3
 
 ## screen
 

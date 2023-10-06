@@ -54,12 +54,12 @@ html {
   color: #ccc;
 }
 
-.btn_reject {
-  color: #e3e;
-}
-
 .btn_drop {
   color: #93e;
+}
+
+.btn_reject {
+  color: #e3e;
 }
 
 .limiter {

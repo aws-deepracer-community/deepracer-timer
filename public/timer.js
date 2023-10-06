@@ -151,6 +151,23 @@ class Timer {
     this.bestlap.innerText = this.format(this.sorted[0]);
   }
 
+  drop() {
+    if (this.records.length == 0) {
+      return;
+    }
+
+    console.log(`drop ${this.results.lastChild.innerText}`);
+
+    this.results.removeChild(this.results.lastChild);
+
+    // update bestlap
+    this.records.splice(this.records.length - 1, 1);
+    this.sorted = this.records.slice();
+    this.sorted.sort(compare);
+
+    this.bestlap.innerText = this.format(this.sorted[0]);
+  }
+
   reject() {
     if (this.records.length == 0) {
       return;
@@ -180,6 +197,7 @@ class Timer {
       this.times[2] = 0;
     }
 
+    // update bestlap
     this.records.splice(this.records.length - 1, 1);
     this.sorted = this.records.slice();
     this.sorted.sort(compare);
@@ -189,20 +207,6 @@ class Timer {
     this.results.removeChild(this.results.lastChild);
 
     this.start();
-  }
-
-  drop() {
-    console.log(`running drop`);
-    if (this.records.length == 0) {
-      return;
-    }
-    console.log(`drop ${this.results.lastChild.innerText}`);
-    this.results.removeChild(this.results.lastChild);
-    // update bestlap
-    this.records.splice(this.records.length - 1, 1);
-    this.sorted = this.records.slice();
-    this.sorted.sort(compare);
-    this.bestlap.innerText = this.format(this.sorted[0]);
   }
 
   format(times) {
@@ -276,11 +280,11 @@ function exec(name) {
     case 'clear':
       timer.clear();
       break;
-    case 'reject':
-      timer.reject();
-      break;
     case 'drop':
       timer.drop();
+      break;
+    case 'reject':
+      timer.reject();
       break;
   }
 }
@@ -291,8 +295,8 @@ let key_map = {
   '69': 'passed', // e
   '82': 'reset', // r
   '84': 'clear', // t
-  '89': 'reject', // y
   '68': 'drop', // d
+  '70': 'reject', // f
 };
 
 document.addEventListener('keydown', function (event) {
@@ -312,5 +316,5 @@ document.getElementById('btn_pause').addEventListener('click', btn_listener);
 document.getElementById('btn_passed').addEventListener('click', btn_listener);
 document.getElementById('btn_reset').addEventListener('click', btn_listener);
 document.getElementById('btn_clear').addEventListener('click', btn_listener);
-document.getElementById('btn_reject').addEventListener('click', btn_listener);
 document.getElementById('btn_drop').addEventListener('click', btn_listener);
+document.getElementById('btn_reject').addEventListener('click', btn_listener);

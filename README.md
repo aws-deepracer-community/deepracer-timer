@@ -32,5 +32,5 @@
 | Passed  |  E  | Record the lap time. |
 | Reset   |  R  | Reset the timer to 0. |
 | Clear   |  T  | Clear the timer and all lap times. |
-| Reject  |  Y  | Cancel the last lap time and merge it into the timer. |
 | Drop    |  D  | Cancel the last lap time. |
+| Reject  |  F  | Cancel the last lap time and merge it into the timer. |

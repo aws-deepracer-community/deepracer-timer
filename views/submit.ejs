@@ -2,61 +2,61 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>DeepRacer League Submit</title>
-    <link rel="stylesheet" href="/submit.css">
-    <link rel="stylesheet" href="/flip.css">
-    <link rel="stylesheet" href="/pop.css">
+  <meta charset="utf-8">
+  <title>DeepRacer League Submit</title>
+  <link rel="stylesheet" href="/submit.css">
+  <link rel="stylesheet" href="/flip.css">
+  <link rel="stylesheet" href="/pop.css">
 </head>
 
 <body>
-    <figure class="lb-logo">
-        <div class="flip-container">
-            <div class="flip-body">
-                <div class="face front">
-                    <div class="lb-logo-front"><img src="/icon-trophy.png"></div>
-                </div>
-                <div class="face back">
-                    <div class="lb-logo-back"><img src="/icon-trophy.png"></div>
-                </div>
-            </div>
+  <figure class="lb-logo">
+    <div class="flip-container">
+      <div class="flip-body">
+        <div class="face front">
+          <div class="lb-logo-front"><img src="/icon-trophy.png"></div>
         </div>
-    </figure>
-
-    <h1 class="lb-title"></h1>
-
-    <div class="lb-container">
-        <div class="lb-submit lb-initial">
-            <div class="lb-row">
-                <div>Email</div>
-                <div><input type="text" id="lb-email" class="lb-email text_normal" autocomplete="off" maxlength="256">
-                </div>
-            </div>
-            <div class="lb-row">
-                <div>Name</div>
-                <div><input type="text" id="lb-name" class="lb-name text_normal" autocomplete="off" maxlength="32">
-                </div>
-            </div>
-            <div class="lb-row">
-                <div>Time</div>
-                <div><input type="text" id="lb-time" class="lb-time text_normal" autocomplete="off" maxlength="9">
-                </div>
-            </div>
-            <div class="lb-row">
-                <div></div>
-                <div><a href="#" id="lb-btn-submit" class="lb-btn-submit">Submit</a></div>
-            </div>
+        <div class="face back">
+          <div class="lb-logo-back"><img src="/icon-trophy.png"></div>
         </div>
+      </div>
     </div>
+  </figure>
 
-    <div class="pop-layer">
-        <div class="pop-bg"></div>
-        <div class="pop-container">
-            <div class="pop-message"></div>
+  <h1 class="lb-title"></h1>
+
+  <div class="lb-container">
+    <div class="lb-submit lb-initial">
+      <div class="lb-row">
+        <div>Email</div>
+        <div><input type="text" id="lb-email" class="lb-email text_normal" autocomplete="off" maxlength="256">
         </div>
+      </div>
+      <div class="lb-row">
+        <div>Name</div>
+        <div><input type="text" id="lb-name" class="lb-name text_normal" autocomplete="off" maxlength="32">
+        </div>
+      </div>
+      <div class="lb-row">
+        <div>Time</div>
+        <div><input type="text" id="lb-time" class="lb-time text_normal" autocomplete="off" maxlength="9">
+        </div>
+      </div>
+      <div class="lb-row">
+        <div></div>
+        <div><a href="#" id="lb-btn-submit" class="lb-btn-submit">Submit</a></div>
+      </div>
     </div>
+  </div>
 
-    <footer class="lb-footer"></footer>
+  <div class="pop-layer">
+    <div class="pop-bg"></div>
+    <div class="pop-container">
+      <div class="pop-message"></div>
+    </div>
+  </div>
+
+  <footer class="lb-footer"></footer>
 </body>
 
 </html>
@@ -66,6 +66,6 @@
 <script src="/flip.js"></script>
 
 <script>
-    let league = '<%= league %>';
+  let league = '<%= league %>';
 </script>
 <script src="/submit.js"></script>

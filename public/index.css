@@ -1,56 +1,56 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    background: #111;
-    color: #eee;
-    font-family: Menlo, Noto Mono;
+  background: #111;
+  color: #eee;
+  font-family: Menlo, Noto Mono;
 }
 
 figure {
-    display: block;
-    margin-block-end: 1em;
-    margin-block-start: 1em;
-    margin-inline-end: 40px;
-    margin-inline-start: 40px;
+  display: block;
+  margin-block-end: 1em;
+  margin-block-start: 1em;
+  margin-inline-end: 40px;
+  margin-inline-start: 40px;
 }
 
 footer {
-    height: 100px;
+  height: 100px;
 }
 
 div {
-    display: block;
+  display: block;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .lb-logo {
-    display: block;
-    height: 500px;
-    line-height: 0;
-    margin: 50px 0;
-    overflow: hidden;
-    text-align: center;
+  display: block;
+  height: 500px;
+  line-height: 0;
+  margin: 50px 0;
+  overflow: hidden;
+  text-align: center;
 }
 
 .lb-logo-front,
 .lb-logo-back {
-    height: 100%;
+  height: 100%;
 }
 
 .lb-logo-front img,
 .lb-logo-back img {
-    height: 100%;
+  height: 100%;
 }
 
 .lb-title {
-    height: 30px;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    text-align: center;
+  height: 30px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  text-align: center;
 }

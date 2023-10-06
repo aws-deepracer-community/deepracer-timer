@@ -48,9 +48,9 @@ class Timer {
       return;
     }
     this.records = [];
-    this.sorted = [];
     this.limit = [this.limit_min, 0, 0];
     this.reset();
+
     this.bestlap.innerText = '';
     while (this.results.lastChild) {
       this.results.removeChild(this.results.lastChild);
@@ -138,25 +138,15 @@ class Timer {
     }
   }
 
-  findone() {
-    if (this.records.length == 0) {
-      return;
-    }
-
-    this.sorted = this.records.slice();
-    this.sorted.sort(compare);
-    this.bestlap.innerText = this.format(this.sorted[0]);
-  }
-
   record() {
-    let li = document.createElement('li');
-    li.innerText = this.format(this.times);
-    this.results.appendChild(li);
-
     console.log(`record ${this.format(this.times)}`);
 
     // Save the lap time
     this.records.push(this.times);
+
+    let li = document.createElement('li');
+    li.innerText = this.format(this.times);
+    this.results.appendChild(li);
 
     this.findone();
   }
@@ -169,8 +159,9 @@ class Timer {
     console.log(`drop ${this.results.lastChild.innerText}`);
 
     // Cancel the last lap time
-    this.results.removeChild(this.results.lastChild);
     this.records.splice(this.records.length - 1, 1);
+
+    this.results.removeChild(this.results.lastChild);
 
     this.findone();
   }
@@ -206,12 +197,24 @@ class Timer {
     }
 
     // Cancel the last lap time
-    this.results.removeChild(this.results.lastChild);
     this.records.splice(this.records.length - 1, 1);
+
+    this.results.removeChild(this.results.lastChild);
 
     this.findone();
 
     this.start();
+  }
+
+  findone() {
+    if (this.records.length == 0) {
+      return;
+    }
+
+    let sorted = this.records.slice();
+    sorted.sort(this.compare);
+
+    this.bestlap.innerText = this.format(sorted[0]);
   }
 
   format(times) {

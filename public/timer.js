@@ -217,32 +217,32 @@ class Timer {
   }
 
   format(times) {
-    return `${lpad(times[0], 2)}:${lpad(times[1], 2)}.${lpad(Math.floor(times[2]), 3)}`;
+    return `${this.lpad(times[0], 2)}:${this.lpad(times[1], 2)}.${this.lpad(Math.floor(times[2]), 3)}`;
   }
-}
 
-function compare(a, b) {
-  if (a[0] < b[0]) {
-    return -1;
-  } else if (a[0] > b[0]) {
-    return 1;
+  compare(a, b) {
+    if (a[0] < b[0]) {
+      return -1;
+    } else if (a[0] > b[0]) {
+      return 1;
+    }
+    if (a[1] < b[1]) {
+      return -1;
+    } else if (a[1] > b[1]) {
+      return 1;
+    }
+    if (a[2] < b[2]) {
+      return -1;
+    } else if (a[2] > b[2]) {
+      return 1;
+    }
+    return 0;
   }
-  if (a[1] < b[1]) {
-    return -1;
-  } else if (a[1] > b[1]) {
-    return 1;
-  }
-  if (a[2] < b[2]) {
-    return -1;
-  } else if (a[2] > b[2]) {
-    return 1;
-  }
-  return 0;
-}
 
-function lpad(value, count) {
-  var result = '000' + value.toString();
-  return result.substr(result.length - count);
+  lpad(value, count) {
+    var result = '000' + value.toString();
+    return result.substr(result.length - count);
+  }
 }
 
 let timer = new Timer(

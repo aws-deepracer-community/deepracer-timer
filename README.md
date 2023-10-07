@@ -15,10 +15,10 @@
 ./run.sh stop
 ```
 
-## browser
+## open with
 
-* http://localhost:3000/timer
-* http://localhost:3000/timer/3
+* http://localhost:3000/timer (default timeout 4 minutes)
+* http://localhost:3000/timer/3 (3 minute timeout)
 
 ## screen
 

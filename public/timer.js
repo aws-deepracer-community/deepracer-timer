@@ -28,12 +28,13 @@ class Timer {
   }
 
   passed() {
-    if (!this.time) {
+    if (!this.running) {
       return;
     }
     if (this.times[0] > 0 || this.times[1] > 3) {
       this.record();
-      this.restart();
+      this.reset();
+      this.start();
     }
   }
 
@@ -63,11 +64,6 @@ class Timer {
       this.passed();
       this.pressed = new Date().getTime();
     }
-  }
-
-  restart() {
-    this.reset();
-    this.start();
   }
 
   step(timestamp) {
@@ -254,7 +250,7 @@ let timer = new Timer(
   document.querySelector('.display'),
   document.querySelector('.bestlap'),
   document.querySelector('.results'),
-  min
+  parseInt(min)
 );
 
 // ** socket.io //

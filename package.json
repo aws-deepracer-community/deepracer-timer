@@ -23,11 +23,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/nalbam/deepracer-timer.git"
+    "url": "http://github.com/aws-deepracer-community/deepracer-timer.git"
   },
   "author": "Jungyoul Yu <me@nalbam.com>",
   "bugs": {
-    "url": "http://github.com/nalbam/deepracer-timer/issues"
+    "url": "http://github.com/aws-deepracer-community/deepracer-timer/issues"
   },
-  "homepage": "http://github.com/nalbam/deepracer-timer"
+  "homepage": "http://github.com/aws-deepracer-community/deepracer-timer"
 }

@@ -1,4 +1,7 @@
-const request = require('request');
+/**
+ * server.js
+ */
+
 const express = require('express');
 const gpio = require('rpi-gpio');
 
@@ -9,8 +12,6 @@ const io = require('socket.io')(http);
 const sockets = {};
 
 const port = process.env.PORT || '3000';
-
-const apiurl = process.env.API_URL || 'https://dev-api-league.nalbam.com/league';
 
 // express
 app.use(express.json())
@@ -33,14 +34,14 @@ app.get('/timer', function (req, res) {
 app.get('/timer/:min', function (req, res) {
   const min = req.params.min;
   res.render('timer.ejs', {
-    min: min
+    min: parseInt(min)
   });
 });
 
 // emit name
 app.get('/emit/:name', function (req, res) {
   const name = req.params.name;
-  io.sockets.emit('timer', `${name}`);
+  io.sockets.emit('timer', name);
   return res.status(200).json({
     result: true,
     timer: name,
@@ -64,7 +65,7 @@ io.on('connection', function (socket) {
 
   socket.on('timer', function (name) {
     console.log('timer : ', socket.id, name);
-    io.sockets.emit('timer', `${name}`);
+    io.sockets.emit('timer', name);
   });
 });
 
@@ -79,7 +80,7 @@ gpio.on('change', function (channel, value) {
   switch (channel) {
     case 11:
     case 13:
-      io.sockets.emit('timer', 'press');
+      io.sockets.emit('timer', 'passed');
       break;
   }
 });

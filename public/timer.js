@@ -31,7 +31,7 @@ class Timer {
     if (!this.running) {
       return;
     }
-    if (this.times[0] > 0 || this.times[1] > 3) {
+    if (this.times[0] > 0 || this.times[1] > 2) {
       this.record();
       this.reset();
       this.start();
@@ -55,14 +55,6 @@ class Timer {
     this.bestlap.innerText = '';
     while (this.results.lastChild) {
       this.results.removeChild(this.results.lastChild);
-    }
-  }
-
-  press() {
-    var stamp = new Date().getTime();
-    if (!this.pressed || (stamp - this.pressed) > 3000) {
-      this.passed();
-      this.pressed = new Date().getTime();
     }
   }
 

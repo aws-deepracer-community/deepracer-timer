@@ -54,6 +54,7 @@ class Timer {
     this.reset();
 
     this.bestlap.innerText = '';
+    this.lastlap.innerText = '';
     while (this.results.lastChild) {
       this.results.removeChild(this.results.lastChild);
     }

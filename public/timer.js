@@ -3,10 +3,11 @@
  */
 
 class Timer {
-  constructor(limiter, display, bestlap, results, limit_min) {
+  constructor(limiter, display, bestlap, lastlap, results, limit_min) {
     this.limiter = limiter;
     this.display = display;
     this.bestlap = bestlap;
+    this.lastlap = lastlap;
     this.results = results;
     this.limit_min = limit_min;
     this.clear();
@@ -111,7 +112,7 @@ class Timer {
   }
 
   print() {
-    this.limiter.innerText = this.format(this.limit);
+    this.limiter.innerText = this.format(this.limit, 'short');
     this.display.innerText = this.format(this.times);
 
     if (this.limit[0] <= 0 && this.limit[1] <= 30) {
@@ -205,10 +206,14 @@ class Timer {
     let sorted = this.records.slice();
     sorted.sort(this.compare);
 
-    this.bestlap.innerText = this.format(sorted[0]);
+    this.bestlap.innerText = `Best: ${this.format(sorted[0])}`;
+    this.lastlap.innerText = `Last: ${this.format(this.records[this.records.length - 1])}`;
   }
 
-  format(times) {
+  format(times, type = 'long') {
+    if (type == 'short') {
+      return `${this.lpad(times[0], 2)}:${this.lpad(times[1], 2)}`;
+    }
     return `${this.lpad(times[0], 2)}:${this.lpad(times[1], 2)}.${this.lpad(Math.floor(times[2]), 3)}`;
   }
 
@@ -241,6 +246,7 @@ let timer = new Timer(
   document.querySelector('.limiter'),
   document.querySelector('.display'),
   document.querySelector('.bestlap'),
+  document.querySelector('.lastlap'),
   document.querySelector('.results'),
   parseInt(min)
 );

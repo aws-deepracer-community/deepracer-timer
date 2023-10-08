@@ -34,7 +34,7 @@ app.get('/timer', function (req, res) {
 app.get('/timer/:min', function (req, res) {
   const min = req.params.min;
   res.render('timer.ejs', {
-    min: parseInt(min)
+    min: min
   });
 });
 

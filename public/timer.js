@@ -117,17 +117,17 @@ class Timer {
     this.display.innerText = this.format(this.times);
 
     if (this.limit[0] <= 0 && this.limit[1] <= 30) {
-      this.limiter.classList.add("limiter_red");
-      this.limiter.classList.remove("limiter_yellow");
-      this.limiter.classList.remove("limiter_normal");
+      this.limiter.classList.add('limiter_red');
+      this.limiter.classList.remove('limiter_yellow');
+      this.limiter.classList.remove('limiter_normal');
     } else if (this.limit[0] <= 0 && this.limit[1] <= 60) {
-      this.limiter.classList.add("limiter_yellow");
-      this.limiter.classList.remove("limiter_normal");
-      this.limiter.classList.remove("limiter_red");
+      this.limiter.classList.add('limiter_yellow');
+      this.limiter.classList.remove('limiter_normal');
+      this.limiter.classList.remove('limiter_red');
     } else {
-      this.limiter.classList.add("limiter_normal");
-      this.limiter.classList.remove("limiter_yellow");
-      this.limiter.classList.remove("limiter_red");
+      this.limiter.classList.add('limiter_normal');
+      this.limiter.classList.remove('limiter_yellow');
+      this.limiter.classList.remove('limiter_red');
     }
   }
 
@@ -207,8 +207,23 @@ class Timer {
     let sorted = this.records.slice();
     sorted.sort(this.compare);
 
-    this.bestlap.innerText = `Best: ${this.format(sorted[0])}`;
+    let prebest = this.bestlap.innerText;
+    let nowbest = `Best: ${this.format(sorted[0])}`;
+
+    if (prebest != nowbest) {
+      this.bestlap.innerText = nowbest;
+      this.blink('.bestlap');
+    }
+
     this.lastlap.innerText = `Last: ${this.format(this.records[this.records.length - 1])}`;
+    this.blink('.lastlap');
+  }
+
+  blink(name) {
+    document.querySelector(name).classList.add('blink');
+    setTimeout(function () {
+      document.querySelector(name).classList.remove('blink');
+    }, 1000);
   }
 
   format(times, type = 'long') {
@@ -307,15 +322,11 @@ let key_map = {
 };
 
 document.addEventListener('keydown', function (event) {
-  console.log(`keydown ${event.keyCode} : ${key_map[event.keyCode]}`);
-
   send(key_map[event.keyCode]);
 });
 
 function btn_listener(event) {
-  let name = event.target.id.substring(4);
-
-  exec(name);
+  exec(event.target.id.substring(4));
 }
 
 document.getElementById('btn_start').addEventListener('click', btn_listener);

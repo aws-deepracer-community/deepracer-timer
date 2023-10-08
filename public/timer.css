@@ -8,6 +8,12 @@
   src: url("/fonts/sf-mono-regular.woff");
 }
 
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 html {
   background: #000;
   color: #eee;
@@ -123,4 +129,8 @@ html {
 
 .best_time {
   color: #4af;
+}
+
+.blink {
+  animation: blinker 0.75s linear;
 }

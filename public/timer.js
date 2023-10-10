@@ -13,6 +13,8 @@ class Timer {
     this.clear();
   }
 
+  success = new Audio('/sounds/success.mp3');
+
   start() {
     if (!this.time) {
       this.time = performance.now();
@@ -136,6 +138,9 @@ class Timer {
 
     // Save the lap time
     this.records.push(this.times);
+
+    this.success.loop = false;
+    this.success.play();
 
     let li = document.createElement('li');
     li.innerText = this.format(this.times);

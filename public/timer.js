@@ -92,7 +92,7 @@ class Timer {
     if (this.times[2] < 0) {
       this.times[2] = 0;
     }
-    if (this.times[0] == this.limit_min) {
+    if (this.times[0] === this.limit_min) {
       this.times[1] = 0;
       this.times[2] = 0;
     }
@@ -148,7 +148,7 @@ class Timer {
   }
 
   drop() {
-    if (this.records.length == 0) {
+    if (this.records.length === 0) {
       return;
     }
 
@@ -163,7 +163,7 @@ class Timer {
   }
 
   reject() {
-    if (this.records.length == 0) {
+    if (this.records.length === 0) {
       return;
     }
 
@@ -203,7 +203,7 @@ class Timer {
   }
 
   findone() {
-    if (this.records.length == 0) {
+    if (this.records.length === 0) {
       return;
     }
 
@@ -236,7 +236,7 @@ class Timer {
   }
 
   format(times, type = 'long') {
-    if (type == 'short') {
+    if (type === 'short') {
       return `${this.lpad(times[0], 2)}:${this.lpad(times[1], 2)}`;
     }
     return `${this.lpad(times[0], 2)}:${this.lpad(times[1], 2)}.${this.lpad(Math.floor(times[2]), 3)}`;

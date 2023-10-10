@@ -1,3 +1,8 @@
+@font-face {
+  font-family: sf-mono;
+  src: url("/fonts/sf-mono-regular.woff");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,23 +11,7 @@
 html {
   background: #000;
   color: #eee;
-  font-family: Menlo, Noto Mono;
-}
-
-figure {
-  display: block;
-  margin-block-end: 1em;
-  margin-block-start: 1em;
-  margin-inline-end: 40px;
-  margin-inline-start: 40px;
-}
-
-footer {
-  height: 100px;
-}
-
-div {
-  display: block;
+  font-family: sf-mono, Noto Mono;
 }
 
 a {
@@ -30,12 +19,13 @@ a {
 }
 
 .lb-logo {
-  display: block;
   height: 800px;
-  line-height: 0;
-  margin: 50px 0;
   overflow: hidden;
+  position: fixed;
   text-align: center;
+  top: 5%;
+  width: 100%;
+  height: 70%;
 }
 
 .lb-logo-front,
@@ -49,8 +39,22 @@ a {
 }
 
 .lb-title {
-  height: 30px;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  position: fixed;
   text-align: center;
+  top: 80%;
+  width: 100%;
+}
+
+.btn-link {
+  background-color: #e71;
+  background-image: linear-gradient(180deg, #f71 0, #e50);
+  border-color: #e60 #e50 #e50;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1vw;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1rem 4rem 1rem 4rem;
 }

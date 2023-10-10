@@ -13,8 +13,8 @@ class Timer {
     this.clear();
   }
 
-  ding1 = new Audio('/sounds/ding1.wav');
-  ding2 = new Audio('/sounds/ding2.wav');
+  ding1 = new Audio('/sounds/ding1.mp3');
+  ding2 = new Audio('/sounds/ding2.mp3');
 
   start() {
     if (!this.time) {

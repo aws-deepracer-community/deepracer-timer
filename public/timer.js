@@ -13,7 +13,8 @@ class Timer {
     this.clear();
   }
 
-  success = new Audio('/sounds/success.mp3');
+  ding1 = new Audio('/sounds/ding1.wav');
+  ding2 = new Audio('/sounds/ding2.wav');
 
   start() {
     if (!this.time) {
@@ -139,9 +140,6 @@ class Timer {
     // Save the lap time
     this.records.push(this.times);
 
-    this.success.loop = false;
-    this.success.play();
-
     let li = document.createElement('li');
     li.innerText = this.format(this.times);
     this.results.appendChild(li);
@@ -218,6 +216,12 @@ class Timer {
     if (prebest != nowbest) {
       this.bestlap.innerText = nowbest;
       this.blink('.bestlap');
+
+      this.ding1.loop = false;
+      this.ding1.play();
+    } else {
+      this.ding2.loop = false;
+      this.ding2.play();
     }
 
     this.lastlap.innerText = `Last: ${this.format(this.records[this.records.length - 1])}`;

@@ -5,7 +5,9 @@
 ## usage
 
 ```bash
-./run.sh init
+git clone https://github.com/aws-deepracer-community/deepracer-timer.git
+
+./deepracer-timer/run.sh init
 ./run.sh start
 ./run.sh restart
 ./run.sh status

@@ -32,3 +32,13 @@
 | Clear   |  T  | Clear the timer and all lap times. |
 | Drop    |  D  | Cancel the last lap time. |
 | Reject  |  F  | Cancel the last lap time and merge it into the timer. |
+
+## gpio
+
+![GPIO](images/GPIO-Pinout-Diagram-2.png)
+
+```text
+VCC  : 1, 17
+GND  : 6, 9, 14, 20, 25, 30, 34, 39
+DOUT : 11, 13
+```

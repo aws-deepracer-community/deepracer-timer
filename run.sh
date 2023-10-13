@@ -2,9 +2,13 @@
 
 SHELL_DIR=$(dirname $0)
 
-CMD=${1:-status}
+CMD=${1}
 
 command -v tput >/dev/null || TPUT=false
+
+_bar() {
+  _echo "================================================================================"
+}
 
 _echo() {
   if [ -z ${TPUT} ] && [ ! -z $2 ]; then
@@ -40,12 +44,29 @@ _error() {
   exit 1
 }
 
-_get_pid() {
+_pid() {
   PID=$(ps -ef | grep node | grep " server[.]js" | head -1 | awk '{print $2}' | xargs)
 }
 
+################################################################################
+
+_usage() {
+  _bar
+  echo "     _                                            _   _                      "
+  echo "  __| | ___  ___ _ __  _ __ __ _  ___ ___ _ __   | |_(_)_ __ ___   ___ _ __  "
+  echo " / _  |/ _ \/ _ \ '_ \| '__/ _' |/ __/ _ \ '__|  | __| | '_ ' _ \ / _ \ '__| "
+  echo "| (_| |  __/  __/ |_) | | | (_| | (_|  __/ |     | |_| | | | | | |  __/ |    "
+  echo " \__,_|\___|\___| .__/|_|  \__,_|\___\___|_|      \__|_|_| |_| |_|\___|_|    "
+  echo "                |_|                                                          "
+  _bar
+  echo " Usage: ./$(basename $0) {init|status|start|restart|stop|log} "
+  _bar
+  _status
+  _bar
+}
+
 _stop() {
-  _get_pid
+  _pid
 
   if [ "${PID}" != "" ]; then
     _command "kill -9 ${PID}"
@@ -56,7 +77,7 @@ _stop() {
 }
 
 _status() {
-  _get_pid
+  _pid
 
   if [ "${PID}" != "" ]; then
     _result "deepracer-timer was started: ${PID}"
@@ -66,7 +87,7 @@ _status() {
 }
 
 _start() {
-  _get_pid
+  _pid
 
   if [ "${PID}" != "" ]; then
     _error "deepracer-timer has already started: ${PID}"
@@ -80,7 +101,7 @@ _start() {
 
   popd
 
-  _get_pid
+  _pid
 
   if [ "${PID}" != "" ]; then
     _result "deepracer-timer was started: ${PID}"
@@ -119,5 +140,8 @@ stop)
   ;;
 log)
   _log
+  ;;
+*)
+  _usage
   ;;
 esac

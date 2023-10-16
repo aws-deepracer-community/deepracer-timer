@@ -2,7 +2,7 @@
 
 * SEE: https://nalbam.github.io/2019/11/07/deepracer-timer-en.html
 
-## usage
+## Usage
 
 ```bash
 git clone https://github.com/aws-deepracer-community/deepracer-timer.git
@@ -21,16 +21,16 @@ git clone https://github.com/aws-deepracer-community/deepracer-timer.git
 ================================================================================
 ```
 
-## open with
+## Open with
 
 * http://localhost:3000/timer (default timeout 4 minutes)
 * http://localhost:3000/timer/3 (3 minute timeout)
 
-## screen
+## Screen
 
 ![screen](images/screen.png)
 
-## keymap
+## Keymap
 
 | Action  | Key | Description |
 | ------- | --- | ----------- |
@@ -51,3 +51,8 @@ VCC  : 1, 17
 GND  : 6, 9, 14, 20, 25, 30, 34, 39
 DOUT : 11, 13
 ```
+
+## Hardware
+
+* [Thin Film Pressure Sensor, SF15-600](https://www.amazon.com/dp/B08SJ3722C/)
+* [LM386 Sound Sensor](https://www.waveshare.com/sound-sensor.htm)

@@ -54,6 +54,6 @@ DOUT : 11, 13
 
 ## Hardware
 
-* [Raspberry pi 4 (4GB)](https://www.amazon.com/dp/B07TC2BK1X/)
+* [Raspberry pi 4 (4GB)](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
 * [Thin Film Pressure Sensor, SF15-600](https://www.amazon.com/dp/B08SJ3722C/)
 * [LM386 Sound Sensor](https://www.waveshare.com/sound-sensor.htm)

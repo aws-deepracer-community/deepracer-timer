@@ -2,7 +2,7 @@
 
 SHELL_DIR=$(dirname $0)
 
-CMD=${1}
+CMD=$1
 
 command -v tput >/dev/null || TPUT=false
 
@@ -109,10 +109,20 @@ _start() {
 }
 
 _init() {
+  command -v node >/dev/null || NODEJS="false"
+  if [ "${NODEJS}" == "false" ]; then
+    sudo curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+    sudo apt install -y nodejs
+  fi
+
   pushd ${SHELL_DIR}
   git pull
   npm run build
   popd
+}
+
+_hangul() {
+  sudo apt install -y ibus ibus-hangul fonts-unfonts-core
 }
 
 _log() {
@@ -140,6 +150,9 @@ stop)
   ;;
 log)
   _log
+  ;;
+hangul | korean)
+  _hangul
   ;;
 *)
   _usage

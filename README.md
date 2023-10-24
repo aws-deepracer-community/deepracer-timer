@@ -52,19 +52,6 @@ GND  :  9, 25
 DOUT : 11, 13
 ```
 
-## rj45
-
-![RJ45](images/rj45.png)
-
-```text
- 1 (VCC)  -> Blue
- 9 (GND)  -> Green
-11 (DOUT) -> Blue/White
-13 (DOUT) -> Brown/White
-17 (VCC)  -> Brown
-25 (GND)  -> Orange
-```
-
 ## Hardware
 
 * [Raspberry pi 4 (4GB)](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)

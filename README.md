@@ -44,12 +44,25 @@ git clone https://github.com/aws-deepracer-community/deepracer-timer.git
 
 ## gpio
 
-![GPIO](images/GPIO-Pinout-Diagram-2.png)
+![GPIO](images/gpio.png)
 
 ```text
-VCC  : 1, 17
-GND  : 6, 9, 14, 20, 25, 30, 34, 39
+VCC  :  1, 17
+GND  :  9, 25
 DOUT : 11, 13
+```
+
+## rj45
+
+![RJ45](images/rj45.png)
+
+```text
+ 1 (VCC)  -> Blue
+ 9 (GND)  -> Green
+11 (DOUT) -> Blue/White
+13 (DOUT) -> Brown/White
+17 (VCC)  -> Brown
+25 (GND)  -> Orange
 ```
 
 ## Hardware

@@ -44,7 +44,7 @@ git clone https://github.com/aws-deepracer-community/deepracer-timer.git
 
 ## gpio
 
-![GPIO](images/gpio.png)
+![GPIO](images/gpio-timer.png)
 
 ```text
 VCC  :  1, 17

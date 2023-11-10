@@ -33,12 +33,9 @@ class Timer {
 
   passed() {
     if (!this.running) {
-      return;
-    }
-    if (this.times[0] > 0 || this.times[1] > 2) {
-      this.record();
-      this.reset();
       this.start();
+    } else if (this.times[0] > 0 || this.times[1] > 2) {
+      this.record();
     }
   }
 
@@ -143,6 +140,8 @@ class Timer {
     let li = document.createElement('li');
     li.innerText = this.format(this.times);
     this.results.appendChild(li);
+
+    this.times = [0, 0, 0];
 
     this.findone();
   }

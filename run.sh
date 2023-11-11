@@ -77,6 +77,7 @@ _start() {
   pushd ${SHELL_DIR}
 
   sudo pm2 start server.js
+  sudo pm2 save
 
   popd
 }
@@ -100,6 +101,8 @@ _init() {
   if [ "${PM2}" == "false" ]; then
     sudo npm install pm2 -g
   fi
+
+  sudo pm2 startup
 
   pushd ${SHELL_DIR}
   git pull

@@ -66,46 +66,28 @@ _usage() {
 }
 
 _stop() {
-  _pid
+  pushd ${SHELL_DIR}
 
-  if [ "${PID}" != "" ]; then
-    _command "kill -9 ${PID}"
-    kill -9 ${PID}
+  sudo pm2 stop server.js
 
-    _result "deepracer-timer is killed: ${PID}"
-  fi
-}
-
-_status() {
-  _pid
-
-  if [ "${PID}" != "" ]; then
-    _result "deepracer-timer was started: ${PID}"
-  else
-    _result "deepracer-timer is stopped"
-  fi
+  popd
 }
 
 _start() {
-  _pid
-
-  if [ "${PID}" != "" ]; then
-    _error "deepracer-timer has already started: ${PID}"
-  fi
-
   pushd ${SHELL_DIR}
 
-  echo "# _start" >nohup.out
-  _command "nohup node server.js &"
-  nohup node server.js &
+  sudo pm2 start server.js
+  sudo pm2 save
 
   popd
+}
 
-  _pid
+_status() {
+  sudo pm2 list
+}
 
-  if [ "${PID}" != "" ]; then
-    _result "deepracer-timer was started: ${PID}"
-  fi
+_log() {
+  sudo pm2 logs
 }
 
 _init() {
@@ -114,6 +96,13 @@ _init() {
     sudo curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
     sudo apt install -y nodejs
   fi
+
+  command -v pm2 >/dev/null || PM2="false"
+  if [ "${PM2}" == "false" ]; then
+    sudo npm install pm2 -g
+  fi
+
+  sudo pm2 startup
 
   pushd ${SHELL_DIR}
   git pull
@@ -125,18 +114,11 @@ _hangul() {
   sudo apt install -y ibus ibus-hangul fonts-unfonts-core
 }
 
-_log() {
-  tail -n 500 -f ${SHELL_DIR}/nohup.out
-}
-
 case ${CMD} in
 init)
   _stop
   _init
   _start
-  ;;
-status)
-  _status
   ;;
 start)
   _start
@@ -147,6 +129,9 @@ restart)
   ;;
 stop)
   _stop
+  ;;
+status)
+  _status
   ;;
 log)
   _log

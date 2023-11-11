@@ -68,7 +68,7 @@ _usage() {
 _stop() {
   pushd ${SHELL_DIR}
 
-  pm2 stop server.js
+  sudo pm2 stop server.js
 
   popd
 }
@@ -76,17 +76,17 @@ _stop() {
 _start() {
   pushd ${SHELL_DIR}
 
-  pm2 start server.js
+  sudo pm2 start server.js
 
   popd
 }
 
 _status() {
-  pm2 list
+  sudo pm2 list
 }
 
 _log() {
-  pm2 logs
+  sudo pm2 logs
 }
 
 _init() {
@@ -98,7 +98,7 @@ _init() {
 
   command -v pm2 >/dev/null || PM2="false"
   if [ "${PM2}" == "false" ]; then
-    npm install pm2 -g
+    sudo npm install pm2 -g
   fi
 
   pushd ${SHELL_DIR}
